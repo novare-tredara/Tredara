@@ -1,0 +1,29 @@
+h1,
+h2,
+h3,
+p {
+  margin-top: 0; /* removes a weird layout that makes these element have space on top */
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 0.07px;
+  margin-bottom: var(--space-big);
+}
+
+h2 {
+  font-size: 18px;
+  letter-spacing: -0.05px;
+  margin-bottom: var(--space-medium);
+}
+
+h3 {
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  margin-bottom: var(--space-medium);
+}
+
+p {
+  font-size: var(--default-text-size);
+  margin-bottom: var(--space-medium);
+}

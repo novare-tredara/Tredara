@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  background-color: white;
+  color: black;
+  font-family: Helvetica, Arial, sans-serif;
+
+  /* Makes fonts look good on compatible browsers */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box; /* to fix legacy issues with padding messing up when adding with or borders */
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
