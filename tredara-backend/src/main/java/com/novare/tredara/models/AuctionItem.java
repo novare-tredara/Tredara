@@ -51,6 +51,9 @@ public class AuctionItem {
 	@Column(name = "END_DATE")
 	private Date endDate;
 
+	@Column(name = "STATUS")
+	private int status;
+
 	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(foreignKey = @ForeignKey(name = "ITEM_CATEGORY_ID"), name = "CATEGORY_ID", referencedColumnName = "ID")
 	private Category category;
