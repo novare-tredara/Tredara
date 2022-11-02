@@ -2,3 +2,12 @@
 @import "./base/typography.css";
 @import "./base/variables.css";
 @import "./base/layout";
+
+/* Components */
+@import "./components/footer.css";
+@import "./components/navigationbar.css";
+
+/* Pages */
+@import "./pages/home.css";
+@import "./pages/signIn.css";
+@import "./pages/signUp.css";

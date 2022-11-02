@@ -1,0 +1,8 @@
+.footer-bar {
+  background-color: var(--color-yellow);
+  width: 100%;
+  height: var(--footer-bar);
+  padding: 0 var(--page-space);
+  position: absolute;
+  bottom: 0;
+}
