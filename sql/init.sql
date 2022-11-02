@@ -1,6 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `tredara` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `tredara`;
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for macos12 (x86_64)
 --
 -- Host: localhost    Database: tredara
 -- ------------------------------------------------------
@@ -35,12 +33,13 @@ CREATE TABLE `auction_item` (
   `TITLE` varchar(255) DEFAULT NULL,
   `CATEGORY_ID` int DEFAULT NULL,
   `USER_ID` bigint DEFAULT NULL,
+  `STATUS` int DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `ITEM_CATEGORY_ID` (`CATEGORY_ID`),
   KEY `ITEM_USER_ID` (`USER_ID`),
   CONSTRAINT `ITEM_CATEGORY_ID` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `category` (`ID`),
   CONSTRAINT `ITEM_USER_ID` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,6 +48,7 @@ CREATE TABLE `auction_item` (
 
 LOCK TABLES `auction_item` WRITE;
 /*!40000 ALTER TABLE `auction_item` DISABLE KEYS */;
+INSERT INTO `auction_item` VALUES (1,'A nice mobile which is in good condition','2022-11-07 00:00:00','/api/images/mobiles/Samsung.png',300,NULL,'2022-11-02 00:00:00','Samsung Mobile',1,1,1),(2,'A nice books for kids','2022-11-20 00:00:00','/api/images/books/kidsbook.png',100,NULL,'2022-11-02 00:00:00','Kids Book',4,2,1),(3,'A Cloth for men','2022-11-20 00:00:00','/api/images/clothes/checked.png',100,NULL,'2022-11-01 00:00:00','Men Shirt',3,3,1),(4,'Nice hair clips for girls','2022-11-21 00:00:00','/api/images/accesssories/hair-accessories.png',200,NULL,'2022-11-05 00:00:00','Hair Accessories',2,2,1),(5,'Beauty Cream ','2022-11-30 00:00:00','/api/images/beauty/cream.png',500,NULL,'2022-11-04 00:00:00','Face Cream',5,1,1),(6,'A nice cap for summer and stylish one','2022-11-12 00:00:00','/api/images/accessories/cap.png',50,NULL,'2022-11-02 00:00:00','Cap',2,3,1),(7,'Ear ring  nice for any occassions','2022-11-20 00:00:00','/api/images/accessories/elegantaearring.png',200,NULL,'2022-11-01 00:00:00','Ear piece',2,1,1),(8,'A hair clip for any occasssions with beautiful design ','2022-11-11 00:00:00','/api/images/accessories/hairclip.png',110,NULL,'2022-11-02 00:00:00','Hair Clip',2,1,1),(9,'A nice Red lipstick for women who try to look bright and beautiful on special occasions','2022-11-20 00:00:00','/api/images/beauty/lipstick.png',200,NULL,'2022-11-01 00:00:00','Lip Stick',5,3,1),(10,'A compact powder  from well branded company','2022-11-27 00:00:00','/api/images/beauty/compactpowder.png',500,NULL,'2022-11-05 00:00:00','Compact powder ',5,2,1),(11,'A book for night time sleep','2022-11-20 00:00:00','/api/images/books/book.png',20,NULL,'2022-11-02 00:00:00','Misel Rosen book ',4,2,1),(12,'Some random books which I want  to give away','2022-11-29 00:00:00','/api/images/books/book3.png',50,NULL,'2022-11-11 00:00:00','Random Books',4,1,1),(13,'A nexus phone with good battery life and good memeory ','2022-11-20 00:00:00','/api/imges/mobiles/Nexus.png',600,NULL,'2022-11-10 00:00:00','Nexus Phone',1,1,1),(14,'A Nokia phone with good pixel quality','2022-11-12 00:00:00','/api/images/mobiles/Nokia.png',100,NULL,'2022-11-02 00:00:00','A Nokia Phone',1,3,1),(15,'A nice formal shirts from the factory','2022-11-18 00:00:00','/api/images/clothes/harrington.png',800,NULL,'2022-11-04 00:00:00','A branded Men shirt',3,3,1);
 /*!40000 ALTER TABLE `auction_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +149,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `EMAIL` (`EMAIL`),
   KEY `USER_ROLE_ID` (`ROLE_ID`),
   CONSTRAINT `USER_ROLE_ID` FOREIGN KEY (`ROLE_ID`) REFERENCES `role` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,6 +158,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'2022-11-01 00:00:00','rad@gmail.com','radha','12345',1,2),(2,'2022-11-01 00:00:00','latha@gmail.com','latha','12345',1,2),(3,'2022-11-01 00:00:00','mallika@gmail.com','mallika','12345',1,2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -170,4 +171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-01 17:33:49
+-- Dump completed on 2022-11-02 11:33:53
