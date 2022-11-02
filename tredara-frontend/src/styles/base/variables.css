@@ -1,0 +1,24 @@
+/* Colors */
+:root {
+  --color-yellow: #f1c40f;
+  --color-green: #00704e;
+  --color-gray-1: #333333;
+  --color-gray-2: #c4c4c4;
+  --color-gray-3: #d9d9d9;
+  --color-gray-4: #e0e0e0;
+}
+
+/* Spacing */
+:root {
+  --space-small: 8px;
+  --space-medium: 16px;
+  --space-big: 32px;
+}
+
+/* Other */
+:root {
+  --default-text-size: 16px; /* to sync the font size of the paragraph to other elements that uses the same size. */
+  --page-space: 15px; /* padding used between the content and the page or modal */
+  --navigation-bar: 80px; /* so we can position elements below the navbar */
+  --footer-bar: 120px; /* so we can position elements below the navbar */
+}

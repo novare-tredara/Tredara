@@ -1,0 +1,6 @@
+.navigation-bar {
+  background-color: blue;
+  width: 100%;
+  height: var(--navigation-bar);
+  padding: 0 var(--page-space);
+}
