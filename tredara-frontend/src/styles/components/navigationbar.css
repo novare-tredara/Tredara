@@ -1,6 +1,17 @@
 .navigation-bar {
-  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 10px 24px;
+  gap: 135px;
+
+  
+  position: absolute;
   width: 100%;
-  height: var(--navigation-bar);
-  padding: 0 var(--page-space);
+  height: 80px;
+  left: 0px;
+  top: 0px;
+  
+  background: #b1aaaa;
 }
+
