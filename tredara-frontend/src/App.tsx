@@ -15,7 +15,7 @@ export default function App() {
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/search/:query" element={<SearchResults/>}/>
+          <Route path="/search" element={<SearchResults/>}/>
           <Route path="/login" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
         </Routes>
