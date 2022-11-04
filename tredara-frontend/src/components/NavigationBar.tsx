@@ -17,7 +17,7 @@ export default function NavigationBar() {
   return (
     <nav className="navigation-bar">
       <Link to={CustomerLinks[0].url}>
-        <img src={Logo} />
+        <img src={Logo} alt="logo" />
       </Link>
       <div className="right-items">
         <input

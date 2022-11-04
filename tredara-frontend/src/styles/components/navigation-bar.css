@@ -11,7 +11,8 @@
 }
 
 .navigation-bar img {
-  height: 25px;
+  height: 60px;
+  width: 60px;
   margin-right: var(--space-big);
 }
 
@@ -19,13 +20,12 @@
   text-decoration: none;
   color: white;
   margin-right: var(--space-big);
-  align-items: center;  
+  align-items: center;
 }
 
 .navigation-bar .left-items {
   margin-left: auto; /* used with flex to push the item to the oposite side */
 }
-
 
 .navigation-bar .button-logout {
   background-color: transparent;
