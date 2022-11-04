@@ -1,36 +1,13 @@
 // Project files
-import ContentLogo from "assets/images/logo.png";
-import Background from "assets/images/background.png";
-import Placeholder from "assets/images/placeholders/banner.png";
 import logo from "assets/images/logo.png";
 import background from "assets/images/background.png";
-//import ModalDetails from "components/ModalDetails";
-import iAuctionItem from "interfaces/iAuctionItem";
-import { useModal } from "state/ModalContext";
 
-interface iProps {
-  item: iAuctionItem;
-}
-
-export default function BannerHome({ item }: iProps) {
-  const { image, title, description } = item;
-
-  // Global state
-  const { setModal } = useModal();
-
-  // Components
-  const Heading = <h3>{title}</h3>;
-  //const Modal = <ModalDetails item={item} />;
-
+export default function BannerHome() {
   return (
     <header className="hero hero-home">
-      <img
-        className="background-image"
-        src={background}
-        onError={(event) => (event.currentTarget.src = Placeholder)}
-      />
+      <img className="background-image" alt="background" src={background} />
       <div className="content">
-        <img className="background-image" src={logo} />
+        <img src={logo} alt="logo" />
       </div>
     </header>
   );
