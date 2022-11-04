@@ -1,4 +1,3 @@
-Create Table tredara ;
 Use tredara;
 -- MySQL dump 10.13  Distrib 8.0.30, for macos12 (x86_64)
 --
