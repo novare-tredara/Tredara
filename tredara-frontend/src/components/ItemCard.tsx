@@ -1,6 +1,5 @@
 // Project files
 import Placeholder from "assets/images/placeholders/card.png";
-//import ModalDetails from "components/ModalDetails";
 import iAuctionItem from "interfaces/iAuctionItem";
 import { useModal } from "state/ModalContext";
 import Card from "react-bootstrap/Card";
@@ -24,7 +23,7 @@ export default function ItemCard({ item }: iProps) {
       <Card key={item.id}>
         <Card.Img
           id={item.title}
-          className="card-img-alt"
+          className="card-img card-img-alt"
           src={item.image}
           onError={(event) => (event.currentTarget.src = Placeholder)}
         />
