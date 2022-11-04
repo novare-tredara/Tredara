@@ -1,64 +1,60 @@
 package com.novare.tredara.controllers;
 
-import com.novare.tredara.models.AuctionItem;
-import com.novare.tredara.services.AuctionItemService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import com.novare.tredara.models.AuctionItem;
+import com.novare.tredara.models.ECategory;
+import com.novare.tredara.payload.AuctionItemDTO;
+import com.novare.tredara.repositories.AuctionItemRepository;
+import com.novare.tredara.services.AuctionItemService;
 
 @CrossOrigin(origins = "*")
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/auctionitems")
 public class AuctionItemController {
-    public final AuctionItemService auctionItemService;
 
     @Autowired
-    public AuctionItemController(AuctionItemService auctionItemService) {
-        this.auctionItemService = auctionItemService;
+    private AuctionItemRepository itemRepository;
+    private AuctionItemService auctionItemService;
+
+    @GetMapping("/")
+    public ResponseEntity<List<AuctionItemDTO>> getAllItems() {
+        List<AuctionItem> auctionItems = itemRepository.findAll();
+        List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
+        auctionItems.stream().forEach(item -> {
+            auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
+        });
+        return ResponseEntity.ok(auctionItemDTOs);
     }
 
-    @GetMapping("/items")
-    public ResponseEntity<List<AuctionItem>> listAllItems() {
-        List<AuctionItem> contents = auctionItemService.getItems();
+    @GetMapping("/getbystatus/{status}")
+    public ResponseEntity<List<AuctionItem>> getByStatus(@PathVariable(value = "status") Integer status) {
+        List<AuctionItem> contents = itemRepository.findAll().stream().filter(items -> items.getStatus() == status)
+                .collect(Collectors.toList());
         return ResponseEntity.ok(contents);
     }
 
-    @GetMapping("/items/mobiles")
-    public ResponseEntity<List<AuctionItem>> getMobiles() {
-        List<AuctionItem> contents = auctionItemService.getMobiles();
-        return ResponseEntity.ok(contents);
-    }
-
-    @GetMapping("/items/accessories")
-    public ResponseEntity<List<AuctionItem>> getAccessories() {
-        List<AuctionItem> contents = auctionItemService.getAccessories();
-        return ResponseEntity.ok(contents);
-    }
-
-    @GetMapping("/items/clothes")
-    public ResponseEntity<List<AuctionItem>> getClothes() {
-        List<AuctionItem> contents = auctionItemService.getClothes();
-        return ResponseEntity.ok(contents);
-    }
-
-    @GetMapping("/items/books")
-    public ResponseEntity<List<AuctionItem>> getBooks() {
-        List<AuctionItem> contents = auctionItemService.getBooks();
-        return ResponseEntity.ok(contents);
-    }
-
-    @GetMapping("/items/beautycare")
-    public ResponseEntity<List<AuctionItem>> getBeauty() {
-        List<AuctionItem> contents = auctionItemService.getBeauty();
-        return ResponseEntity.ok(contents);
-    }
-
-    @GetMapping(value= "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AuctionItem>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
         return ResponseEntity.ok(auctionItemService.getAuctionItemByFreeText(freeText));
+    }
+
+    @GetMapping("/getbycategory/{category}")
+    public ResponseEntity<List<AuctionItem>> getMobiles(@PathVariable(value = "category") String category) {
+        List<AuctionItem> contents = itemRepository
+                .findActiveItemsByCategory(ECategory.valueOf(category.toUpperCase()));
+        return ResponseEntity.ok(contents);
     }
 }

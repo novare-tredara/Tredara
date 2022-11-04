@@ -1,0 +1,28 @@
+.item-card {
+  width: 235px;
+  height: 130px;
+  background-color: var(--color-gray-3);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.item-card .card {
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 1;
+  padding: 15px 15px 15px 15px;
+  
+}
+
+.item-card .card-body {
+  color: #FFFFFF;
+  height: 60px;
+}
+
+.item-card .card-img-alt {
+  width: 100px;
+  height: 100px;
+}

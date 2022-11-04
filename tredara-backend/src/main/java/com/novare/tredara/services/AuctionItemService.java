@@ -61,7 +61,7 @@ public class AuctionItemService {
 
     public List<AuctionItem> getAuctionItemByFreeText(String freeText) {
         List<AuctionItem> item =auctionItemRepository.findByTitleContainsAndStatus(freeText,1);
-        item.add((AuctionItem) auctionItemRepository.findByDescriptionContainsAndStatus(freeText,1));
+        //item.add((AuctionItem) auctionItemRepository.findByDescriptionContainsAndStatus(freeText,1));
         return  item;
 
     }

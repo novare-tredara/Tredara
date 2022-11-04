@@ -1,0 +1,45 @@
+[
+  {
+    "id": 0,
+    "label": "Home",
+    "url": "/"
+  },{
+    "id": 1,
+    "label": "New Listing",
+    "url": "/registeritem"
+  },
+  {
+    "id": 2,
+    "label": "Accessories",
+    "url": "/getbycategory/accessories"
+  },
+  {
+    "id": 3,
+    "label": "Beauty Care",
+    "url": "/getbycategory/beautycare"
+  },
+  {
+    "id": 4,
+    "label": "Mobiles",
+    "url": "/getbycategory/mobiles"
+  },
+  {
+    "id": 5,
+    "label": "Clothes",
+    "url": "/getbycategory/clothes"
+  },
+  {
+    "id": 6,
+    "label": "Books",
+    "url": "/getbycategory/books"
+  },{
+    "id": 7,
+    "label": "Login",
+    "url": "/login"
+  },
+  {
+    "id": 8,
+    "label": "Signup",
+    "url": "/signup"
+  }
+]

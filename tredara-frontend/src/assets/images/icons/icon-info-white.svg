@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon</title>
+    <g id="Style-guide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" fill="#FFFFFF">
+            <path d="M20,40 C31.046875,40 40,31.046875 40,20 C40,8.953125 31.046875,0 20,0 C8.953125,0 0,8.953125 0,20 C0,31.046875 8.953125,40 20,40 Z M16.875,26.25 L18.75,26.25 L18.75,21.25 L16.875,21.25 L15,21.25 L15,17.5 L16.875,17.5 L20.625,17.5 L22.5,17.5 L22.5,19.375 L22.5,26.25 L23.125,26.25 L25,26.25 L25,30 L23.125,30 L16.875,30 L15,30 L15,26.25 L16.875,26.25 Z M22.5,15 L17.5,15 L17.5,10 L22.5,10 L22.5,15 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
