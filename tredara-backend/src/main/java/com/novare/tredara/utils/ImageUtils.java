@@ -9,7 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 public class ImageUtils {
-	public static String IMG_STORE = "/auction_images/";
+	public static String IMG_STORE = "/images/";
 
 	public static String toBase64(String imagePath) {
 		Resource resource = new ClassPathResource("");

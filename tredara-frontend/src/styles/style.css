@@ -4,8 +4,12 @@
 @import "./base/layout";
 
 /* Components */
+@import "./components/card.css";
 @import "./components/footer.css";
-@import "./components/navigationbar.css";
+@import "./components/navigation-bar.css";
+@import "./components/heroes.css";
+@import "./components/item-card.css";
+@import "./components/statuses.css";
 
 /* Pages */
 @import "./pages/home.css";

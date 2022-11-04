@@ -1,0 +1,33 @@
+.navigation-bar {
+  display: flex; /* for aligning items using modern CSS */
+  position: fixed;
+  left: 0;
+  background-color: gray;
+  width: 100%;
+  height: var(--navigation-bar);
+  padding: 0 var(--page-space);
+  align-items: center; /* used with flex to align items on the vertical axis */
+  justify-content: space-between;
+}
+
+.navigation-bar img {
+  height: 25px;
+  margin-right: var(--space-big);
+}
+
+.navigation-bar a {
+  text-decoration: none;
+  color: white;
+  margin-right: var(--space-big);
+  align-items: center;  
+}
+
+.navigation-bar .left-items {
+  margin-left: auto; /* used with flex to push the item to the oposite side */
+}
+
+
+.navigation-bar .button-logout {
+  background-color: transparent;
+  font-weight: normal;
+}

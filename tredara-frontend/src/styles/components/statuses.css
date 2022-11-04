@@ -1,0 +1,23 @@
+.status {
+  display: grid;
+  place-items: center;
+  max-width: 240px;
+  height: 100vh;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.status img {
+  width: 40px;
+  margin-bottom: var(--space-small);
+}
+
+.status.loading img {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

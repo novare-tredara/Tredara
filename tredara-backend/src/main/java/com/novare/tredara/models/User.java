@@ -31,6 +31,7 @@ public class User {
 
 	@Column(name = "EMAIL")
 	@Email(message = "*Please provide a valid Email")
+	@NotEmpty(message = "*Please provide a valid Email address")
 	private String email;
 
 	@Column(name = "FULL_NAME")

@@ -2,7 +2,7 @@
   background-color: var(--color-yellow);
   width: 100%;
   height: var(--footer-bar);
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 .footer-bar p {
