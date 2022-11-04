@@ -17,7 +17,7 @@ export default function CustomerRoutes() {
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/getbycategory/accessories/:code" element={<Home />} />
-        <Route path="/search" element={<SearchResults />} />
+        <Route path="/search/:query" element={<SearchResults />} />
       </Routes>
       <Footer />
     </div>

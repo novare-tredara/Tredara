@@ -27,6 +27,7 @@ public class AuctionItemController {
 
     @Autowired
     private AuctionItemRepository itemRepository;
+    @Autowired
     private AuctionItemService auctionItemService;
 
     @GetMapping("/")
@@ -48,7 +49,9 @@ public class AuctionItemController {
 
     @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AuctionItem>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
-        return ResponseEntity.ok(auctionItemService.getAuctionItemByFreeText(freeText));
+        System.out.println("inside search");
+        List<AuctionItem> contents =auctionItemService.getAuctionItemByFreeText(freeText);
+        return ResponseEntity.ok(contents);
     }
 
     @GetMapping("/getbycategory/{category}")

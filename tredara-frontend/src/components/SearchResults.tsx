@@ -9,13 +9,13 @@ export default function SearchResults() {
   const [status, setStatus] = useState(eStatus.LOADING);
   const [data, setData] = useState(new Array<iContent>());
   const { query }: any = useParams();
-  const endPoint = "/api/auctionitems";
-  /* useEffect(() => {
+  const endPoint = `auctionitems/search?freeText=${query}`;
+   useEffect(() => {
     fetch(`/api/auctionitems`)
       .then((response) => response.json())
       .then((data) => onSuccess(data))
       .catch((error) => onFailure(error));
-  }, []); */
+  }, []); 
   function onSuccess(data: iContent[]) {
     setData(data);
     setStatus(eStatus.READY);
