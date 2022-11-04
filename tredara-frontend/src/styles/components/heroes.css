@@ -25,6 +25,13 @@
   padding: var(--page-space);
 }
 
+.hero .content-center {
+  max-width: 460px;
+  padding: var(--page-space);
+  justify-content: center;
+  align-content: center ;
+}
+
 .hero .logo {
   margin-bottom: var(--space-medium);
 }

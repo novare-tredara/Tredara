@@ -1,5 +1,6 @@
 // Project files
-import IconInfo from "assets/images/icons/icon-info-white.svg";
+import ContentLogo from "assets/images/logo.png";
+import Background from "assets/images/background.png";
 import Placeholder from "assets/images/placeholders/banner.png";
 import logo from "assets/images/logo.png";
 import background from "assets/images/background.png";
