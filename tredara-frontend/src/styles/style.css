@@ -10,8 +10,9 @@
 @import "./components/heroes.css";
 @import "./components/item-card.css";
 @import "./components/statuses.css";
-
+ 
 /* Pages */
+@import "./pages/content.css";
 @import "./pages/home.css";
 @import "./pages/signIn.css";
 @import "./pages/signUp.css";

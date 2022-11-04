@@ -16,7 +16,7 @@ export default function SearchResults() {
       .then((response) => response.json())
       .then((data) => onSuccess(data))
       .catch((error) => onFailure(error));
-  }, []); 
+  }, [query]); 
   function onSuccess(data: iAuctionItem[]) {
     setData(data);
     setStatus(eStatus.READY);
@@ -30,13 +30,13 @@ export default function SearchResults() {
   const results = data.filter((item) =>
     item.title.toLowerCase().match(query.toLowerCase())
   );
+  console.log(results.length)
   return (
-    <div id="content">
-      <h2 className="text"> Search Results</h2>
 
-      <div >{
-            results.length ===0?(<p>No results found for {query}</p>):(<ContainerCards title="Titles avaialble" data={data} />)
+
+      <div id="content">{
+            results.length ===0?(<p className="text">No results found for {query}</p>):(<ContainerCards title="Titles avaialble" data={data} />)
         }</div>
-    </div>
+   
   );
 }

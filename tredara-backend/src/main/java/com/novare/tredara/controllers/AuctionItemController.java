@@ -48,10 +48,13 @@ public class AuctionItemController {
     }
 
     @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<AuctionItem>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
-        System.out.println("inside search");
+    public ResponseEntity<List<AuctionItemDTO>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
         List<AuctionItem> contents =auctionItemService.getAuctionItemByFreeText(freeText);
-        return ResponseEntity.ok(contents);
+        List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
+        contents.stream().forEach(item -> {
+            auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
+        });
+        return ResponseEntity.ok(auctionItemDTOs);
     }
 
     @GetMapping("/getbycategory/{category}")
