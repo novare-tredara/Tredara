@@ -3,11 +3,10 @@ package com.novare.tredara.controllers;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.services.AuctionItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,5 +55,10 @@ public class AuctionItemController {
     public ResponseEntity<List<AuctionItem>> getBeauty() {
         List<AuctionItem> contents = auctionItemService.getBeauty();
         return ResponseEntity.ok(contents);
+    }
+
+    @GetMapping(value= "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<AuctionItem>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
+        return ResponseEntity.ok(auctionItemService.getAuctionItemByFreeText(freeText));
     }
 }

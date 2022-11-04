@@ -7,4 +7,9 @@ import java.util.List;
 
 public interface AuctionItemRepository extends JpaRepository<AuctionItem,Integer> {
     List<AuctionItem> findByStatus(int status);
+
+    List<AuctionItem> findByTitleContainsAndStatus(String freeText, int status);
+
+
+    List<AuctionItem> findByDescriptionContainsAndStatus(String freeText, int status);
 }
