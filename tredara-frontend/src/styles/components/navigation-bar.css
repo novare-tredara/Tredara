@@ -8,6 +8,7 @@
   padding: 0 var(--page-space);
   align-items: center; /* used with flex to align items on the vertical axis */
   justify-content: space-between;
+  z-index: 1000;
 }
 
 .navigation-bar img {
