@@ -1,31 +1,36 @@
+#home {
+  margin-bottom: 120px;
+}
 #home .hero-home {
-    padding-top: var(--nav-bar);
-    margin-bottom: var(--space-big);
-  }
-  
-  #home .card-list {
-    margin-bottom: var(--space-big);
-    padding: 0 var(--page-space);
-  }
-  
-  #home .card-list div {
-    display: flex;
-    overflow-x: scroll;
-    column-gap: var(--space-medium);
-  }
-  
-  /* Remove scrollbar space */
-  #home .card-list div::-webkit-scrollbar {
-    display: none;
-  }
-  
-  #home .item-card {
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-  
-  #home footer {
-    text-align: center;
-    padding-bottom: var(--space-big);
-  }
-  
+  padding-top: var(--nav-bar);
+  margin-bottom: var(--space-big);
+}
+
+#home .card-list {
+  margin-bottom: var(--space-big);
+  padding: 0 var(--page-space);
+}
+.card-list h2 {
+  width: 100%;
+  height: 29px;
+  font-size: var(--space-big);
+  line-height: 29px;
+  font-weight: 700;
+  margin-left: 16px;
+  margin-bottom: var(--space-big);
+}
+
+#home .card-list div {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--space-medium);
+  row-gap: var(--space-medium);
+}
+
+#home footer {
+  text-align: center;
+  padding-bottom: var(--space-big);
+}

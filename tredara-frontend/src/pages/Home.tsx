@@ -43,7 +43,7 @@ export default function Home() {
 
   return (
     <div id="home">
-      <BannerHome item={data[0]} />
+      <BannerHome />
       <ContainerCards title="Auction Items" data={data} />
     </div>
   );
