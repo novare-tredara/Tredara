@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.AuctionItem;
-import com.novare.tredara.utils.DateUtil;
+import com.novare.tredara.models.Category;
 import com.novare.tredara.utils.ImageUtils;
 
 public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
@@ -35,6 +35,9 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 
 	@JsonProperty("status")
 	private int status;
+
+	@JsonProperty("category_id")
+	private Category category;
 
 	public Integer getId() {
 		return id;
@@ -107,6 +110,7 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
 
 	@Override
 	public int compareTo(AuctionItemDTO o) {
