@@ -36,6 +36,7 @@ public class AuctionItemController {
 
 	@Autowired
 	private AuctionItemRepository itemRepository;
+	@Autowired
 	private AuctionItemService auctionItemService;
 
 	@GetMapping("/")
@@ -55,53 +56,20 @@ public class AuctionItemController {
 		return ResponseEntity.ok(contents);
 	}
 
+	@GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AuctionItemDTO>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
+		List<AuctionItem> contents = auctionItemService.getAuctionItemByFreeText(freeText);
+		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
+		contents.stream().forEach(item -> {
+			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
+		});
+		return ResponseEntity.ok(auctionItemDTOs);
+	}
+
 	@GetMapping("/getbycategory/{category}")
 	public ResponseEntity<List<AuctionItem>> getMobiles(@PathVariable(value = "category") String category) {
 		List<AuctionItem> contents = itemRepository
 				.findActiveItemsByCategory(ECategory.valueOf(category.toUpperCase()));
 		return ResponseEntity.ok(contents);
 	}
-
-	@PostMapping("/create")
-	public ResponseEntity<AuctionItemDTO> create(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
-
-		 saveOrUpdate(contentRequest);
-
-		return ResponseEntity.ok(contentRequest);
-	}
-
-	
-	@DeleteMapping("/delete/{id}")
-	public Map<String, Boolean> deleteItems(@PathVariable(value = "id") Integer itemId) throws TredaraException{
-
-		AuctionItem item = itemRepository.findById(itemId)
-				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "AuctionItem not found on :: " + itemId));
-		itemRepository.delete(item);
-
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return response;
-	}
-	
-	
-
-	private void saveOrUpdate(AuctionItemDTO contentRequest) {
-		AuctionItem items = itemRepository.findById(contentRequest.getId())
-				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND,
-						"Item not found on :: " + contentRequest.getId()));
-				
-		AuctionItem item = AuctionItemDTO.createAuctionItemModel(contentRequest);
-		itemRepository.save(items);
-	}
-
-	
-	
-	
-	
-	
-	@GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AuctionItem>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
-		return ResponseEntity.ok(auctionItemService.getAuctionItemByFreeText(freeText));
-	}
-
 }
