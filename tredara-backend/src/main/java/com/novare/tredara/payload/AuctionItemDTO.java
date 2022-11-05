@@ -2,9 +2,12 @@ package com.novare.tredara.payload;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.models.Category;
+import com.novare.tredara.models.ECategory;
 import com.novare.tredara.utils.ImageUtils;
 
 public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
@@ -36,8 +39,8 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	@JsonProperty("status")
 	private int status;
 
-	@JsonProperty("category_id")
-	private Category category;
+	@JsonProperty("category")
+	private String category;
 
 	public Integer getId() {
 		return id;
@@ -111,6 +114,13 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		this.status = status;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	@Override
 	public int compareTo(AuctionItemDTO o) {
@@ -139,7 +149,7 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		item.setId(builder.getId());
 		item.setTitle(builder.getTitle());
 		item.setDescription(builder.getDescription());
-		item.setImage(ImageUtils.toImageFile(builder.getImage(), "images/"));
+		item.setImage(ImageUtils.toImageFile(builder.getImage(), builder.getCategory().toLowerCase()));
 		item.setOriginalPrice(builder.getOriginalPrice());
 		item.setSoldPrice(builder.getSoldPrice());
 		item.setStartDate(builder.getStartDate());

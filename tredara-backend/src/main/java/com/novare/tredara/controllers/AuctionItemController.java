@@ -73,27 +73,22 @@ public class AuctionItemController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public Map<String, Boolean> deleteItem(@PathVariable(value = "id") Integer itemId) throws TredaraException {
+	public ResponseEntity<Map<String, Boolean>> deleteItem(@PathVariable(value = "id") Integer itemId)
+			throws TredaraException {
 
 		AuctionItem item = itemRepository.findById(itemId)
 				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "Item not found on :: " + itemId));
 		itemRepository.delete(item);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
-		return response;
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<AuctionItemDTO> create(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
-
-		saveOrUpdate(contentRequest);
-
-		return ResponseEntity.ok(contentRequest);
-	}
-
-	private void saveOrUpdate(AuctionItemDTO contentRequest) {
+	public ResponseEntity<AuctionItem> create(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
 		AuctionItem items = AuctionItemDTO.createAuctionItemModel(contentRequest);
 		itemRepository.save(items);
+		return ResponseEntity.ok(items);
 	}
 
 }
