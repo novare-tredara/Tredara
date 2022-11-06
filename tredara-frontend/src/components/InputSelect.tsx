@@ -3,6 +3,9 @@ import { ChangeEvent, useEffect } from "react";
 
 // Project files
 import iInputSelect from "interfaces/iInputSelect";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 interface iProps {
   field: iInputSelect;
@@ -34,14 +37,18 @@ export default function Select({ field, state }: iProps) {
   ));
 
   return (
-    <label className="input input-select">
-      <span>{label}</span>
-      <select value={value[key]} onChange={onChange}>
-        <option selected disabled>
-          Please choose an option
-        </option>
-        {Options}
-      </select>
-    </label>
+    <Form.Group as={Row} className="mb-3" controlId={key}>
+      <Form.Label column sm={2}>
+        {label}:
+      </Form.Label>
+      <Col sm={10}>
+        <Form.Select value={value[key]} onChange={onChange}>
+          <option selected disabled>
+            Please choose an option
+          </option>
+          {Options}
+        </Form.Select>
+      </Col>
+    </Form.Group>
   );
 }

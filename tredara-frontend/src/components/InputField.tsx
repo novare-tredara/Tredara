@@ -1,5 +1,8 @@
 // Node modules
 import { ChangeEvent } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // Project files
 import iInputField from "interfaces/iInputField";
@@ -31,16 +34,20 @@ export default function InputField({ field, state }: iProps) {
   }
 
   return (
-    <label className="input input-field">
-      <span>{label}:</span>
-      <input
-        autoFocus={autoFocus}
-        onChange={onChange}
-        placeholder={placeholder}
-        required={required}
-        type={type}
-        value={initialValue}
-      />
-    </label>
+    <Form.Group as={Row} className="mb-3" controlId={key}>
+      <Form.Label column sm={2}>
+        {label}:
+      </Form.Label>
+      <Col sm={10}>
+        <Form.Control
+          autoFocus={autoFocus}
+          onChange={onChange}
+          placeholder={placeholder}
+          required={required}
+          type={type}
+          value={initialValue}
+        />
+      </Col>
+    </Form.Group>
   );
 }

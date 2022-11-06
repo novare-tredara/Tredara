@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import CustomerRoutes from "routes/CustomerRoutes";
 
-import "./styles/style.css";
+import "styles/style.css";
 
 export default function App() {
   return (

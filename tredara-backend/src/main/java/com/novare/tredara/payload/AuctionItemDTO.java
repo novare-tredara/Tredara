@@ -37,10 +37,10 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	private Date endDate;
 
 	@JsonProperty("status")
-	private int status;
+	private Integer status;
 
 	@JsonProperty("category")
-	private String category;
+	private Integer category;
 
 	public Integer getId() {
 		return id;
@@ -106,19 +106,19 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		this.endDate = endDate;
 	}
 
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
-	public String getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 
@@ -149,12 +149,14 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		item.setId(builder.getId());
 		item.setTitle(builder.getTitle());
 		item.setDescription(builder.getDescription());
-		item.setImage(ImageUtils.toImageFile(builder.getImage(), builder.getCategory().toLowerCase()));
+		ECategory category = ECategory.get(builder.getCategory());
+		item.setImage(ImageUtils.toImageFile(builder.getImage(), category.name().toLowerCase()));
 		item.setOriginalPrice(builder.getOriginalPrice());
 		item.setSoldPrice(builder.getSoldPrice());
 		item.setStartDate(builder.getStartDate());
 		item.setEndDate(builder.getEndDate());
 		item.setStatus(builder.getStatus());
+		item.setCategory(new Category(category.getValue(), category));
 		return item;
 
 	}

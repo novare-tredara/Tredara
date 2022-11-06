@@ -4,43 +4,45 @@ import Logo from "assets/images/logo-icon.png";
 import CustomerLinks from "data/links-customer.json";
 import { useUser } from "state/UserContext";
 import { useState } from "react";
+import NavItem from "./NavItem";
+import Search from "./Search";
+import FormCreate from "./FormCreate";
 
 export default function NavigationBar() {
   // Global state
   const { setUser } = useUser();
-  const[searchWord, setSearchWord] = useState("");
-  
   const navigate = useNavigate();
-  
-  function onSubmit(event:any){
-    event.preventDefault();
-    navigate(`/search/${searchWord}`)
-}
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  function onSelect(id: number, endPoint: string) {
+    if (id == 1) {
+      handleShow();
+    } else {
+      navigate(endPoint);
+    }
+  }
+
+  function onSubmit() {}
 
   // Components
   const Links = CustomerLinks.map((item) => (
-    <Link key={item.id} to={item.url}>
-      {item.label}
-    </Link>
+    <NavItem item={item} actions={[onSelect, onSubmit]} />
   ));
   return (
     <nav className="navigation-bar">
       <Link to={CustomerLinks[0].url}>
         <img src={Logo} alt="logo" />
       </Link>
-      <div className="right-items">
-      <form className="search" onSubmit={onSubmit}>
-        <input
-          id="search"
-          className="form-control full-width form-rounded"
-          type="search"
-          placeholder="Search..."
-          aria-label="Search"
-          onChange={(event) => setSearchWord(event.target.value)}
-        />
-        </form>
-      </div>
+      <Search />
       <div className="justify-content-end">{Links}</div>
+      {/* Adding model form for creation */}
+      <FormCreate
+        show={show}
+        onHide={handleClose}
+        actions={[handleShow, handleClose]}
+      />
     </nav>
   );
 }

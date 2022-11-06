@@ -1,27 +1,44 @@
-// MPM packages
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import { FormEvent, useState } from "react";
-
-// Project files
-import ListInput from "components/ListInput";
-import { useModal } from "state/ModalContext";
+import Fields from "data/fields-auction-items.json";
+import ListInput from "./ListInput";
 
 interface iProps {
-  endPoint: string;
-  fields: Array<any>;
+  show: boolean;
+  onHide: any;
+  actions: Function[];
 }
-
-export default function FormUpdate({ endPoint, fields }: iProps) {
-  // Global state
-  const { setModal } = useModal();
-
+export default function FormCreate(props: iProps) {
   // Local state
   const [form, setForm] = useState({});
+  const [handleShow, handleClose] = props.actions;
+  const [validated, setValidated] = useState(false);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      onSubmit(event);
+      handleClose();
+    }
+    setValidated(true);
+  }
 
   // Methods
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    fetch(endPoint + "create/", {
+    fetch("/auctionitems/create/", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
       body: JSON.stringify(form),
     })
       .then(onSuccess)
@@ -30,7 +47,6 @@ export default function FormUpdate({ endPoint, fields }: iProps) {
 
   function onSuccess() {
     alert("Item created!");
-    setModal(null);
   }
 
   function onFailure(error: string) {
@@ -39,14 +55,29 @@ export default function FormUpdate({ endPoint, fields }: iProps) {
   }
 
   return (
-    <form className="form" onSubmit={onSubmit}>
-      <h2>Update information</h2>
-      <ListInput fields={fields} state={[form, setForm]} />
-      <hr />
-      <button className="button-gray">Create</button>
-      <button className="button-gray" onClick={() => setModal(null)}>
-        Cancel
-      </button>
-    </form>
+    <Modal size="lg" show={props.show} onHide={props.onHide} animation={true}>
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Create Auction Item
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <ListInput fields={Fields} state={[form, setForm]} />
+          <Form.Group className="d-flex flex-row-reverse">
+            <Button
+              className="btn btn-danger"
+              style={{ margin: "0 0.5rem 0 0" }}
+              onClick={() => handleClose()}
+            >
+              Close
+            </Button>
+            <Button type="submit" style={{ margin: "0 0.5rem 0 0" }}>
+              Save
+            </Button>
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+    </Modal>
   );
 }

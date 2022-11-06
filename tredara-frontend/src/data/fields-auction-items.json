@@ -1,0 +1,70 @@
+[
+  {
+    "key": "title",
+    "autoFocus": true,
+    "label": "Title",
+    "placeholder": "iPhone 13 | 8GB RAM | 120GB Storage",
+    "required": true,
+    "type": "text"
+  },
+  {
+    "key": "description",
+    "autoFocus": false,
+    "label": "Description",
+    "placeholder": "Brand NEW and box un openned",
+    "required": true,
+    "type": "text"
+  },
+  {
+    "key": "original_price",
+    "autoFocus": false,
+    "label": "Original Price",
+    "placeholder": "The starting price of the phone",
+    "required": true,
+    "type": "number"
+  },
+  {
+    "key": "category",
+    "autoFocus": false,
+    "label": "Category",
+    "placeholder": "The item it belongs to",
+    "required": true,
+    "type": "select",
+    "options": [
+      "Mobile",
+      "Accessories",
+      "Cloths",
+      "Books",
+      "BeautyCare"
+    ]
+  },
+  {
+    "key": "end_date",
+    "autoFocus": false,
+    "label": "End Date",
+    "placeholder": "Bidding close date",
+    "required": true,
+    "type": "date"
+  },
+  {
+    "key": "status",
+    "autoFocus": false,
+    "label": "Status",
+    "placeholder": "1: Active, 2: InActive",
+    "required": true,
+    "type": "select",
+    "options": [
+      "Active",
+      "InActive"
+    ]
+  },
+  {
+    "key": "image",
+    "autoFocus": false,
+    "label": "Image",
+    "placeholder": "https://www.google.com/phone.png",
+    "required": true,
+    "type": "image",
+    "imageWidth": 260
+  }
+]

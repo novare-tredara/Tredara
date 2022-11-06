@@ -7,6 +7,10 @@ import iInputImage from "interfaces/iInputImage";
 import readFile from "scripts/resize-image/readFile";
 import resizeImage from "scripts/resize-image/resizeImage";
 
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 interface iProps {
   field: iInputImage;
   state: [any, Function];
@@ -38,17 +42,22 @@ export default function InputImage({ field, state }: iProps) {
   }
 
   return (
-    <label className="input input-image">
-      <span>{label}:</span>
-      <input
-        type="file"
-        accept="image/png, image/jpeg"
-        onChange={(event) => onChange(event)}
-      />
+    <Form.Group as={Row} className="mb-3" controlId={key}>
+      <Form.Label column sm={2}>
+        {label}:
+      </Form.Label>
+      <Col sm={10}>
+        <Form.Control
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={onChange}
+        />
+      </Col>
       <img
+        style={{ height: "25rem", padding: "1rem 1rem 0rem 0.7rem" }}
         src={imageURL}
         onError={(event) => (event.currentTarget.src = Placeholder)}
       />
-    </label>
+    </Form.Group>
   );
 }
