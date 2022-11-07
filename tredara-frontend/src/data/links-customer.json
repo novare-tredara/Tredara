@@ -12,27 +12,27 @@
   {
     "id": 2,
     "label": "Accessories",
-    "url": "/getbycategory/accessories"
+    "url": "/accessories"
   },
   {
     "id": 3,
     "label": "Beauty Care",
-    "url": "/getbycategory/beautycare"
+    "url": "/beautycare"
   },
   {
     "id": 4,
     "label": "Mobiles",
-    "url": "/getbycategory/mobiles"
+    "url": "/mobiles"
   },
   {
     "id": 5,
     "label": "Clothes",
-    "url": "/getbycategory/clothes"
+    "url": "/clothes"
   },
   {
     "id": 6,
     "label": "Books",
-    "url": "/getbycategory/books"
+    "url": "/books"
   },
   {
     "id": 7,
