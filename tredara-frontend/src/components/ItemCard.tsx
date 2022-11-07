@@ -9,12 +9,14 @@ interface iProps {
 export default function ItemCard({ item }: iProps) {
   return (
     <article className="item-card">
-      <img
-        src={item.image}
-        alt=""
-        onError={(event) => (event.currentTarget.src = Placeholder)}
-      />
-      <h3>{item.title}</h3>
+      <a key={item.id} href={`./detail/${item.id}`}>
+        <img
+          src={item.image}
+          alt=""
+          onError={(event) => (event.currentTarget.src = Placeholder)}
+        />
+        <h3>{item.title}</h3>
+      </a>
     </article>
   );
 }
