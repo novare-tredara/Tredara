@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 // Project files
 import ContainerCards from "components/ListCards";
-import NavigationBar from "components/NavigationBar";
 import StatusEmpty from "components/StatusEmpty";
 import StatusError from "components/StatusError";
 import StatusLoading from "components/StatusLoading";

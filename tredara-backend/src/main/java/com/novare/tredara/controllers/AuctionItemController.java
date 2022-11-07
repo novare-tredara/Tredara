@@ -89,4 +89,13 @@ public class AuctionItemController {
         itemRepository.save(items);
         return ResponseEntity.ok(items);
     }
+    
+
+    @PostMapping("/update")
+    public ResponseEntity<AuctionItem> update(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
+        AuctionItem items = AuctionItemDTO.createAuctionItemModel(contentRequest);
+        itemRepository.save(items);
+        return ResponseEntity.ok(items);
+    }
 }
+
