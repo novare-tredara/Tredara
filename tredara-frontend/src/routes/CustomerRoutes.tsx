@@ -4,7 +4,8 @@ import { Routes, Route } from "react-router-dom";
 // Project files
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
-import SearchResults from "components/SearchResults";
+import Content from "pages/Content";
+import SearchResults from "pages/SearchResults";
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 
@@ -16,7 +17,7 @@ export default function CustomerRoutes() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/getbycategory/accessories/:code" element={<Home />} />
+        <Route path="/:code" element={<Content />} />
         <Route path="/search/:query" element={<SearchResults />} />
       </Routes>
       <Footer />

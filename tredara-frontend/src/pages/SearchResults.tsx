@@ -1,22 +1,24 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import eStatus from "interfaces/eStatus";
 import iContent from "interfaces/iAuctionItem";
-import eCategory from "interfaces/eCategory";
 import ContainerCards from "components/ListCards";
 import iAuctionItem from "interfaces/iAuctionItem";
+import StatusError from "components/StatusError";
+import StatusLoading from "components/StatusLoading";
 
 export default function SearchResults() {
   const [status, setStatus] = useState(eStatus.LOADING);
   const [data, setData] = useState(new Array<iContent>());
   const { query }: any = useParams();
-  const endPoint = `/auctionitems/search?freeText=${query}`;
+
   useEffect(() => {
-    fetch(endPoint)
+    fetch(`/auctionitems/search?freeText=${query}`)
       .then((response) => response.json())
       .then((data) => onSuccess(data))
       .catch((error) => onFailure(error));
   }, [query]);
+
   function onSuccess(data: iAuctionItem[]) {
     setData(data);
     setStatus(eStatus.READY);
@@ -30,13 +32,22 @@ export default function SearchResults() {
   const results = data.filter((item) =>
     item.title.toLowerCase().match(query.toLowerCase())
   );
-  console.log(results.length);
+
+  // Safeguards
+  if (status === eStatus.LOADING) return <StatusLoading />;
+  if (status === eStatus.ERROR) return <StatusError />;
+
   return (
     <div id="content">
       {results.length === 0 ? (
         <p className="text">No results found for {query}</p>
       ) : (
-        <ContainerCards title="Titles avaialble" data={data} />
+        <div>
+          <header>
+            <h1>Items releated to {query}</h1>
+          </header>
+          <ContainerCards title="Titles avaialble" data={data} />
+        </div>
       )}
     </div>
   );
