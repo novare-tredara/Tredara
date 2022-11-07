@@ -1,0 +1,39 @@
+
+.auth {
+   
+    place-items: center;
+    width:fit-content;
+    white-space: nowrap;
+    height: 100vh;
+}
+  
+  .auth .container {
+    padding: 5px;
+    border-radius: var(--radius);
+    
+  }
+  
+  .auth form {
+    margin-bottom: var(--space-small);
+    
+  }
+  
+  .auth .input {
+    margin-bottom: var(--space-small);
+  }
+  
+  .auth button {
+    width: 50%;
+  }
+  
+  .auth footer {
+    color: var(--color-green);
+  }
+  .auth button{
+    background-color:var(--color-green);
+    color:white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }

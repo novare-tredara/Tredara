@@ -12,7 +12,6 @@
 @import "./components/statuses.css";
  
 /* Pages */
-@import "./pages/auth.css";
 @import "./pages/content.css";
 @import "./pages/home.css";
 @import "./pages/signIn.css";

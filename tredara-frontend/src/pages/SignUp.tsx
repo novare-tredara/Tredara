@@ -1,6 +1,7 @@
 // Node modules
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import signup from "../assets/images/signup.png";
 
 // Project files
 import ListInput from "components/ListInput";
@@ -50,16 +51,21 @@ export default function Login() {
   return (
     <div id="sign-up" className="auth">
       <div className="container">
-        <h1>Set up your account</h1>
+        <div className="row">
+        <img className ="column" src ={signup}/>
+        <div className ="column">
+        <h1>Sign Up</h1>
         <form onSubmit={(event) => onSubmit(event)}>
           <ListInput fields={Fields} state={[form, setForm]} />
-          <button>Sign up</button>
+          <button>Create Account</button>
         </form>
         <footer>
           <p>
-            Already have an account? <Link to="/login">Sign in instead</Link>.
+            Already have an account? <Link to="/login">Sign In</Link>.
           </p>
         </footer>
+        </div>
+        </div>
       </div>
     </div>
   );
