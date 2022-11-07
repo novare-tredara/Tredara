@@ -36,7 +36,7 @@ public class AuctionItem {
 	private String description;
 
 	@Column(name = "IMAGE")
-	@NotEmpty(message = "*Please provide a valid Item image path")
+	//@NotEmpty(message = "*Please provide a valid Item image path")
 	private String image;
 
 	@Column(name = "ORIGINAL_PRICE")
