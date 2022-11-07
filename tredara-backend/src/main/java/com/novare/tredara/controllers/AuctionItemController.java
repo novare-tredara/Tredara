@@ -72,6 +72,15 @@ public class AuctionItemController {
         return ResponseEntity.ok(auctionItemDTOs);
     }
 
+    @GetMapping("/details/{id}")
+    public ResponseEntity<AuctionItemDTO> getItemDetailsById(@PathVariable(value = "id") Integer itemId)
+            throws TredaraException {
+        AuctionItem item = itemRepository.findById(itemId)
+                .orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "Item not found on :: " + itemId));
+        AuctionItemDTO itemDTO = AuctionItemDTO.buildResponse(item);
+        return ResponseEntity.ok(itemDTO);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteItem(@PathVariable(value = "id") Integer itemId)
             throws TredaraException {
@@ -89,7 +98,6 @@ public class AuctionItemController {
         itemRepository.save(items);
         return ResponseEntity.ok(items);
     }
-    
 
     @PostMapping("/update")
     public ResponseEntity<AuctionItem> update(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
