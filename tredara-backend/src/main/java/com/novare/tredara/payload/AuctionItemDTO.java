@@ -2,8 +2,6 @@ package com.novare.tredara.payload;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.models.Category;
@@ -133,8 +131,6 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		itemDTO.setDescription(auctionItem.getDescription());
 		itemDTO.setEndDate(auctionItem.getEndDate());
 		itemDTO.setStartDate(auctionItem.getStartDate());
-		// itemDTO.setEndDate(DateUtil.toString(auctionItem.getEndDate()));
-		// itemDTO.setStartDate(DateUtil.toString(auctionItem.getStartDate()));
 		itemDTO.setImage(ImageUtils.toBase64(auctionItem.getImage()));
 		itemDTO.setOriginalPrice(auctionItem.getOriginalPrice());
 		itemDTO.setSoldPrice(auctionItem.getSoldPrice());
