@@ -1,14 +1,25 @@
-#content{
-    padding: 0 var(--page-space);
-    padding-top: var(--navigation-bar);
-} 
-  #content .card-list {
-    padding: 0 var(--page-space);
-  }
-  
-  #content .card-list div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--space-medium);
-  }
+#content header {
+  padding: 0 var(--page-space);
+  padding-top: var(--navigation-bar);
+}
+
+#content h1 {
+  font-weight: bold;
+  margin-left: 16px;
+}
+
+#content .card-list {
+  padding: 0 var(--page-space);
+  margin-top: -40px;
+}
+
+#content .card-list div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-medium);
+}
+#content .text {
+  padding: 0 var(--page-space);
+  padding-top: var(--navigation-bar);
+}
