@@ -22,6 +22,15 @@ public class Category {
 	@Column(name = "CATEGORY")
 	private ECategory category;
 
+	public Category() {
+	}
+	
+	public Category(Integer id, ECategory category) {
+		super();
+		this.id = id;
+		this.category = category;
+	}
+
 	public Integer getId() {
 		return id;
 	}

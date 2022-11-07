@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "auction_item")
@@ -39,7 +40,7 @@ public class AuctionItem {
 	private String image;
 
 	@Column(name = "ORIGINAL_PRICE")
-	@NotEmpty(message = "*Please provide a valid Item Original price")
+	@NotNull(message = "*Please provide a valid Item Original price")
 	private Long originalPrice;
 
 	@Column(name = "SOLD_PRICE")

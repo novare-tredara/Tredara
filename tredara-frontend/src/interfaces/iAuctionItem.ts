@@ -1,3 +1,4 @@
+
 export default interface iAuctionItem {
   id: number;
   title: string;

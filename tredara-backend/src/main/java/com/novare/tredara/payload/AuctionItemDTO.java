@@ -2,9 +2,12 @@ package com.novare.tredara.payload;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.AuctionItem;
-import com.novare.tredara.utils.DateUtil;
+import com.novare.tredara.models.Category;
+import com.novare.tredara.models.ECategory;
 import com.novare.tredara.utils.ImageUtils;
 
 public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
@@ -28,13 +31,16 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	private Long soldPrice;
 
 	@JsonProperty("start_date")
-	private String startDate;
+	private Date startDate;
 
 	@JsonProperty("end_date")
-	private String endDate;
+	private Date endDate;
 
 	@JsonProperty("status")
-	private int status;
+	private Integer status;
+
+	@JsonProperty("category")
+	private Integer category;
 
 	public Integer getId() {
 		return id;
@@ -84,28 +90,36 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		this.soldPrice = soldPrice;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String  startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Integer getCategory() {
+		return category;
+	}
+
+	public void setCategory(Integer category) {
+		this.category = category;
 	}
 
 	@Override
@@ -117,14 +131,33 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		AuctionItemDTO itemDTO = new AuctionItemDTO();
 		itemDTO.setId(auctionItem.getId());
 		itemDTO.setDescription(auctionItem.getDescription());
-		itemDTO.setEndDate(DateUtil.toString(auctionItem.getEndDate()));
-		itemDTO.setStartDate(DateUtil.toString(auctionItem.getStartDate()));
+		itemDTO.setEndDate(auctionItem.getEndDate());
+		itemDTO.setStartDate(auctionItem.getStartDate());
+		// itemDTO.setEndDate(DateUtil.toString(auctionItem.getEndDate()));
+		// itemDTO.setStartDate(DateUtil.toString(auctionItem.getStartDate()));
 		itemDTO.setImage(ImageUtils.toBase64(auctionItem.getImage()));
 		itemDTO.setOriginalPrice(auctionItem.getOriginalPrice());
 		itemDTO.setSoldPrice(auctionItem.getSoldPrice());
 		itemDTO.setStatus(auctionItem.getStatus());
 		itemDTO.setTitle(auctionItem.getTitle());
 		return itemDTO;
+
+	}
+
+	public static AuctionItem createAuctionItemModel(AuctionItemDTO builder) {
+		AuctionItem item = new AuctionItem();
+		item.setId(builder.getId());
+		item.setTitle(builder.getTitle());
+		item.setDescription(builder.getDescription());
+		ECategory category = ECategory.get(builder.getCategory());
+		item.setImage(ImageUtils.toImageFile(builder.getImage(), category.name().toLowerCase()));
+		item.setOriginalPrice(builder.getOriginalPrice());
+		item.setSoldPrice(builder.getSoldPrice());
+		item.setStartDate(builder.getStartDate());
+		item.setEndDate(builder.getEndDate());
+		item.setStatus(builder.getStatus());
+		item.setCategory(new Category(category.getValue(), category));
+		return item;
 
 	}
 }

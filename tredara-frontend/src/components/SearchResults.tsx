@@ -11,12 +11,12 @@ export default function SearchResults() {
   const [data, setData] = useState(new Array<iContent>());
   const { query }: any = useParams();
   const endPoint = `/auctionitems/search?freeText=${query}`;
-   useEffect(() => {
+  useEffect(() => {
     fetch(endPoint)
       .then((response) => response.json())
       .then((data) => onSuccess(data))
       .catch((error) => onFailure(error));
-  }, [query]); 
+  }, [query]);
   function onSuccess(data: iAuctionItem[]) {
     setData(data);
     setStatus(eStatus.READY);
@@ -30,13 +30,14 @@ export default function SearchResults() {
   const results = data.filter((item) =>
     item.title.toLowerCase().match(query.toLowerCase())
   );
-  console.log(results.length)
+  console.log(results.length);
   return (
-
-
-      <div id="content">{
-            results.length ===0?(<p className="text">No results found for {query}</p>):(<ContainerCards title="Titles avaialble" data={data} />)
-        }</div>
-   
+    <div id="content">
+      {results.length === 0 ? (
+        <p className="text">No results found for {query}</p>
+      ) : (
+        <ContainerCards title="Titles avaialble" data={data} />
+      )}
+    </div>
   );
 }
