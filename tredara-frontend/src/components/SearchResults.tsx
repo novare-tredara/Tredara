@@ -2,7 +2,6 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import eStatus from "interfaces/eStatus";
 import iContent from "interfaces/iAuctionItem";
-import eCategory from "interfaces/eCategory";
 import ContainerCards from "components/ListCards";
 import iAuctionItem from "interfaces/iAuctionItem";
 

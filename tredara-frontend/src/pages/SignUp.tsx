@@ -1,69 +1,66 @@
-
 // Node modules
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function SignUp() {
+// Project files
+import ListInput from "components/ListInput";
+import Fields from "data/fields-sign-up.json";
+import { useUser } from "state/UserContext";
+import iUser from "interfaces/iUser";
+
+export default function Login() {
   // Global state
   const navigate = useNavigate();
+  const { user, setUser } = useUser();
 
   // Local state
-  const [form, setForm] = useState({ name: "", email: "", pass: "" });
+  const [form, setForm] = useState({});
 
   // Properties
-  const END_POINT = "http://localhost:8000";
-  const METHOD = "POST";
-  const HEADERS = {}; // add any security if needed
+  const endPoint = "signup/";
 
   // Methods
-  function onSubmit(event:any) {
-    console.log("Creating user account with:", form);
+  function onSubmit(event: FormEvent): void {
     event.preventDefault();
-    fetch(END_POINT, {
-      method: METHOD,
-      headers: HEADERS,
-      body: JSON.stringify(form),
+
+    fetch(endPoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": "token-value",
+      },
+      body: JSON.stringify(form)
     })
-      .then((response) => onSuccess(response))
+      .then((response) => response.json())
+      .then((result) => onSuccess(result))
       .catch((error) => onFailure(error));
   }
 
-  function onSuccess(response:any) {
-    console.log(response);
-    navigate("/"); // go to home after a susscesfull account creation
+  function onSuccess(newUser: iUser) {
+   alert("Welcome to Tradera!");
+    setUser(newUser);
+    navigate("/");
   }
 
-  function onFailure(error:any) {
-    console.error(error);
+  function onFailure(error: string) {
+    console.error(Error);
+    alert(`Can't create an account because of ${error}`);
   }
 
   return (
-    <div>
-      <h1>Create an account</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          type="name"
-          placeholder="Full name"
-          value={form.name}
-          onChange={(event) => setForm({ ...form, name: event.target.value })}
-        />
-        <br />
-        <input
-          type="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={(event) => setForm({ ...form, email: event.target.value })}
-        />
-        <br />
-        <input
-          type="password"
-          placeholder="Password (minimum 8 characters)"
-          value={form.pass}
-          onChange={(event) => setForm({ ...form, pass: event.target.value })}
-        />
-        <br />
-        <button>Create account</button>
-      </form>
+    <div id="sign-up" className="auth">
+      <div className="container">
+        <h1>Set up your account</h1>
+        <form onSubmit={(event) => onSubmit(event)}>
+          <ListInput fields={Fields} state={[form, setForm]} />
+          <button>Sign up</button>
+        </form>
+        <footer>
+          <p>
+            Already have an account? <Link to="/login">Sign in instead</Link>.
+          </p>
+        </footer>
+      </div>
     </div>
   );
 }
