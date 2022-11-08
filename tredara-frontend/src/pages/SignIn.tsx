@@ -53,7 +53,7 @@ export default function SignIn() {
   }
 
   return (
-    <div id="sign-in" className="auth">
+    <div id="sign-in" className="login">
       <div className="container">
         <h1>Sign In</h1>
         <form onSubmit={(event) => onSubmit(event)}>

@@ -1,39 +1,38 @@
 
-.auth {
-   
-    place-items: center;
-    width:fit-content;
-    white-space: nowrap;
+.login {
     height: 100vh;
 }
   
-  .auth .container {
+  .login .container {
+    place-items: center;
     padding: 5px;
     border-radius: var(--radius);
-    
-  }
+    width: 480px;
+    padding-top: 225px;
+  justify-items: center;  }
   
-  .auth form {
+  .login form {
     margin-bottom: var(--space-small);
     
   }
   
-  .auth .input {
+  .login .input {
     margin-bottom: var(--space-small);
   }
   
-  .auth button {
-    width: 50%;
-  }
+
   
-  .auth footer {
+  .login footer {
     color: var(--color-green);
+    margin-left: 70px;
   }
-  .auth button{
+  .login button{
     background-color:var(--color-green);
     color:white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    width: auto;
+    margin-left: 117px;
   }
