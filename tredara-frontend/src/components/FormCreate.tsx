@@ -43,6 +43,7 @@ export default function FormCreate(props: iProps) {
     })
       .then(onSuccess)
       .catch((error) => onFailure(error));
+    console.log(form);
   }
 
   function onSuccess() {

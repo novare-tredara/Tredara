@@ -95,13 +95,16 @@ public class AuctionItemController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<AuctionItemDTO> create(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
-		if(contentRequest.getStartDate()==null) {
+	public ResponseEntity<AuctionItem> create(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
+		/*if(contentRequest.getStartDate()==null) {
 			contentRequest.setStartDate(DateUtil.toStringYYMMDD(LocalDateTime.now()));
-		}
+		}*/
+		
+		System.out.println(contentRequest.getTitle());
 		AuctionItem items = AuctionItemDTO.createAuctionItemModel(contentRequest);
 		itemRepository.save(items);
-		return ResponseEntity.ok().body(contentRequest);
+		
+		return ResponseEntity.ok(items);
 	}
 
 	@PutMapping("/update")
