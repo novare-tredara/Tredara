@@ -32,7 +32,7 @@ export default function InputImage({ field, state }: iProps) {
     const files = event.currentTarget.files;
     const file = files[0];
     const image: string = await readFile(file);
-    const resizedImage: Blob = await resizeImage(image, imageWidth, 0);
+    const resizedImage: Blob = await resizeImage(image, imageWidth, imageWidth);
     const finalImage = await readFile(resizedImage);
 
     const clonedItem = { ...value };
@@ -49,13 +49,13 @@ export default function InputImage({ field, state }: iProps) {
       <Col sm={10}>
         <Form.Control
           type="file"
-          accept="image/png, image/jpeg"
+          accept="image/png, image/jpeg, image/jpg"
           onChange={onChange}
         />
       </Col>
       <img
-        style={{ height: "25rem", padding: "1rem 1rem 0rem 0.7rem" }}
         src={imageURL}
+        style={{ height: "25rem", padding: "1rem 1rem 0rem 0.7rem" }}
         onError={(event) => (event.currentTarget.src = Placeholder)}
       />
     </Form.Group>

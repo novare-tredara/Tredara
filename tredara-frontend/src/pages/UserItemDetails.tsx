@@ -15,12 +15,11 @@ import { useUser } from "state/UserContext";
 export default function UserItems() {
   // Global state
   const { user } = useUser();
-  console.log(user);
   // Local state
   const [status, setStatus] = useState(eStatus.LOADING);
   const [data, setData] = useState(new Array<iAuctionItem>());
 
-  const code = "radha@tredara.com"; //user?.email;
+  const code = user?.email;
   const endPoint = "/auctionitems/getitemsbyuser/";
   // Methods
   useEffect(() => {

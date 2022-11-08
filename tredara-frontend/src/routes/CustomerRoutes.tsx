@@ -19,7 +19,6 @@ export default function CustomerRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/user-items" element={<UserItems />} />
         <Route path="/getbycategory/accessories/:code" element={<Home />} />
-        <Route path="/:code" element={<Content />} />
         <Route path="/search/:query" element={<SearchResults />} />
         <Route path="/:code" element={<Content />} />
       </Routes>

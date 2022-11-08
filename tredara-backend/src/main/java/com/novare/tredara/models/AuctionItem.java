@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -62,7 +63,7 @@ public class AuctionItem {
 	@OneToMany(mappedBy = "auctionItem", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<BiddingHistory> histories;
 
-	@OneToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(foreignKey = @ForeignKey(name = "ITEM_USER_ID"), name = "USER_ID", referencedColumnName = "ID")
 	private User createdBy;
 

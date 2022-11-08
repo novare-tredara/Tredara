@@ -1,3 +1,4 @@
+import iUser from "./iUser";
 
 export default interface iAuctionItem {
   id: number;

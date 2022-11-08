@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { FormEvent, useState } from "react";
 import Fields from "data/fields-auction-items.json";
 import ListInput from "./ListInput";
+import { useUser } from "state/UserContext";
 
 interface iProps {
   show: boolean;
@@ -13,6 +14,9 @@ interface iProps {
 export default function FormCreate(props: iProps) {
   // Local state
   const [form, setForm] = useState({});
+  // Global state
+  const { user } = useUser();
+
   const [handleClose] = props.actions;
   const [validated, setValidated] = useState(false);
 
@@ -30,6 +34,7 @@ export default function FormCreate(props: iProps) {
 
   // Methods
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    const newItem = { ...form, user: user?.email };
     event.preventDefault();
     fetch("/auctionitems/create/", {
       method: "POST",
@@ -39,11 +44,11 @@ export default function FormCreate(props: iProps) {
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",
-      body: JSON.stringify(form),
+      body: JSON.stringify(newItem),
     })
       .then(onSuccess)
       .catch((error) => onFailure(error));
-    console.log(form);
+    console.log(newItem);
   }
 
   function onSuccess() {

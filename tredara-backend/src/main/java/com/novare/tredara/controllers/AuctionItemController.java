@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.novare.tredara.exceptions.TredaraException;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.models.ECategory;
+import com.novare.tredara.models.User;
 import com.novare.tredara.payload.AuctionItemDTO;
 import com.novare.tredara.repositories.AuctionItemRepository;
+import com.novare.tredara.repositories.UserRepository;
 import com.novare.tredara.services.AuctionItemService;
 import com.novare.tredara.utils.DateUtil;
 
@@ -37,6 +39,9 @@ public class AuctionItemController {
 
 	@Autowired
 	private AuctionItemRepository itemRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private AuctionItemService auctionItemService;
@@ -74,8 +79,7 @@ public class AuctionItemController {
 
 	@GetMapping("/getbycategory/{category}")
 	public ResponseEntity<List<AuctionItemDTO>> getItemsByCategory(@PathVariable(value = "category") String category) {
-		List<AuctionItem> items = itemRepository
-				.findActiveItemsByCategory(ECategory.valueOf(category.toUpperCase()));
+		List<AuctionItem> items = itemRepository.findActiveItemsByCategory(ECategory.valueOf(category.toUpperCase()));
 		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
 		items.stream().forEach(item -> {
 			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
@@ -95,31 +99,36 @@ public class AuctionItemController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<AuctionItem> create(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
-		/*if(contentRequest.getStartDate()==null) {
-			contentRequest.setStartDate(DateUtil.toStringYYMMDD(LocalDateTime.now()));
-		}*/
-		
-		System.out.println(contentRequest.getTitle());
-		AuctionItem items = AuctionItemDTO.createAuctionItemModel(contentRequest);
+	public ResponseEntity<AuctionItem> create(@RequestBody AuctionItemDTO itemRequest) throws TredaraException {
+		if (itemRequest.getStartDate() == null) {
+			itemRequest.setStartDate(DateUtil.toStringYYMMDD(LocalDateTime.now()));
+		}
+
+		AuctionItem items = AuctionItemDTO.createAuctionItemModel(itemRequest);
+		User user = userRepository.findByEmail(itemRequest.getUser()).orElseThrow(
+				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
+		items.setCreatedBy(user);
 		itemRepository.save(items);
-		
+
 		return ResponseEntity.ok(items);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<AuctionItemDTO> update(@RequestBody AuctionItemDTO contentRequest) throws TredaraException {
-		AuctionItem items = AuctionItemDTO.createAuctionItemModel(contentRequest);
+	public ResponseEntity<AuctionItemDTO> update(@RequestBody AuctionItemDTO itemRequest) throws TredaraException {
+		AuctionItem items = AuctionItemDTO.createAuctionItemModel(itemRequest);
+		User user = userRepository.findByEmail(itemRequest.getUser()).orElseThrow(
+				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
+		items.setCreatedBy(user);
 		itemRepository.save(items);
-		return ResponseEntity.ok().body(contentRequest);
+		return ResponseEntity.ok().body(itemRequest);
 	}
 
 	@GetMapping("/getitemsbyuser/{user}")
-	public ResponseEntity<List<AuctionItemDTO>>getItemsByUser(@PathVariable(value = "user") String user)
+	public ResponseEntity<List<AuctionItemDTO>> getItemsByUser(@PathVariable(value = "user") String user)
 			throws TredaraException {
 		List<AuctionItem> items = itemRepository.findByUser(user);
 		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
-		
+
 		items.stream().forEach(item -> {
 			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
 		});

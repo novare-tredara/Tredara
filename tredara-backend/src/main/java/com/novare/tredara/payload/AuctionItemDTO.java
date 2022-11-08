@@ -38,6 +38,9 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 
 	@JsonProperty("category")
 	private Integer category;
+	
+	@JsonProperty("user")
+	private String user;
 
 	public Integer getId() {
 		return id;
@@ -119,6 +122,12 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		this.category = category;
 	}
 
+	public void setUser(String user) {
+		this.user = user;
+	}
+	public String getUser() {
+		return user;
+	}
 	@Override
 	public int compareTo(AuctionItemDTO o) {
 		return getId().compareTo(o.getId());
