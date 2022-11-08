@@ -13,7 +13,7 @@ interface iProps {
 export default function FormCreate(props: iProps) {
   // Local state
   const [form, setForm] = useState({});
-  const [handleShow, handleClose] = props.actions;
+  const [handleClose] = props.actions;
   const [validated, setValidated] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -65,14 +65,10 @@ export default function FormCreate(props: iProps) {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <ListInput fields={Fields} state={[form, setForm]} />
           <Form.Group className="d-flex flex-row-reverse">
-            <Button
-              className="btn btn-danger"
-              style={{ margin: "0 0.5rem 0 0" }}
-              onClick={() => handleClose()}
-            >
+            <Button className="btn btn-danger" onClick={() => handleClose()}>
               Close
             </Button>
-            <Button type="submit" style={{ margin: "0 0.5rem 0 0" }}>
+            <Button className="btn btn-success" type="submit">
               Save
             </Button>
           </Form.Group>

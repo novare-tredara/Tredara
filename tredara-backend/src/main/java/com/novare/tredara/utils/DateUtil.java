@@ -17,7 +17,7 @@ import java.util.Date;
 public final class DateUtil {
 
 	public final static String DATE_FORMAT_PATTERN = "dd-MM-yyyy HH:mm:ss";
-
+	public final static String DATE_FORMAT_PATTERN_YYMD = "yyyy-MM-dd";
 	private DateUtil() {
 	}
 
@@ -44,4 +44,17 @@ public final class DateUtil {
 	public static String toString(Date date) {
 		return new SimpleDateFormat(DATE_FORMAT_PATTERN).format(date);
 	}
+	
+	public static String toStringYYMMDD(LocalDateTime date) {
+		return date.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN_YYMD));
+	}
+	
+	public static String toStringYYMMDD(Date date) {
+		return new SimpleDateFormat(DATE_FORMAT_PATTERN_YYMD).format(date);
+	}
+	public static Date toDateYYMMDD(String dateAsString) {
+		LocalDateTime parse = LocalDateTime.parse(dateAsString, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN_YYMD));
+		return toDate(parse);
+	}
+
 }

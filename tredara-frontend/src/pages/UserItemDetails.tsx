@@ -1,30 +1,34 @@
 // Node modules
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Project files
-import ContainerCards from "components/ListCards";
+import NavigationBar from "components/NavigationBar";
 import StatusEmpty from "components/StatusEmpty";
 import StatusError from "components/StatusError";
 import StatusLoading from "components/StatusLoading";
 import eStatus from "interfaces/eStatus";
 import iAuctionItem from "interfaces/iAuctionItem";
-import { useState, useEffect } from "react";
+import Item from "../components/Item";
+import { useUser } from "state/UserContext";
 
-export default function Content() {
+export default function UserItems() {
   // Global state
-  const { code } = useParams();
+  const { user } = useUser();
+  console.log(user);
   // Local state
   const [status, setStatus] = useState(eStatus.LOADING);
   const [data, setData] = useState(new Array<iAuctionItem>());
 
+  const code = "radha@tredara.com"; //user?.email;
+  const endPoint = "/auctionitems/getitemsbyuser/";
   // Methods
   useEffect(() => {
-    setStatus(eStatus.LOADING);
-    fetch(`/auctionitems/getbycategory/${code}`)
+    fetch(endPoint + code + "/")
       .then((response) => response.json())
       .then((result) => onSuccess(result))
       .catch((error) => onFailure(error));
-  }, [code]);
+  }, []);
 
   function onSuccess(data: iAuctionItem[]) {
     setData(data);
@@ -36,17 +40,20 @@ export default function Content() {
     setStatus(eStatus.ERROR);
   }
 
+  // Components
+  const Items = data.map((item) => <Item key={item.id} item={item} />);
+
   // Safeguards
   if (status === eStatus.LOADING) return <StatusLoading />;
   if (status === eStatus.ERROR) return <StatusError />;
-  if (data.length === 0) return <StatusEmpty />;
 
   return (
-    <div id="content">
+    <div id="user-items" className="user-list-page">
+      <NavigationBar />
       <header>
-        <h1>All our {code}</h1>
+        <h1>User Auction Items</h1>
       </header>
-      <ContainerCards title="Titles available" data={data} />
+      {data.length === 0 ? <StatusEmpty /> : Items}
     </div>
   );
 }

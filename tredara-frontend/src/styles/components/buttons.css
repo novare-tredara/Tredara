@@ -1,0 +1,37 @@
+/*
+  button (without a dot) is for the real <button> tag
+  .button (with a dot) is for other tags that need to look like buttons. Example: <a>
+*/
+button,
+.button {
+  /* min-width: 136px; using min-width sets the initial size while allowing to grow as needed */
+  height: 44px;
+  margin-right: var(--space-small);
+  background-color: var(--color-tredara-red);
+  /*color: rgb(26, 12, 12);*/
+  font-weight: bold;
+  font-size: var(--default-text-size);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  /*--bs-btn-bg: #056e2d;
+  --bs-btn-hover-bg:#056e2d;*/
+
+
+}
+
+button .icon,
+.button .icon {
+  height: 16px;
+  margin-right: var(--space-small);
+  vertical-align: text-bottom; /* to align with the text */
+}
+
+.button-gray {
+  background-color: var(--color-gray-4);
+}
+
+.button-white {
+  background-color: white;
+  color: black;
+}

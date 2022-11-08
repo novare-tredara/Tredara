@@ -33,7 +33,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
-		ErrorResponse errorDetails = getErrorResponse(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
+ 		ErrorResponse errorDetails = getErrorResponse(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
 		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 

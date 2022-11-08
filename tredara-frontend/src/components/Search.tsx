@@ -1,7 +1,11 @@
-import search from "../assets/images/icons/search.svg";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import { Search as Find } from "react-bootstrap-icons";
+import InputGroup from "react-bootstrap/InputGroup";
+import Button from "react-bootstrap/Button";
+
 export default function Search() {
   const [searchWord, setSearchWord] = useState("");
 
@@ -13,18 +17,23 @@ export default function Search() {
   }
 
   return (
-    <div>
-      <form className="search" onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="search"
-          value={searchWord}
-          onChange={(event) => setSearchWord(event.target.value)}
-        />
+    <div className="col-md-4">
+      <Form onSubmit={onSubmit}>
+        <InputGroup className="mr-sm-2">
+          <Form.Control
+            onChange={(event) => setSearchWord(event.target.value)}
+            placeholder="Search"
+            type="search"
+            value={searchWord}
+          />
+          <Button variant="primary" id="button-addon2">
+            <Find />
+          </Button>
+        </InputGroup>
 
         {/*         <img src={search} />
          */}
-      </form>
+      </Form>
     </div>
   );
 }
