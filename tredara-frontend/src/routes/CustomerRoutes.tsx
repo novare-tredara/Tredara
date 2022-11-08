@@ -9,6 +9,7 @@ import SearchResults from "pages/SearchResults";
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 
+
 export default function CustomerRoutes() {
   return (
     <div>
@@ -17,6 +18,7 @@ export default function CustomerRoutes() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
+        <Route path="/getbycategory/accessories/:code" element={<Home />} />
         <Route path="/:code" element={<Content />} />
         <Route path="/search/:query" element={<SearchResults />} />
       </Routes>
