@@ -41,8 +41,6 @@ export default function SignIn() {
   }
 
   function onSuccess(returningUser: iUser) {
-    console.log(returningUser);
-
     alert("Logged in");
     setUser(returningUser);
   }
