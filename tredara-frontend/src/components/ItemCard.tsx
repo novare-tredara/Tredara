@@ -9,7 +9,7 @@ interface iProps {
 export default function ItemCard({ item }: iProps) {
   return (
     <article className="item-card">
-      <a key={item.id} href={`./detail/${item.id}`}>
+      <a key={item.id} href={`./detail/${item.id}`} className="link">
         <img
           src={item.image}
           alt=""

@@ -34,3 +34,7 @@
   align-self: stretch;
   flex-grow: 0;
 }
+.item-card .link {
+  text-decoration: none;
+  color: black;
+}
