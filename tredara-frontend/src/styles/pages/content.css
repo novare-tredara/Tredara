@@ -13,7 +13,7 @@
   margin-top: -40px;
 }
 
-#content .card-list div {
+#content .card-list .cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

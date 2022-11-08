@@ -2,6 +2,7 @@ package com.novare.tredara.payload;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.models.Category;
@@ -29,9 +30,11 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	private Long soldPrice;
 
 	@JsonProperty("start_date")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
 
 	@JsonProperty("end_date")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 
 	@JsonProperty("status")

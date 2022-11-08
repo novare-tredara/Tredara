@@ -6,9 +6,10 @@
   gap: var(--space-medium);
   position: relative;
   width: 224px;
-  height: 259px;
+  height: auto;
   background: var(--color-gray-4);
   border-radius: var(--space-small);
+  padding-bottom: 4px;
 }
 
 .item-card img {
@@ -22,11 +23,10 @@
 }
 
 .item-card h3 {
+  padding-top: var(--space-small);
   width: 192px;
   height: 19px;
   font-style: normal;
-  font-weight: 600;
-  font-size: var(--space-medium);
   line-height: 19px;
   color: var(--color-white);
   flex: none;
@@ -37,4 +37,15 @@
 .item-card .link {
   text-decoration: none;
   color: black;
+}
+.item-card .data {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.data .price {
+  width: 80px;
+  font-weight: 600;
+  font-size: medium;
 }

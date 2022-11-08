@@ -21,7 +21,6 @@ export default function ItemDetail() {
   function onSuccess(data: iAuctionItem) {
     setData(data);
     setStatus(eStatus.READY);
-    console.log(data);
   }
 
   function onFailure(error: string) {

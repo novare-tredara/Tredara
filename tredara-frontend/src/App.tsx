@@ -9,14 +9,13 @@ import { useUser } from "state/UserContext";
 import "styles/style.css";
 
 export default function App() {
+  const { user } = useUser();
 
-  const {user} = useUser();
   return (
     <div className="App">
       <BrowserRouter>
-      {user === null && <UnloggedRoutes/>}
-      {user != null && <CustomerRoutes />}
-       
+        {user === null && <UnloggedRoutes />}
+        {user != null && <CustomerRoutes />}
       </BrowserRouter>
     </div>
   );

@@ -13,7 +13,7 @@ export default function ListCards({ title, data }: iProps) {
   return (
     <section className="card-list">
       <h2>{title}</h2>
-      <div>{Cards}</div>
+      <div className="cards">{Cards}</div>
     </section>
   );
 }
