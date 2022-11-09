@@ -1,5 +1,3 @@
-
-
 // Node modules
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,25 +22,23 @@ export default function SignIn() {
   // Methods
   function onSubmit(event: FormEvent): void {
     event.preventDefault();
-    navigate("/");
 
-
-    fetch(endPoint,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-access-token": "token-value",
-        }, body: JSON.stringify(form)
-      })
+    fetch(endPoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": "token-value",
+      },
+      body: JSON.stringify(form),
+    })
       .then((response) => response.json())
       .then((result) => onSuccess(result))
       .catch((error) => onFailure(error));
   }
 
   function onSuccess(returningUser: iUser) {
-    alert("Logged in");
     setUser(returningUser);
+    navigate("/");
   }
 
   function onFailure(error: string) {
