@@ -1,0 +1,133 @@
+#details {
+  padding: 0 var(--page-space);
+  padding-top: 100px;
+  padding-bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 23px;
+  position: absolute;
+  width: 1048px;
+}
+
+#details .column {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: 40px;
+  gap: 108px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#details img {
+  width: 500px;
+  height: 350px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#details .detail {
+  padding-top: var(--space-big);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+#details .desc {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  width: 534px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.detail .title {
+  width: 330px;
+  height: 38px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 19px;
+  margin-bottom: 0px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.detail .price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 122px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.detail .text {
+  width: 98px;
+}
+
+.price .cost {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  font-weight: 800;
+}
+
+.detail .date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 122px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.date .end-date {
+  font-weight: 600;
+}
+
+.detail .history {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 122px;
+  flex: none;
+  order: 3;
+  flex-grow: 0;
+}
+.detail .bid {
+  width: 145px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  background: var(--color-green);
+  border-radius: var(--space-medium);
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+}
+
+.desc .desc-heading {
+  font-weight: 600;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.desc .desc-data {
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}

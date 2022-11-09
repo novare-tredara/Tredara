@@ -19,7 +19,7 @@
   margin-bottom: var(--space-big);
 }
 
-#home .card-list div {
+#home .card-list .cards {
   display: grid;
   align-items: center;
   justify-items: center;
