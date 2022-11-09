@@ -105,5 +105,15 @@ public class AuctionItemController {
         itemRepository.save(items);
         return ResponseEntity.ok(items);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<AuctionItemDTO> updatePrice(@PathVariable(value = "id") Integer itemId)throws TredaraException {
+        AuctionItem item = itemRepository.findById(itemId)
+                .orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "Item not found on :: " + itemId));
+        item.setOriginalPrice(item.getOriginalPrice()+5);
+        AuctionItemDTO itemDTO = AuctionItemDTO.buildResponse(item);
+        itemRepository.save(item);
+        return ResponseEntity.ok(itemDTO);
+    }
 }
 

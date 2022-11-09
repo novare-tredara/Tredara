@@ -28,6 +28,29 @@ export default function ItemDetail() {
     setStatus(eStatus.ERROR);
   }
 
+  async function onSubmit(event: any) {
+    event.preventDefault();
+    fetch(`http://localhost:8080/api/auctionitems/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+    })
+      .then(onPass)
+      .catch(() => onFail());
+  }
+
+  function onPass() {
+    alert("Bid Success!");
+  }
+
+  function onFail() {
+    alert("Could not bid the item");
+  }
+
   // Safeguards
   if (status === eStatus.LOADING) return <StatusLoading />;
   if (status === eStatus.ERROR) return <StatusError />;
@@ -53,7 +76,7 @@ export default function ItemDetail() {
           <div className="history">
             <p className="history-list">Show Bid History</p>
           </div>
-          <button className="bid" type="submit">
+          <button className="bid" type="submit" onClick={onSubmit}>
             Bid
           </button>
         </div>
