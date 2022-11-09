@@ -24,5 +24,8 @@ public interface AuctionItemRepository extends JpaRepository<AuctionItem, Intege
 	List<AuctionItem> findByTitleContainsAndStatus(String freeText, int status);
 
 	List<AuctionItem> findByDescriptionContainsAndStatus(String freeText, int status);
+	
+	@Query("FROM AuctionItem WHERE createdBy.email=:email")
+	List<AuctionItem> findByUser(@Param("email") String email) ;
 
 }

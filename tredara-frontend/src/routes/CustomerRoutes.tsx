@@ -9,6 +9,7 @@ import SearchResults from "pages/SearchResults";
 import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 import ItemDetail from "pages/ItemDetail";
+import UserItems from "pages/UserItemDetails";
 
 export default function CustomerRoutes() {
   return (
@@ -17,9 +18,10 @@ export default function CustomerRoutes() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/:code" element={<Content />} />
-        <Route path="/search/:query" element={<SearchResults />} />
         <Route path="/detail/:id" element={<ItemDetail />} />
+        <Route path="/user-items" element={<UserItems />} />
+        <Route path="/search/:query" element={<SearchResults />} />
+        <Route path="/:code" element={<Content />} />
       </Routes>
       <Footer />
     </div>

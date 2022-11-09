@@ -21,3 +21,21 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.user-list-page {
+  max-width: 960px;
+  margin: auto;
+}
+
+.user-list-page header {
+  padding-top: var(--navigation-bar);
+}
+
+.user-list-page .item-user {
+  margin-bottom: var(--space-medium);
+}
+
+.user-list-page .status {
+  height: 50vh;
+}
+

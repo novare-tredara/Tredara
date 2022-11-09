@@ -1,12 +1,10 @@
 package com.novare.tredara.payload;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.models.Category;
 import com.novare.tredara.models.ECategory;
+import com.novare.tredara.utils.DateUtil;
 import com.novare.tredara.utils.ImageUtils;
 
 public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
@@ -30,18 +28,19 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	private Long soldPrice;
 
 	@JsonProperty("start_date")
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date startDate;
+	private String startDate;
 
 	@JsonProperty("end_date")
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date endDate;
+	private String endDate;
 
 	@JsonProperty("status")
 	private Integer status;
 
 	@JsonProperty("category")
 	private Integer category;
+	
+	@JsonProperty("user")
+	private String user;
 
 	public Integer getId() {
 		return id;
@@ -91,19 +90,19 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		this.soldPrice = soldPrice;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -123,6 +122,12 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		this.category = category;
 	}
 
+	public void setUser(String user) {
+		this.user = user;
+	}
+	public String getUser() {
+		return user;
+	}
 	@Override
 	public int compareTo(AuctionItemDTO o) {
 		return getId().compareTo(o.getId());
@@ -132,13 +137,14 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		AuctionItemDTO itemDTO = new AuctionItemDTO();
 		itemDTO.setId(auctionItem.getId());
 		itemDTO.setDescription(auctionItem.getDescription());
-		itemDTO.setEndDate(auctionItem.getEndDate());
-		itemDTO.setStartDate(auctionItem.getStartDate());
+		itemDTO.setEndDate(DateUtil.toStringYYMMDD(auctionItem.getEndDate()));
+		itemDTO.setStartDate(DateUtil.toStringYYMMDD(auctionItem.getStartDate()));
 		itemDTO.setImage(ImageUtils.toBase64(auctionItem.getImage()));
 		itemDTO.setOriginalPrice(auctionItem.getOriginalPrice());
 		itemDTO.setSoldPrice(auctionItem.getSoldPrice());
 		itemDTO.setStatus(auctionItem.getStatus());
 		itemDTO.setTitle(auctionItem.getTitle());
+		itemDTO.setCategory(auctionItem.getCategory().getCategory().getValue());
 		return itemDTO;
 
 	}
@@ -152,8 +158,8 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		item.setImage(ImageUtils.toImageFile(builder.getImage(), category.name().toLowerCase()));
 		item.setOriginalPrice(builder.getOriginalPrice());
 		item.setSoldPrice(builder.getSoldPrice());
-		item.setStartDate(builder.getStartDate());
-		item.setEndDate(builder.getEndDate());
+		item.setStartDate(DateUtil.toDateYYMMDD(builder.getStartDate()));
+		item.setEndDate(DateUtil.toDateYYMMDD(builder.getEndDate()));
 		item.setStatus(builder.getStatus());
 		item.setCategory(new Category(category.getValue(), category));
 		return item;
