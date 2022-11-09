@@ -63,7 +63,7 @@
     "autoFocus": false,
     "label": "Image",
     "placeholder": "https://www.google.com/phone.png",
-    "required": true,
+    "required": false,
     "type": "image",
     "imageWidth": 260
   }

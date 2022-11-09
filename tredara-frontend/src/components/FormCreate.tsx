@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { FormEvent, useState } from "react";
 import Fields from "data/fields-auction-items.json";
 import ListInput from "./ListInput";
+import { useUser } from "state/UserContext";
 
 interface iProps {
   show: boolean;
@@ -13,7 +14,10 @@ interface iProps {
 export default function FormCreate(props: iProps) {
   // Local state
   const [form, setForm] = useState({});
-  const [handleShow, handleClose] = props.actions;
+  // Global state
+  const { user } = useUser();
+
+  const [handleClose] = props.actions;
   const [validated, setValidated] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -30,6 +34,7 @@ export default function FormCreate(props: iProps) {
 
   // Methods
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    const newItem = { ...form, user: user?.email };
     event.preventDefault();
     fetch("/auctionitems/create/", {
       method: "POST",
@@ -39,10 +44,11 @@ export default function FormCreate(props: iProps) {
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",
-      body: JSON.stringify(form),
+      body: JSON.stringify(newItem),
     })
       .then(onSuccess)
       .catch((error) => onFailure(error));
+    console.log(newItem);
   }
 
   function onSuccess() {
@@ -65,14 +71,10 @@ export default function FormCreate(props: iProps) {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <ListInput fields={Fields} state={[form, setForm]} />
           <Form.Group className="d-flex flex-row-reverse">
-            <Button
-              className="btn btn-danger"
-              style={{ margin: "0 0.5rem 0 0" }}
-              onClick={() => handleClose()}
-            >
+            <Button className="btn btn-danger" onClick={() => handleClose()}>
               Close
             </Button>
-            <Button type="submit" style={{ margin: "0 0.5rem 0 0" }}>
+            <Button className="btn btn-success" type="submit">
               Save
             </Button>
           </Form.Group>

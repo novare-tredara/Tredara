@@ -99,13 +99,11 @@ public class UserController {
 	}
 
 	@GetMapping("/user")
-//    @PreAuthorize("hasRole('ADMIN')")
 	public List<User> findAll() throws TredaraException {
 		return userRepository.findAll();
 	}
 
 	@GetMapping("/user/{id}")
-//    @PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
 	public ResponseEntity<User> getUsersById(@PathVariable(value = "id") Long userId) throws TredaraException {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + userId));
@@ -113,7 +111,6 @@ public class UserController {
 	}
 
 	@PutMapping("/user/{id}")
-//    @PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
 	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody User updateRequest)
 			throws TredaraException {
 		updateRequest.setId(userId);
@@ -122,7 +119,6 @@ public class UserController {
 	}
 
 	@DeleteMapping("/user/{id}")
-//    @PreAuthorize("hasRole('ADMIN')")
 	public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws TredaraException {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + userId));

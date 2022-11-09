@@ -17,7 +17,7 @@ export default function NavigationBar() {
   const handleShow = () => setShow(true);
 
   function onSelect(id: number, endPoint: string) {
-    if (id == 1) {
+    if (id === 1) {
       handleShow();
     } else {
       navigate(endPoint);
@@ -38,11 +38,7 @@ export default function NavigationBar() {
       <Search />
       <div className="justify-content-end">{Links}</div>
       {/* Adding model form for creation */}
-      <FormCreate
-        show={show}
-        onHide={handleClose}
-        actions={[handleShow, handleClose]}
-      />
+      <FormCreate show={show} onHide={handleClose} actions={[handleClose]} />
     </nav>
   );
 }

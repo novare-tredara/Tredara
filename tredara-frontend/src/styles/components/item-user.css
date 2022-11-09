@@ -1,0 +1,27 @@
+.item-user {
+  display: flex;
+  align-items: center;
+  padding: var(--space-small) var(--space-medium);
+  border-radius: var(--radius);
+}
+
+.item-user .number {
+  margin-right: var(--space-medium);
+}
+
+.item-user img {
+  width: 80px;
+  margin-right: var(--space-medium);
+}
+
+.item-user h3 {
+  margin-bottom: 0;
+}
+
+.item-user .buttons {
+  margin-left: auto;
+}
+
+.item-user button:last-child {
+  margin-right: 0;
+}
