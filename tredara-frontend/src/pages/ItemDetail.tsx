@@ -79,6 +79,9 @@ export default function ItemDetail() {
           <button className="bid" type="submit" onClick={onSubmit}>
             Bid
           </button>
+          <div className="info">
+            <p>* When you press bid, the value increases 5 SEK</p>
+          </div>
         </div>
       </div>
       <div className="desc">

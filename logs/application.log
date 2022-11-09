@@ -22,3 +22,54 @@
 2022-11-09 15:49:52.217  INFO 7948 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-11-09 15:49:52.217  INFO 7948 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2022-11-09 15:49:52.218  INFO 7948 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-09 16:47:26.666  INFO 6760 --- [main] com.novare.tredara.TredaraApplication    : Starting TredaraApplication using Java 17.0.2 on LAPTOP-1Q3RSF8L with PID 6760 (D:\SDA\GitHub\Tredara\tredara-backend\target\classes started by saila in D:\SDA\GitHub\Tredara)
+2022-11-09 16:47:26.669  INFO 6760 --- [main] com.novare.tredara.TredaraApplication    : The following 1 profile is active: "dev"
+2022-11-09 16:47:27.759  INFO 6760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-09 16:47:27.870  INFO 6760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 97 ms. Found 4 JPA repository interfaces.
+2022-11-09 16:47:28.922  INFO 6760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-09 16:47:28.942  INFO 6760 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-09 16:47:28.943  INFO 6760 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-09 16:47:29.118  INFO 6760 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-09 16:47:29.119  INFO 6760 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2383 ms
+2022-11-09 16:47:29.354  INFO 6760 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-09 16:47:29.447  INFO 6760 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-09 16:47:29.703  INFO 6760 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-09 16:47:29.827  INFO 6760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-09 16:47:30.254  INFO 6760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-09 16:47:30.285  INFO 6760 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2022-11-09 16:47:31.244  INFO 6760 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-09 16:47:31.251  INFO 6760 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-09 16:47:32.009  WARN 6760 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-09 16:47:32.356  INFO 6760 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@74b521c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@672f69f7, org.springframework.security.web.context.SecurityContextPersistenceFilter@2adce412, org.springframework.security.web.header.HeaderWriterFilter@7bb3294c, org.springframework.web.filter.CorsFilter@6aaf1ce8, org.springframework.security.web.authentication.logout.LogoutFilter@f6e3b67, com.novare.tredara.security.jwt.AuthTokenFilter@5c459194, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d84ab90, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3182143c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f26e775, org.springframework.security.web.session.SessionManagementFilter@362fd4e9, org.springframework.security.web.access.ExceptionTranslationFilter@4172c967, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2eb9c7ad]
+2022-11-09 16:47:32.574  INFO 6760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-09 16:47:32.583  INFO 6760 --- [main] com.novare.tredara.TredaraApplication    : Started TredaraApplication in 6.617 seconds (JVM running for 7.19)
+2022-11-09 16:47:41.493  INFO 6760 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-09 16:47:41.493  INFO 6760 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-09 16:47:41.496  INFO 6760 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-09 16:48:47.970  INFO 6760 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-09 16:48:47.975  INFO 6760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-09 16:48:47.990  INFO 6760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-09 16:48:54.545  INFO 19928 --- [main] com.novare.tredara.TredaraApplication    : Starting TredaraApplication using Java 17.0.2 on LAPTOP-1Q3RSF8L with PID 19928 (D:\SDA\GitHub\Tredara\tredara-backend\target\classes started by saila in D:\SDA\GitHub\Tredara)
+2022-11-09 16:48:54.549  INFO 19928 --- [main] com.novare.tredara.TredaraApplication    : The following 1 profile is active: "dev"
+2022-11-09 16:48:55.596  INFO 19928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-09 16:48:55.713  INFO 19928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 101 ms. Found 4 JPA repository interfaces.
+2022-11-09 16:48:56.756  INFO 19928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-09 16:48:56.771  INFO 19928 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-09 16:48:56.772  INFO 19928 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-09 16:48:56.928  INFO 19928 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-09 16:48:56.928  INFO 19928 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2316 ms
+2022-11-09 16:48:57.193  INFO 19928 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-09 16:48:57.260  INFO 19928 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-09 16:48:57.522  INFO 19928 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-09 16:48:57.696  INFO 19928 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-09 16:48:58.164  INFO 19928 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-09 16:48:58.187  INFO 19928 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2022-11-09 16:48:59.234  INFO 19928 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-09 16:48:59.243  INFO 19928 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-09 16:48:59.961  WARN 19928 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-09 16:49:00.303  INFO 19928 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@68722de3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b18009f, org.springframework.security.web.context.SecurityContextPersistenceFilter@6e466fdf, org.springframework.security.web.header.HeaderWriterFilter@238a7e3d, org.springframework.web.filter.CorsFilter@77aeba9b, org.springframework.security.web.authentication.logout.LogoutFilter@76c85485, com.novare.tredara.security.jwt.AuthTokenFilter@2de96eba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fea9f19, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37a14aa1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1db5de29, org.springframework.security.web.session.SessionManagementFilter@5857d723, org.springframework.security.web.access.ExceptionTranslationFilter@30a4a111, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@45b2d17b]
+2022-11-09 16:49:00.522  INFO 19928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-09 16:49:00.530  INFO 19928 --- [main] com.novare.tredara.TredaraApplication    : Started TredaraApplication in 6.731 seconds (JVM running for 7.409)
+2022-11-09 16:49:23.764  INFO 19928 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-09 16:49:23.764  INFO 19928 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-09 16:49:23.766  INFO 19928 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
