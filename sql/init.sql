@@ -39,7 +39,7 @@ CREATE TABLE `auction_item` (
   KEY `ITEM_USER_ID` (`USER_ID`),
   CONSTRAINT `ITEM_CATEGORY_ID` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `category` (`ID`),
   CONSTRAINT `ITEM_USER_ID` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `auction_item` (
 
 LOCK TABLES `auction_item` WRITE;
 /*!40000 ALTER TABLE `auction_item` DISABLE KEYS */;
-INSERT INTO `auction_item` VALUES (4,'Nice hair clips for girls','2022-11-21 00:00:00','/images/accesssories/hair-accessories.png',200,NULL,'2022-11-05 00:00:00','Hair Accessories',2,6,1),(5,'Beauty Cream ','2022-11-30 00:00:00','/images/beauty/cream.png',500,NULL,'2022-11-04 00:00:00','Face Cream',5,7,1),(6,'A nice cap for summer and stylish one','2022-11-12 00:00:00','/images/accessories/cap.png',50,NULL,'2022-11-02 00:00:00','Cap',2,8,1),(7,'Ear ring  nice for any occassions','2022-11-20 00:00:00','/images/accessories/elegantaearring.png',200,NULL,'2022-11-01 00:00:00','Ear piece',2,8,1),(8,'A hair clip for any occasssions with beautiful design ','2022-11-11 00:00:00','/images/accessories/hairclip.png',110,NULL,'2022-11-02 00:00:00','Hair Clip',2,7,1),(9,'A nice Red lipstick for women who try to look bright and beautiful on special occasions','2022-11-20 00:00:00','/images/beauty/lipstick.png',200,NULL,'2022-11-01 00:00:00','Lip Stick',5,6,1),(10,'A compact powder  from well branded company','2022-11-27 00:00:00','/images/beauty/compactpowder.png',500,NULL,'2022-11-05 00:00:00','Compact powder ',5,7,1),(11,'A book for night time sleep','2022-11-20 00:00:00','/images/books/book.png',20,NULL,'2022-11-02 00:00:00','Misel Rosen book ',4,4,1),(12,'Some random books which I want  to give away','2022-11-29 00:00:00','/images/books/book3.png',50,NULL,'2022-11-11 00:00:00','Random Books',4,4,1),(13,'A nexus phone with good battery life and good memeory ','2022-11-20 00:00:00','/api/imges/mobiles/Nexus.png',600,NULL,'2022-11-10 00:00:00','Nexus Phone',1,6,1),(14,'A Nokia phone with good pixel quality','2022-11-12 00:00:00','/images/mobiles/Nokia.png',100,NULL,'2022-11-02 00:00:00','A Nokia Phone',1,7,1),(15,'A nice formal shirts from the factory','2022-11-18 00:00:00','/images/clothes/harrington.png',800,NULL,'2022-11-04 00:00:00','A branded Men shirt',3,8,1);
+INSERT INTO `auction_item` VALUES (7,'Ear ring  nice for any occassions','2022-11-20 00:00:00','/images/accessories/elegantaearring.png',200,NULL,'2022-11-01 00:00:00','Ear piece',2,8,1),(9,'A nice Red lipstick for women who try to look bright and beautiful on special occasions','2022-11-20 00:00:00','/images/beautycare\\1667945355215.png',200,NULL,'2022-11-01 00:00:00','Lip Stick / U',5,8,1),(11,'A book for night time sleep','2022-11-20 00:00:00','/images/books/book.png',20,NULL,'2022-11-02 00:00:00','Misel Rosen book ',4,4,1),(12,'Some random books which I want  to give away','2022-11-29 00:00:00','/images/books/book3.png',50,NULL,'2022-11-11 00:00:00','Random Books',4,4,1),(13,'A nexus phone with good battery life and good memeory ','2022-11-20 00:00:00','/images/mobiles\\1667984844855.png',600,NULL,'2022-11-10 00:00:00','Nexus Phone-update',1,6,1),(14,'A Nokia phone with good pixel quality','2022-11-12 00:00:00','/images/mobiles/Nokia.png',100,NULL,'2022-11-02 00:00:00','A Nokia Phone',1,7,1),(44,'Brand New','2022-12-31 01:00:00','/images/mobiles\\1667942678144.png',3000,NULL,'2022-11-04 00:00:00','Iphone',1,8,1),(47,'Brand New','2022-12-31 00:00:00','/images/books\\1667948979884.png',2000,NULL,'2022-11-09 00:00:00','Java Book-Update',4,6,1),(48,'Brand New','2022-11-10 00:00:00','/images/beautycare\\1667978231656.png',100,NULL,'2022-11-09 00:00:00','Powder',5,8,1),(49,'Brand New','2022-11-13 00:00:00','/images/books\\1667984924974.png',100,NULL,'2022-11-09 00:00:00','Java-book',4,6,1),(50,'Brand New','2022-11-12 00:00:00','/images/beautycare\\1667985055132.png',120,NULL,'2022-11-09 00:00:00','Powder',5,6,1),(51,'Ear ring  nice for any occassions','2022-11-20 00:00:00','/images/accessories\\1667998889656.png',200,NULL,'2022-11-01 00:00:00','Ear piece- new one',2,8,1),(52,'Ear ring  nice for any occassions','2022-11-20 00:00:00','/images/accessories\\1667998933109.png',200,NULL,'2022-11-01 00:00:00','Ear piece',2,8,1);
 /*!40000 ALTER TABLE `auction_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +149,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `EMAIL` (`EMAIL`),
   KEY `USER_ROLE_ID` (`ROLE_ID`),
   CONSTRAINT `USER_ROLE_ID` FOREIGN KEY (`ROLE_ID`) REFERENCES `role` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,4 +171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-07 15:04:56
+-- Dump completed on 2022-11-09 14:25:28
