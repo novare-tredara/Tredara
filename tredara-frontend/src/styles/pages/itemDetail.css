@@ -118,6 +118,16 @@
   order: 4;
   flex-grow: 0;
 }
+.detail .info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 122px;
+  flex: none;
+  order: 5;
+  flex-grow: 0;
+}
 
 .desc .desc-heading {
   font-weight: 600;

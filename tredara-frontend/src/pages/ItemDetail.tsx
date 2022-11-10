@@ -34,6 +34,27 @@ export default function ItemDetail() {
     setStatus(eStatus.ERROR);
   }
 
+  async function onSubmit(event: any) {
+    const editedItem = {
+      ...data,
+      user: user?.email,
+      original_price: data.original_price + 5,
+    };
+    event.preventDefault();
+    fetch(`/auctionitems/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      body: JSON.stringify(editedItem),
+    })
+      .then(() => alert("Bid Success!"))
+      .catch(() => alert("Could not bid the item"));
+  }
+
   // Safeguards
   if (status === eStatus.LOADING) return <StatusLoading />;
   if (status === eStatus.ERROR) return <StatusError />;
