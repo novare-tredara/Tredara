@@ -42,6 +42,6 @@
   {
     "id": 8,
     "label": "Logout",
-    "url": "/logout"
+    "url": "/login"
   }
 ]

@@ -26,7 +26,11 @@ export default function Search() {
             type="search"
             value={searchWord}
           />
-          <Button variant="primary" id="button-addon2">
+          <Button
+            className="btn btn-success"
+            variant="primary"
+            id="button-addon2"
+          >
             <Find />
           </Button>
         </InputGroup>

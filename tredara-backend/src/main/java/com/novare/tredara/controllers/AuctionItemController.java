@@ -2,10 +2,13 @@ package com.novare.tredara.controllers;
 
 import com.novare.tredara.exceptions.TredaraException;
 import com.novare.tredara.models.AuctionItem;
+import com.novare.tredara.models.BiddingHistory;
 import com.novare.tredara.models.ECategory;
 import com.novare.tredara.models.User;
 import com.novare.tredara.payload.AuctionItemDTO;
+import com.novare.tredara.payload.BiddingHistoryDTO;
 import com.novare.tredara.repositories.AuctionItemRepository;
+import com.novare.tredara.repositories.BiddingHistoryRepository;
 import com.novare.tredara.repositories.UserRepository;
 import com.novare.tredara.services.AuctionItemService;
 import com.novare.tredara.utils.DateUtil;
@@ -36,6 +39,8 @@ public class AuctionItemController {
 
     @Autowired
     private AuctionItemService auctionItemService;
+    @Autowired
+    private BiddingHistoryRepository biddingHistoryRepository;
 
     @GetMapping("/")
     public ResponseEntity<List<AuctionItemDTO>> getAllItems() {
@@ -79,13 +84,23 @@ public class AuctionItemController {
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<AuctionItemDTO> updatePrice(@PathVariable(value = "id") Integer itemId) throws TredaraException {
+    public ResponseEntity<AuctionItemDTO> updatePrice(@PathVariable(value = "id") Integer itemId, @RequestBody AuctionItemDTO itemRequest)
+            throws TredaraException {
         AuctionItem item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "Item not found on :: " + itemId));
-        item.setOriginalPrice(item.getOriginalPrice() + 5);
-        AuctionItemDTO itemDTO = AuctionItemDTO.buildResponse(item);
-        itemRepository.save(item);
-        return ResponseEntity.ok(itemDTO);
+        AuctionItem items = AuctionItemDTO.createAuctionItemModel(itemRequest);
+        items.setCreatedBy(item.getCreatedBy());
+        itemRepository.save(items);
+        User user = userRepository.findByEmail(itemRequest.getUser()).orElseThrow(
+                () -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
+        BiddingHistoryDTO historyDTO = new BiddingHistoryDTO();
+        historyDTO.setBiddingPrice(items.getOriginalPrice());
+        historyDTO.setCreatedOn(itemRequest.getStartDate());
+        BiddingHistory history = BiddingHistoryDTO.createAuctionItemModel(historyDTO);
+        history.setAuctionItem(items);
+        history.setBidder(user);
+        biddingHistoryRepository.save(history);
+        return ResponseEntity.ok(itemRequest);
     }
 
     @GetMapping("/getbycategory/{category}")
@@ -114,13 +129,18 @@ public class AuctionItemController {
         if (itemRequest.getStartDate() == null) {
             itemRequest.setStartDate(DateUtil.toStringYYMMDD(LocalDateTime.now()));
         }
-
         AuctionItem items = AuctionItemDTO.createAuctionItemModel(itemRequest);
         User user = userRepository.findByEmail(itemRequest.getUser()).orElseThrow(
                 () -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
         items.setCreatedBy(user);
         itemRepository.save(items);
-
+        BiddingHistoryDTO historyDTO = new BiddingHistoryDTO();
+        historyDTO.setBiddingPrice(items.getOriginalPrice());
+        historyDTO.setCreatedOn(itemRequest.getStartDate());
+        BiddingHistory history = BiddingHistoryDTO.createAuctionItemModel(historyDTO);
+        history.setAuctionItem(items);
+        history.setBidder(user);
+        biddingHistoryRepository.save(history);
         return ResponseEntity.ok(items);
     }
 

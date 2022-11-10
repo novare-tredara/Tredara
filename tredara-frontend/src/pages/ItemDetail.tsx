@@ -5,14 +5,16 @@ import iAuctionItem from "interfaces/iAuctionItem";
 import StatusError from "components/StatusError";
 import StatusLoading from "components/StatusLoading";
 import Placeholder from "assets/images/placeholders/card.png";
+import { useUser } from "state/UserContext";
 
 export default function ItemDetail() {
   const [status, setStatus] = useState(eStatus.LOADING);
   const [data, setData] = useState({} as iAuctionItem);
   const { id }: any = useParams();
+  const { user } = useUser();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/auctionitems/details/${id}`)
+    fetch(`/auctionitems/details/${id}`)
       .then((response) => response.json())
       .then((data) => onSuccess(data))
       .catch((error) => onFailure(error));
@@ -29,8 +31,13 @@ export default function ItemDetail() {
   }
 
   async function onSubmit(event: any) {
+    const editedItem = {
+      ...data,
+      user: user?.email,
+      original_price: data.original_price + 5,
+    };
     event.preventDefault();
-    fetch(`http://localhost:8080/api/auctionitems/update/${id}`, {
+    fetch(`/auctionitems/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
@@ -38,17 +45,10 @@ export default function ItemDetail() {
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",
+      body: JSON.stringify(editedItem),
     })
-      .then(onPass)
-      .catch(() => onFail());
-  }
-
-  function onPass() {
-    alert("Bid Success!");
-  }
-
-  function onFail() {
-    alert("Could not bid the item");
+      .then(() => alert("Bid Success!"))
+      .catch(() => alert("Could not bid the item"));
   }
 
   // Safeguards
@@ -79,6 +79,9 @@ export default function ItemDetail() {
           <button className="bid" type="submit" onClick={onSubmit}>
             Bid
           </button>
+          <div className="info">
+            <p>* When you press bid, the value increases 5 SEK</p>
+          </div>
         </div>
       </div>
       <div className="desc">
