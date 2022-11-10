@@ -70,7 +70,7 @@ export default function FormUpdate({ data }: iProps) {
 
   return (
     <>
-      <Button onClick={handleShow} className="btn btn-success">
+      <Button onClick={handleShow}>
         <PencilSquare /> Update
       </Button>
 
@@ -87,9 +87,7 @@ export default function FormUpdate({ data }: iProps) {
               <Button className="btn btn-danger" onClick={() => handleClose()}>
                 Close
               </Button>
-              <Button className="btn btn-success" type="submit">
-                Update
-              </Button>
+              <Button type="submit">Update</Button>
             </Form.Group>
           </Form>
         </Modal.Body>
