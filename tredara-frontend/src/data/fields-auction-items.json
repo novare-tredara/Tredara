@@ -44,7 +44,7 @@
     "label": "End Date",
     "placeholder": "Bidding close date",
     "required": true,
-    "type": "date"
+    "type": "datetime-local"
   },
   {
     "key": "status",

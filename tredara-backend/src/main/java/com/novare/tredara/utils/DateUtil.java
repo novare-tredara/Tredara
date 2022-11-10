@@ -17,7 +17,7 @@ import java.util.Date;
 public final class DateUtil {
 
 	public final static String DATE_FORMAT_PATTERN = "dd-MM-yyyy HH:mm:ss";
-	public final static String DATE_FORMAT_PATTERN_YYMD = "yyyy-MM-dd";
+	public final static String DATE_FORMAT_PATTERN_YYMD = "yyyy-MM-dd HH:mm:ss";
 
 	private DateUtil() {
 	}

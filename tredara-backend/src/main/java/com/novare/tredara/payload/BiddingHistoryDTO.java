@@ -1,10 +1,13 @@
 package com.novare.tredara.payload;
 
+import java.text.ParseException;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.BiddingHistory;
 import com.novare.tredara.utils.DateUtil;
 
 public class BiddingHistoryDTO implements Comparable<BiddingHistoryDTO> {
+
 	@JsonProperty("id")
 	private Integer id;
 
@@ -14,10 +17,13 @@ public class BiddingHistoryDTO implements Comparable<BiddingHistoryDTO> {
 	@JsonProperty("bidder")
 	private String bidder;
 
+	@JsonProperty("bidder_email")
+	private String bidderEmail;
+
 	@JsonProperty("bidding_price")
 	private Long biddingPrice;
 
-	@JsonProperty("create_on")
+	@JsonProperty("created_on")
 	private String createdOn;
 
 	public Integer getId() {
@@ -60,25 +66,48 @@ public class BiddingHistoryDTO implements Comparable<BiddingHistoryDTO> {
 		this.createdOn = createdOn;
 	}
 
+	public String getBidderEmail() {
+		return bidderEmail;
+	}
+
+	public void setBidderEmail(String bidderEmail) {
+		this.bidderEmail = bidderEmail;
+	}
+
 	@Override
-	public int compareTo(BiddingHistoryDTO o) {
-		return getId().compareTo(o.getId());
+	public int hashCode() {
+		return createdOn.hashCode();
 	}
 
-	public static BiddingHistoryDTO buildResponse(BiddingHistory biddingHistory) {
-		BiddingHistoryDTO historyDTO = new BiddingHistoryDTO();
-		historyDTO.setId(biddingHistory.getId());
-		historyDTO.setCreatedOn(DateUtil.toStringYYMMDD(biddingHistory.getCreatedOn()));
-		historyDTO.setBiddingPrice(biddingHistory.getBiddingPrice());
-		historyDTO.setBidder(biddingHistory.getBidder().getFullName());
-		return historyDTO;
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof BiddingHistoryDTO) {
+			BiddingHistoryDTO dto = (BiddingHistoryDTO) obj;
+			return this.createdOn.compareTo(dto.getCreatedOn()) == 0;
+		}
+		return super.equals(obj);
 	}
 
-	public static BiddingHistory createAuctionItemModel(BiddingHistoryDTO builder) {
+	@Override
+	public int compareTo(BiddingHistoryDTO compare) {
+		return this.getCreatedOn().compareTo(compare.getCreatedOn());
+	}
+
+	public static BiddingHistoryDTO buildDTO(BiddingHistory history) {
+		BiddingHistoryDTO dto = new BiddingHistoryDTO();
+		dto.setAuctionItem(history.getAuctionItem().getId());
+		dto.setBidder(history.getBidder().getFullName());
+		dto.setBidderEmail(history.getBidder().getEmail());
+		dto.setBiddingPrice(history.getBiddingPrice());
+		dto.setCreatedOn(DateUtil.toString(history.getCreatedOn()));
+		dto.setId(history.getId());
+		return dto;
+	}
+
+	public static BiddingHistory buildModel(BiddingHistoryDTO dto) throws ParseException {
 		BiddingHistory history = new BiddingHistory();
-		history.setId(builder.getId());
-		history.setCreatedOn(DateUtil.toDateYYMMDD(builder.getCreatedOn()));
-		history.setBiddingPrice(builder.getBiddingPrice());
+		history.setBiddingPrice(dto.getBiddingPrice());
+		history.setCreatedOn(DateUtil.toDate(dto.getCreatedOn()));
 		return history;
 	}
 }

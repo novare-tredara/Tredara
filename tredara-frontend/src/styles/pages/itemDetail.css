@@ -141,3 +141,10 @@
   order: 1;
   flex-grow: 0;
 }
+
+.detail .table-wrapper{
+  min-height: 250px;
+  max-height: 250px;
+  overflow: auto;
+  display:inline-block;
+}

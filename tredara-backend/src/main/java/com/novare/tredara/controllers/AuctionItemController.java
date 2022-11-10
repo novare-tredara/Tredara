@@ -1,24 +1,5 @@
 package com.novare.tredara.controllers;
 
-import com.novare.tredara.exceptions.TredaraException;
-import com.novare.tredara.models.AuctionItem;
-import com.novare.tredara.models.BiddingHistory;
-import com.novare.tredara.models.ECategory;
-import com.novare.tredara.models.User;
-import com.novare.tredara.payload.AuctionItemDTO;
-import com.novare.tredara.payload.BiddingHistoryDTO;
-import com.novare.tredara.repositories.AuctionItemRepository;
-import com.novare.tredara.repositories.BiddingHistoryRepository;
-import com.novare.tredara.repositories.UserRepository;
-import com.novare.tredara.services.AuctionItemService;
-import com.novare.tredara.utils.DateUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,9 +8,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.novare.tredara.exceptions.TredaraException;
+import com.novare.tredara.models.AuctionItem;
+import com.novare.tredara.models.BiddingHistory;
+import com.novare.tredara.models.ECategory;
+import com.novare.tredara.models.User;
+import com.novare.tredara.payload.AuctionItemDTO;
+import com.novare.tredara.payload.BiddingHistoryDTO;
+import com.novare.tredara.repositories.AuctionItemRepository;
+import com.novare.tredara.repositories.UserRepository;
+import com.novare.tredara.utils.DateUtil;
+
 @CrossOrigin(origins = "*")
-@Controller
+@RestController
 @RequestMapping("/api/auctionitems")
+@Validated
 public class AuctionItemController {
 
 	@Autowired
@@ -38,10 +47,6 @@ public class AuctionItemController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private AuctionItemService auctionItemService;
-	@Autowired
-	private BiddingHistoryRepository biddingHistoryRepository;
 
 	@GetMapping("/")
 	public ResponseEntity<List<AuctionItemDTO>> getAllItems() {
@@ -77,7 +82,7 @@ public class AuctionItemController {
 
 	@GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionItemDTO>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
-		List<AuctionItem> contents = auctionItemService.getAuctionItemByFreeText(freeText);
+		List<AuctionItem> contents = itemRepository.findByTitleContainsAndStatus(freeText,1);
 		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
 		contents.stream().forEach(item -> {
 			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
@@ -102,27 +107,6 @@ public class AuctionItemController {
 			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
 		});
 		return ResponseEntity.ok(auctionItemDTOs);
-	}
-
-	@PutMapping("/update/{id}")
-	public ResponseEntity<AuctionItemDTO> updatePrice(@PathVariable(value = "id") Integer itemId,
-			@RequestBody AuctionItemDTO itemRequest)
-			throws TredaraException {
-		AuctionItem item = itemRepository.findById(itemId)
-				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "Item not found on :: " + itemId));
-		AuctionItem items = AuctionItemDTO.createAuctionItemModel(itemRequest);
-		items.setCreatedBy(item.getCreatedBy());
-		itemRepository.save(items);
-		User user = userRepository.findByEmail(itemRequest.getUser()).orElseThrow(
-				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
-		BiddingHistoryDTO historyDTO = new BiddingHistoryDTO();
-		historyDTO.setBiddingPrice(items.getOriginalPrice());
-		historyDTO.setCreatedOn(itemRequest.getStartDate());
-		BiddingHistory history = BiddingHistoryDTO.createAuctionItemModel(historyDTO);
-		history.setAuctionItem(items);
-		history.setBidder(user);
-		biddingHistoryRepository.save(history);
-		return ResponseEntity.ok(itemRequest);
 	}
 
 	@PutMapping("/update/{id}")
@@ -152,18 +136,13 @@ public class AuctionItemController {
 		if (itemRequest.getStartDate() == null) {
 			itemRequest.setStartDate(DateUtil.toStringYYMMDD(LocalDateTime.now()));
 		}
+
 		AuctionItem items = AuctionItemDTO.createAuctionItemModel(itemRequest);
-		User user = userRepository.findByEmail(itemRequest.getUser()).orElseThrow(
+		User user = userRepository.findByEmail(itemRequest.getUserEmail()).orElseThrow(
 				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
 		items.setCreatedBy(user);
 		itemRepository.save(items);
-		BiddingHistoryDTO historyDTO = new BiddingHistoryDTO();
-		historyDTO.setBiddingPrice(items.getOriginalPrice());
-		historyDTO.setCreatedOn(itemRequest.getStartDate());
-		BiddingHistory history = BiddingHistoryDTO.createAuctionItemModel(historyDTO);
-		history.setAuctionItem(items);
-		history.setBidder(user);
-		biddingHistoryRepository.save(history);
+
 		return ResponseEntity.ok(items);
 	}
 

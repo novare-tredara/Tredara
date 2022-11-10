@@ -35,7 +35,7 @@ export default function FormCreate(props: iProps) {
 
   // Methods
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    const newItem = { ...form, user: user?.email };
+    const newItem = { ...form, user_email: user?.email };
     event.preventDefault();
     fetch("/auctionitems/create/", {
       method: "POST",

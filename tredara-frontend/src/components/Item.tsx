@@ -4,6 +4,8 @@ import Placeholder from "assets/images/placeholders/card-basic.png";
 import { useState } from "react";
 import FormUpdate from "./FormUpdate";
 import FormDelete from "./FormDelete";
+import { useUser } from "state/UserContext";
+import eUserType from "interfaces/eUserType";
 
 interface iProps {
   item: iAuctionItem;
@@ -11,6 +13,8 @@ interface iProps {
 
 export default function Item({ item }: iProps) {
   const { id, title, image } = item;
+  const { user } = useUser();
+  const isAdmin = user?.type === eUserType.ADMIN;
 
   return (
     <>
@@ -23,7 +27,7 @@ export default function Item({ item }: iProps) {
         <h3>{title}</h3>
         <div className="buttons">
           {/* Adding model form for Update */}
-          <FormUpdate data={item} />
+          {isAdmin ? "" : <FormUpdate data={item} />}
           <FormDelete data={item} />
         </div>
       </article>

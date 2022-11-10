@@ -37,14 +37,13 @@ export default function FormUpdate({ data }: iProps) {
 
   // Methods
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     const editedItem = {
       ...form,
       id: data.id,
       start_date: data.start_date,
       user: user?.email,
     };
-    console.log(editedItem);
-    event.preventDefault();
     fetch("/auctionitems/update/", {
       method: "PUT",
       headers: {

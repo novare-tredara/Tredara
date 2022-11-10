@@ -11,7 +11,8 @@ import { useUser } from "state/UserContext";
 import moment from "moment";
 import StatusLoading from "./StatusLoading";
 import StatusError from "./StatusError";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
+import eUserType from "interfaces/eUserType";
 
 interface iProps {
   data: iAuctionItem;
@@ -22,7 +23,8 @@ export default function BiddingList({ data }: iProps) {
   const { user } = useUser();
   const [bidPrice, setBidPrice] = useState<number>(data.original_price);
 
-  const isUserEligible = user?.email === data.user_email;
+  const isUserOwner = user?.email === data.user_email;
+  const isAdmin = user?.type === eUserType.ADMIN;
 
   useEffect(() => {
     fetch(`/auctionitems/getbiddings/${data.id}`)
@@ -32,7 +34,7 @@ export default function BiddingList({ data }: iProps) {
   }, [status]);
 
   const formatTime = (time: any) => {
-    return moment(time).format("DD-MM-YYYY hh:mm:ss");
+    return moment(time).format("DD-MM-YYYY HH:mm:ss");
   };
 
   const getHighestBid = () => {
@@ -94,7 +96,7 @@ export default function BiddingList({ data }: iProps) {
     <tbody>
       <tr>
         <td>{bid.id}</td>
-        <td>{bid.bidder}</td>
+        {isAdmin ? <td>{bid.bidder}</td> : ""}
         <td>{bid.created_on}</td>
         <td>{bid.bidding_price}</td>
       </tr>
@@ -119,7 +121,7 @@ export default function BiddingList({ data }: iProps) {
             type="submit"
             variant="primary"
             id="button-addon2"
-            disabled={isUserEligible}
+            disabled={isUserOwner || isAdmin}
           >
             <HandThumbsUpFill />
           </Button>
@@ -131,19 +133,20 @@ export default function BiddingList({ data }: iProps) {
             <ArrowRepeat />
           </Button>
         </InputGroup>
-
-        <Table striped bordered hover style={{ marginTop: "1rem" }}>
+      </Form>
+      <Container className="table-wrapper">
+        <Table striped bordered hover style={{ marginTop: "1rem 1rem 0 0 " }}>
           <thead>
             <tr>
               <th>#</th>
-              <th>Bidder</th>
+              {isAdmin ? <th>Bidder</th> : ""}
               <th>Created On</th>
               <th>Bidding Price</th>
             </tr>
           </thead>
           {Rows}
         </Table>
-      </Form>
+      </Container>
     </Row>
   );
 }

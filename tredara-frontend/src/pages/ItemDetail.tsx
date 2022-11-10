@@ -6,8 +6,9 @@ import StatusError from "components/StatusError";
 import StatusLoading from "components/StatusLoading";
 import Placeholder from "assets/images/placeholders/card.png";
 import BiddingList from "components/BiddingList";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useUser } from "state/UserContext";
+import eUserType from "interfaces/eUserType";
 
 export default function ItemDetail() {
   const [status, setStatus] = useState(eStatus.LOADING);
@@ -15,7 +16,8 @@ export default function ItemDetail() {
   const { id }: any = useParams();
   const { user } = useUser();
 
-  const isUserEligible = user?.email === data.user_email;
+  const isUserOwner = user?.email === data.user_email;
+  const isAdmin = user?.type === eUserType.ADMIN;
 
   useEffect(() => {
     fetch(`/auctionitems/details/${id}`)
@@ -32,27 +34,6 @@ export default function ItemDetail() {
   function onFailure(error: string) {
     console.error(error);
     setStatus(eStatus.ERROR);
-  }
-
-  async function onSubmit(event: any) {
-    const editedItem = {
-      ...data,
-      user: user?.email,
-      original_price: data.original_price + 5,
-    };
-    event.preventDefault();
-    fetch(`/auctionitems/update/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      body: JSON.stringify(editedItem),
-    })
-      .then(() => alert("Bid Success!"))
-      .catch(() => alert("Could not bid the item"));
   }
 
   // Safeguards
@@ -78,23 +59,22 @@ export default function ItemDetail() {
             </div>
           </div>
         </Col>
-        <Col className="rounded border bg-light pb-5 mr-2">
+        <Col className="rounded border bg-light pb-3 pt-3">
           <div className="price">
             <p className="text">Leading offer:</p>
             <p className="cost">{data.original_price} SEK</p>
           </div>
           <div className="date">
-            <p className="text">Ends on:</p>
+            <p className="text">Ends On:</p>
             <p className="end-date">{data.end_date}</p>
           </div>
-          <button className="bid" type="submit" disabled={!isUserEligible}>
-            Close
-          </button>
+          <hr />
+          <BiddingList data={data} />
+          <hr />
+          <Form.Group className="d-flex flex-row-reverse">
+            <Button disabled={!(isUserOwner || isAdmin)}>End Bid</Button>
+          </Form.Group>
         </Col>
-      </Row>
-      <hr />
-      <Row>
-        <BiddingList data={data} />
       </Row>
     </Container>
   );
