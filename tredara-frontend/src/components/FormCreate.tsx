@@ -14,6 +14,7 @@ interface iProps {
 export default function FormCreate(props: iProps) {
   // Local state
   const [form, setForm] = useState({});
+
   // Global state
   const { user } = useUser();
 

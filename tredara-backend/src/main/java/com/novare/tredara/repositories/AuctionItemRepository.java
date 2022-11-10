@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.novare.tredara.models.AuctionItem;
+import com.novare.tredara.models.BiddingHistory;
 import com.novare.tredara.models.ECategory;
 
 public interface AuctionItemRepository extends JpaRepository<AuctionItem, Integer> {
@@ -27,5 +28,8 @@ public interface AuctionItemRepository extends JpaRepository<AuctionItem, Intege
 	
 	@Query("FROM AuctionItem WHERE createdBy.email=:email")
 	List<AuctionItem> findByUser(@Param("email") String email) ;
+	
+	@Query("FROM BiddingHistory WHERE auctionItem.id=:auctionItem ORDER BY createdOn DESC")
+	List<BiddingHistory> findBiddingsByAuctionItem(@Param("auctionItem") Integer auctionItem) ;
 
 }

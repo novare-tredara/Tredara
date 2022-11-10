@@ -35,8 +35,11 @@ public final class DateUtil {
 		return Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
 	}
 
-	public static LocalDateTime toDate(String dateAsString) throws ParseException {
+	public static LocalDateTime toLocalDateTime(String dateAsString) throws ParseException {
 		return LocalDateTime.parse(dateAsString, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
+	}
+	public static Date toDate(String dateAsString) throws ParseException {
+		return toDate(toLocalDateTime(dateAsString));
 	}
 
 	public static String toString(LocalDateTime date) throws ParseException {

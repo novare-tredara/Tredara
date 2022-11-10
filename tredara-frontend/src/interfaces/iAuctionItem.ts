@@ -1,5 +1,3 @@
-import iUser from "./iUser";
-
 export default interface iAuctionItem {
   id: number;
   title: string;
@@ -10,4 +8,6 @@ export default interface iAuctionItem {
   start_date: string;
   end_date: string;
   status: number;
+  created_by: string;
+  user_email: string;
 }
