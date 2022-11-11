@@ -8,12 +8,19 @@ import { generateFields } from "scripts/formUtilities";
 import { PencilSquare } from "react-bootstrap-icons";
 import { userInfo } from "os";
 import { useUser } from "state/UserContext";
+import moment from "moment";
+import iAuctionItem from "interfaces/iAuctionItem";
+import eStatus from "interfaces/eStatus";
 
 interface iProps {
   data: any;
+  actions: Function[];
 }
-export default function FormUpdate({ data }: iProps) {
+export default function FormUpdate({ data, actions }: iProps) {
   // Local state
+  const [onReload] = actions;
+
+  const [status, setStatus] = useState(eStatus.LOADING);
   const [form, setForm] = useState(generateFields(Fields, data));
   const { user } = useUser();
 
@@ -22,6 +29,9 @@ export default function FormUpdate({ data }: iProps) {
   const handleShow = () => setShow(true);
 
   const [validated, setValidated] = useState(false);
+  const formatTime = (time: any) => {
+    return moment(time).format("YYYY-MM-DD HH:mm:ss");
+  };
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     const form = event.currentTarget;
@@ -37,14 +47,16 @@ export default function FormUpdate({ data }: iProps) {
 
   // Methods
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    let end_date = formatTime({ ...form }.end_date);
     const editedItem = {
       ...form,
       id: data.id,
       start_date: data.start_date,
-      user: user?.email,
+      end_date: end_date,
+      user_email: user?.email,
     };
-    console.log(editedItem);
     event.preventDefault();
+
     fetch("/auctionitems/update/", {
       method: "PUT",
       headers: {
@@ -61,6 +73,7 @@ export default function FormUpdate({ data }: iProps) {
 
   function onSuccess() {
     alert("Item updated!");
+    onReload();
   }
 
   function onFailure(error: string) {
@@ -70,7 +83,7 @@ export default function FormUpdate({ data }: iProps) {
 
   return (
     <>
-      <Button onClick={handleShow} className="btn btn-success">
+      <Button onClick={handleShow}>
         <PencilSquare /> Update
       </Button>
 
@@ -87,9 +100,7 @@ export default function FormUpdate({ data }: iProps) {
               <Button className="btn btn-danger" onClick={() => handleClose()}>
                 Close
               </Button>
-              <Button className="btn btn-success" type="submit">
-                Update
-              </Button>
+              <Button type="submit">Update</Button>
             </Form.Group>
           </Form>
         </Modal.Body>

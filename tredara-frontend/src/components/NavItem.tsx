@@ -1,5 +1,3 @@
-import { Link, useNavigate } from "react-router-dom";
-
 import iNavItem from "interfaces/iNavItem";
 
 interface iProps {
@@ -12,6 +10,12 @@ export default function NavItem({ item, actions }: iProps) {
   const [onAction] = actions;
 
   return (
-    <button onClick={() => onAction(item.id, item.url)}>{item.label}</button>
+    <button
+      id={String(item.id)}
+      key={item.id}
+      onClick={() => onAction(item.id, item.url)}
+    >
+      {item.label}
+    </button>
   );
 }

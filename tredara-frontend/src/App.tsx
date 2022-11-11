@@ -15,14 +15,13 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {user === null && <UnloggedRoutes />}
-        {user !== null && user?.type !== eUserType.CUSTOMER && (
+        {user === null && (
           <>
             {alert("Invalid details")}
             <UnloggedRoutes />
           </>
         )}
-        {user?.type === eUserType.CUSTOMER && <CustomerRoutes />}
+        <CustomerRoutes />
       </BrowserRouter>
     </div>
   );

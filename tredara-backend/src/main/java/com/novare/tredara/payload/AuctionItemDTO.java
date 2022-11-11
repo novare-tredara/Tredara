@@ -39,8 +39,11 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	@JsonProperty("category")
 	private Integer category;
 	
-	@JsonProperty("user")
+	@JsonProperty("created_by")
 	private String user;
+
+	@JsonProperty("user_email")
+	private String userEmail;
 
 	public Integer getId() {
 		return id;
@@ -128,6 +131,13 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 	public String getUser() {
 		return user;
 	}
+	public String getUserEmail() {
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
 	@Override
 	public int compareTo(AuctionItemDTO o) {
 		return getId().compareTo(o.getId());
@@ -145,6 +155,8 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		itemDTO.setStatus(auctionItem.getStatus());
 		itemDTO.setTitle(auctionItem.getTitle());
 		itemDTO.setCategory(auctionItem.getCategory().getCategory().getValue());
+		itemDTO.setUser(auctionItem.getCreatedBy().getFullName());
+		itemDTO.setUserEmail(auctionItem.getCreatedBy().getEmail());
 		return itemDTO;
 
 	}

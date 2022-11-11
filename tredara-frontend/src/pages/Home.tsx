@@ -16,7 +16,7 @@ export default function Home() {
   const [data, setData] = useState(new Array<iAuctionItem>());
 
   // Properties
-  const endPoint = "auctionitems//getbystatus/1";
+  const endPoint = "auctionitems/getbystatus/1";
 
   // Methods
   useEffect(() => {

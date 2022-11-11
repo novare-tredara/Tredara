@@ -9,9 +9,11 @@ import { Trash } from "react-bootstrap-icons";
 
 interface iProps {
   data: any;
+  actions: Function[];
 }
 
-export default function FormDelete({ data }: iProps) {
+export default function FormDelete({ data, actions }: iProps) {
+  const [onReload] = actions;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,7 +30,7 @@ export default function FormDelete({ data }: iProps) {
 
   function onSuccess() {
     handleClose();
-    alert("Item deleted!");
+    onReload();
   }
 
   function onFailure(error: string) {

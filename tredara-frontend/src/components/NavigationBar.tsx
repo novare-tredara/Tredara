@@ -10,7 +10,6 @@ import FormCreate from "./FormCreate";
 
 export default function NavigationBar() {
   // Global state
-  const { setUser } = useUser();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
