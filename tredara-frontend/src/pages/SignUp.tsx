@@ -30,7 +30,7 @@ export default function Login() {
         "Content-Type": "application/json",
         "x-access-token": "token-value",
       },
-      body: JSON.stringify(form)
+      body: JSON.stringify(form),
     })
       .then((response) => response.json())
       .then((result) => onSuccess(result))
@@ -38,7 +38,6 @@ export default function Login() {
   }
 
   function onSuccess(newUser: iUser) {
-   alert("Welcome to Tradera!");
     setUser(newUser);
     navigate("/");
   }
@@ -52,19 +51,19 @@ export default function Login() {
     <div id="sign-up" className="auth">
       <div className="container">
         <div className="row">
-        <img className ="column" src ={signup}/>
-        <div className ="column">
-        <h1>Sign Up</h1>
-        <form onSubmit={(event) => onSubmit(event)}>
-          <ListInput fields={Fields} state={[form, setForm]} />
-          <button>Create Account</button>
-        </form>
-        <footer>
-          <p>
-            Already have an account? <Link to="/login">Sign In</Link>.
-          </p>
-        </footer>
-        </div>
+          <img className="column" src={signup} />
+          <div className="column">
+            <h1>Sign Up</h1>
+            <form onSubmit={(event) => onSubmit(event)}>
+              <ListInput fields={Fields} state={[form, setForm]} />
+              <button>Create Account</button>
+            </form>
+            <footer>
+              <p>
+                Already have an account? <Link to="/login">Sign In</Link>.
+              </p>
+            </footer>
+          </div>
         </div>
       </div>
     </div>
