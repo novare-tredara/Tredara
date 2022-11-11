@@ -8,6 +8,7 @@ import { useUser } from "state/UserContext";
 import eUserType from "interfaces/eUserType";
 
 import "styles/style.css";
+import AdminRoutes from "routes/AdminRoutes";
 
 export default function App() {
   const { user } = useUser();
@@ -15,13 +16,17 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {user === null && (
-          <>
-            {alert("Invalid details")}
-            <UnloggedRoutes />
-          </>
-        )}
-        <CustomerRoutes />
+        {user === null && <UnloggedRoutes />}
+        {user !== null &&
+          user?.type !== eUserType.ADMIN &&
+          user?.type !== eUserType.CUSTOMER && (
+            <>
+              {alert("Invalid details")}
+              <UnloggedRoutes />
+            </>
+          )}
+        {user?.type === eUserType.ADMIN && <AdminRoutes />}
+        {user?.type === eUserType.CUSTOMER && <CustomerRoutes />}
       </BrowserRouter>
     </div>
   );

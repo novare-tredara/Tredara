@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.novare.tredara.services.AuctionItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,6 +46,9 @@ public class AuctionItemController {
 	private AuctionItemRepository itemRepository;
 
 	@Autowired
+	private AuctionItemService auctionItemService;
+
+	@Autowired
 	private UserRepository userRepository;
 
 	@GetMapping("/")
@@ -59,7 +63,7 @@ public class AuctionItemController {
 
 	@GetMapping("/getbystatus/{status}")
 	public ResponseEntity<List<AuctionItemDTO>> getByStatus(@PathVariable(value = "status") Integer status) {
-		List<AuctionItem> contents = itemRepository.findAll().stream().filter(items -> items.getStatus() == status)
+		List<AuctionItem> contents = auctionItemService.setItemStatus().stream().filter(items -> items.getStatus() == status)
 				.collect(Collectors.toList());
 		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
 		contents.stream().forEach(item -> {
@@ -183,6 +187,7 @@ public class AuctionItemController {
 							"Auction Item not found on :: " + itemRequest.getAuctionItem()));
 
 			bidding.setAuctionItem(item);
+			item.setOriginalPrice(itemRequest.getBiddingPrice());
 			item.getHistories().add(bidding);
 
 			itemRepository.save(item);
