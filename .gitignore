@@ -61,3 +61,4 @@ tredara-backend/logs/application.log
 tredara-backend/logs/application.log.2022-11-08.0.gz
 tredara-frontend/package-lock.json
 tredara-frontend/package-lock.json
+*.gz

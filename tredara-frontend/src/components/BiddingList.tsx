@@ -96,7 +96,7 @@ export default function BiddingList({ data }: iProps) {
     <tbody>
       <tr>
         <td>{bid.id}</td>
-        {isAdmin ? <td>{bid.bidder}</td> : ""}
+        {isAdmin || isUserOwner ? <td>{bid.bidder}</td> : ""}
         <td>{bid.created_on}</td>
         <td>{bid.bidding_price}</td>
       </tr>

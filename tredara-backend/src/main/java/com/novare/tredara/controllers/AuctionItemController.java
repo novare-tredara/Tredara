@@ -47,7 +47,6 @@ public class AuctionItemController {
 	@Autowired
 	private UserRepository userRepository;
 
-
 	@GetMapping("/")
 	public ResponseEntity<List<AuctionItemDTO>> getAllItems() {
 		List<AuctionItem> auctionItems = itemRepository.findAll();
@@ -82,7 +81,7 @@ public class AuctionItemController {
 
 	@GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AuctionItemDTO>> getAuctionItemByFreeText(@RequestParam("freeText") String freeText) {
-		List<AuctionItem> contents = itemRepository.findByTitleContainsAndStatus(freeText,1);
+		List<AuctionItem> contents = itemRepository.findByTitleContainsAndStatus(freeText, 1);
 		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
 		contents.stream().forEach(item -> {
 			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
@@ -103,6 +102,18 @@ public class AuctionItemController {
 	public ResponseEntity<List<AuctionItemDTO>> getItemsByCategory(@PathVariable(value = "category") String category) {
 		List<AuctionItem> items = itemRepository.findActiveItemsByCategory(ECategory.valueOf(category.toUpperCase()));
 		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
+		items.stream().forEach(item -> {
+			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
+		});
+		return ResponseEntity.ok(auctionItemDTOs);
+	}
+
+	@GetMapping("/getitemsbyuser/{user}")
+	public ResponseEntity<List<AuctionItemDTO>> getItemsByUser(@PathVariable(value = "user") String user)
+			throws TredaraException {
+		List<AuctionItem> items = itemRepository.findByUser(user);
+		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
+
 		items.stream().forEach(item -> {
 			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
 		});
@@ -149,7 +160,7 @@ public class AuctionItemController {
 	@PutMapping("/update")
 	public ResponseEntity<AuctionItemDTO> update(@RequestBody AuctionItemDTO itemRequest) throws TredaraException {
 		AuctionItem items = AuctionItemDTO.createAuctionItemModel(itemRequest);
-		User user = userRepository.findByEmail(itemRequest.getUser()).orElseThrow(
+		User user = userRepository.findByEmail(itemRequest.getUserEmail()).orElseThrow(
 				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
 		items.setCreatedBy(user);
 		itemRepository.save(items);
@@ -180,18 +191,6 @@ public class AuctionItemController {
 					"Parsing failes :: " + itemRequest.getAuctionItem());
 		}
 		return ResponseEntity.ok().body(itemRequest);
-	}
-
-	@GetMapping("/getitemsbyuser/{user}")
-	public ResponseEntity<List<AuctionItemDTO>> getItemsByUser(@PathVariable(value = "user") String user)
-			throws TredaraException {
-		List<AuctionItem> items = itemRepository.findByUser(user);
-		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
-
-		items.stream().forEach(item -> {
-			auctionItemDTOs.add(AuctionItemDTO.buildResponse(item));
-		});
-		return ResponseEntity.ok(auctionItemDTOs);
 	}
 
 }

@@ -33,7 +33,7 @@ export default function UserItems() {
       .then((response) => response.json())
       .then((result) => onSuccess(result))
       .catch((error) => onFailure(error));
-  }, []);
+  }, [status]);
 
   function onSuccess(data: iAuctionItem[]) {
     setData(data);
@@ -44,9 +44,14 @@ export default function UserItems() {
     console.error(error);
     setStatus(eStatus.ERROR);
   }
+  function onReload() {
+    setStatus(eStatus.LOADING);
+  }
 
   // Components
-  const Items = data.map((item) => <Item key={item.id} item={item} />);
+  const Items = data.map((item) => (
+    <Item key={item.id} item={item} actions={[onReload]} />
+  ));
 
   // Safeguards
   if (status === eStatus.LOADING) return <StatusLoading />;

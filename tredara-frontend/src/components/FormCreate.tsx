@@ -5,6 +5,8 @@ import { FormEvent, useState } from "react";
 import Fields from "data/fields-auction-items.json";
 import ListInput from "./ListInput";
 import { useUser } from "state/UserContext";
+import moment from "moment";
+import iAuctionItem from "interfaces/iAuctionItem";
 
 interface iProps {
   show: boolean;
@@ -13,13 +15,17 @@ interface iProps {
 }
 export default function FormCreate(props: iProps) {
   // Local state
-  const [form, setForm] = useState({});
+  const [onReload] = props.actions;
 
-  // Global state
+  const [form, setForm] = useState({});
   const { user } = useUser();
 
   const [handleClose] = props.actions;
   const [validated, setValidated] = useState(false);
+
+  const formatTime = (time: any) => {
+    return moment(time).format("YYYY-MM-DD HH:mm:ss");
+  };
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     const form = event.currentTarget;
@@ -35,7 +41,9 @@ export default function FormCreate(props: iProps) {
 
   // Methods
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    const newItem = { ...form, user_email: user?.email };
+    let end_date = formatTime({ ...(form as iAuctionItem) }.end_date);
+    const newItem = { ...form, end_date: end_date, user_email: user?.email };
+
     event.preventDefault();
     fetch("/auctionitems/create/", {
       method: "POST",
@@ -49,11 +57,11 @@ export default function FormCreate(props: iProps) {
     })
       .then(onSuccess)
       .catch((error) => onFailure(error));
-    console.log(newItem);
   }
 
   function onSuccess() {
     alert("Item created!");
+    onReload();
   }
 
   function onFailure(error: string) {
