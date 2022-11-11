@@ -38,10 +38,5 @@
     "id": 7,
     "label": "My Items",
     "url": "/user-items"
-  },
-  {
-    "id": 8,
-    "label": "Logout",
-    "url": "/login"
   }
 ]

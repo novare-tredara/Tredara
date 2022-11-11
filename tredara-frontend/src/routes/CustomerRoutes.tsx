@@ -10,7 +10,6 @@ import NavigationBar from "components/NavigationBar";
 import Footer from "components/Footer";
 import ItemDetail from "pages/ItemDetail";
 import UserItems from "pages/UserItemDetails";
-import UnloggedRoutes from "./UnloggedRoutes";
 
 export default function CustomerRoutes() {
   return (
@@ -23,7 +22,6 @@ export default function CustomerRoutes() {
         <Route path="/user-items" element={<UserItems />} />
         <Route path="/search/:query" element={<SearchResults />} />
         <Route path="/:code" element={<Content />} />
-        <Route path="/login" element={<UnloggedRoutes />} />
       </Routes>
       <Footer />
     </div>

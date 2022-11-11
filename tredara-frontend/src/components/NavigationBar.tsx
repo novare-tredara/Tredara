@@ -10,6 +10,7 @@ import FormCreate from "./FormCreate";
 
 export default function NavigationBar() {
   // Global state
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -25,6 +26,11 @@ export default function NavigationBar() {
 
   function onSubmit() {}
 
+  function onLogout() {
+    setUser(null);
+    navigate("/");
+  }
+
   // Components
   const Links = CustomerLinks.map((item) => (
     <NavItem item={item} actions={[onSelect, onSubmit]} />
@@ -35,7 +41,10 @@ export default function NavigationBar() {
         <img src={Logo} alt="logo" />
       </Link>
       <Search />
-      <div className="justify-content-end">{Links}</div>
+      <div className="justify-content-end">
+        {Links}
+        <button onClick={onLogout}>Logout</button>
+      </div>
       {/* Adding model form for creation */}
       <FormCreate show={show} onHide={handleClose} actions={[handleClose]} />
     </nav>
