@@ -2,11 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Logo from "assets/images/logo-icon.png";
 import AdminLinks from "data/links-admin.json";
+import { useUser } from "state/UserContext";
 import NavItem from "./NavItem";
 import Search from "./Search";
 
 export default function NavigationBarAdmin() {
   // Global state
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   function onSelect(id: number, endPoint: string) {
@@ -14,6 +16,11 @@ export default function NavigationBarAdmin() {
   }
 
   function onSubmit() {}
+
+  function onLogout() {
+    setUser(null);
+    navigate("/");
+  }
 
   // Components
   const Links = AdminLinks.map((item) => (
@@ -25,7 +32,10 @@ export default function NavigationBarAdmin() {
         <img src={Logo} alt="logo" />
       </Link>
       <Search />
-      <div className="justify-content-end">{Links}</div>
+      <div className="justify-content-end">
+        {Links}
+        <button onClick={onLogout}>Logout</button>
+      </div>
     </nav>
   );
 }

@@ -9,7 +9,6 @@ import Footer from "components/Footer";
 import ItemDetail from "pages/ItemDetail";
 import UserItems from "pages/UserItemDetails";
 import NavigationBarAdmin from "components/NavigationBarAdmin";
-import UnloggedRoutes from "./UnloggedRoutes";
 
 export default function AdminRoutes() {
   return (
@@ -21,7 +20,6 @@ export default function AdminRoutes() {
         <Route path="/detail/:id" element={<ItemDetail />} />
         <Route path="/user-items" element={<UserItems />} />
         <Route path="/search/:query" element={<SearchResults />} />
-        <Route path="/login" element={<UnloggedRoutes />} />
       </Routes>
       <Footer />
     </div>
