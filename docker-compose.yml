@@ -3,28 +3,28 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: 'natflix'
+      MYSQL_DATABASE: 'tredara'
       MYSQL_USER: 'test'
       MYSQL_PASSWORD: 'root'
       MYSQL_ROOT_PASSWORD: 'root'
-    container_name: natflix-database-server
+    container_name: tredara-database-server
     ports:
       - '3306:3306'
     networks:
-      - natflix-nw
+      - tredara-nw
     volumes:
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
     depends_on:
       - db
-    image: natflix-backend-server:1.1
-    container_name: natflix-backend-server
+    image: tredara-backend-server:1.1
+    container_name: tredara-backend-server
     restart: on-failure
     ports:
       - "8080:8080"
     networks:
-      - natflix-nw
+      - tredara-nw
     build:
       context: .
       dockerfile: Dockerfile.backend
@@ -32,16 +32,16 @@ services:
   frontend:
     depends_on:
       - backend
-    image: natflix-frontend-server:1.1
+    image: tredara-frontend-server:1.1
     container_name: frontend-server
     restart: on-failure
     ports:
       - "3000:3000"
     networks:
-      - natflix-nw
+      - tredara-nw
     build:
       context: .
       dockerfile: Dockerfile.frontend
 networks:
-    natflix-nw:
+    tredara-nw:
        driver: bridge
