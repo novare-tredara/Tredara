@@ -44,7 +44,8 @@ export default function ItemDetail() {
     <Container id="details" className="container-fluid detail">
       <Row>
         <Col>
-          <img className="img-fluid" src={data.image} />
+          <img className="img-fluid" src={data.image} 
+          onError={(event) => (event.currentTarget.src = Placeholder)} />
           <div className="mt-3">
             <h4 className="text-dark">{data.title}</h4>
             <h6 className="text-secondary">{data.description}</h6>

@@ -1,6 +1,8 @@
 
 .login {
     height: 100vh;
+    background:url("../../assets/images/bag.png");
+    background-size: cover;
 }
   
   .login .container {
