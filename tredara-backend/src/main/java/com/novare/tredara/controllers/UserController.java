@@ -27,12 +27,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.novare.tredara.dtos.LoginRequest;
+import com.novare.tredara.dtos.UserDTO;
 import com.novare.tredara.exceptions.TredaraException;
 import com.novare.tredara.models.ERole;
 import com.novare.tredara.models.Role;
 import com.novare.tredara.models.User;
-import com.novare.tredara.payload.LoginRequest;
-import com.novare.tredara.payload.UserDTO;
 import com.novare.tredara.repositories.RoleRepository;
 import com.novare.tredara.repositories.UserRepository;
 import com.novare.tredara.security.jwt.JwtUtils;

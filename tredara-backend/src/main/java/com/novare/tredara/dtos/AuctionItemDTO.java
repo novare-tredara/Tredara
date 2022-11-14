@@ -1,4 +1,4 @@
-package com.novare.tredara.payload;
+package com.novare.tredara.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.novare.tredara.models.AuctionItem;

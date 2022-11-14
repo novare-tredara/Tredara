@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.novare.tredara.dtos.AuctionItemDTO;
+import com.novare.tredara.dtos.BiddingHistoryDTO;
 import com.novare.tredara.exceptions.TredaraException;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.models.BiddingHistory;
 import com.novare.tredara.models.ECategory;
 import com.novare.tredara.models.User;
-import com.novare.tredara.payload.AuctionItemDTO;
-import com.novare.tredara.payload.BiddingHistoryDTO;
 import com.novare.tredara.repositories.AuctionItemRepository;
 import com.novare.tredara.repositories.UserRepository;
 import com.novare.tredara.utils.DateUtil;
