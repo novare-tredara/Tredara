@@ -139,7 +139,7 @@ export default function BiddingList({ data }: iProps) {
           <thead>
             <tr>
               <th>#</th>
-              {isAdmin ? <th>Bidder</th> : ""}
+              {isAdmin || isUserOwner ? <th>Bidder</th> : ""}
               <th>Created On</th>
               <th>Bidding Price</th>
             </tr>

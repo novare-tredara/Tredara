@@ -30,10 +30,12 @@ public class AuctionItemService {
                 List<Integer> ids = new ArrayList<>();
                 item.getHistories().forEach(value -> ids.add(value.getId()));
                 Collections.sort(ids);
-                var user = item.getHistories().stream().filter(val -> val.getId() == ids.get(ids.size() - 1)).findFirst();
-                String mail = user.get().getBidder().getEmail();
-                String body = "Hello " + user.get().getBidder().getFullName() + ",\n\nYou won the bid for " + item.getTitle() + "\n\nRegards\nTredara";
-                senderService.sendSimpleEmail(mail, "Congratulations from Tredara", body);
+                if (ids.size() != 0) {
+                    var user = item.getHistories().stream().filter(val -> val.getId() == ids.get(ids.size() - 1)).findFirst();
+                    String mail = user.get().getBidder().getEmail();
+                    String body = "Hello " + user.get().getBidder().getFullName() + ",\n\nYou won the bid for " + item.getTitle() + "\n\nRegards\nTredara";
+                    senderService.sendSimpleEmail(mail, "Congratulations from Tredara", body);
+                }
                 auctionItemRepository.save(item);
             }
         });
