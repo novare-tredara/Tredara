@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.novare.tredara.services.AuctionItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,9 +30,11 @@ import com.novare.tredara.exceptions.TredaraException;
 import com.novare.tredara.models.AuctionItem;
 import com.novare.tredara.models.BiddingHistory;
 import com.novare.tredara.models.ECategory;
+import com.novare.tredara.models.EStatus;
 import com.novare.tredara.models.User;
 import com.novare.tredara.repositories.AuctionItemRepository;
 import com.novare.tredara.repositories.UserRepository;
+import com.novare.tredara.services.AuctionItemService;
 import com.novare.tredara.utils.DateUtil;
 
 @CrossOrigin(origins = "*")
@@ -44,7 +45,6 @@ public class AuctionItemController {
 
 	@Autowired
 	private AuctionItemRepository itemRepository;
-
 	@Autowired
 	private AuctionItemService auctionItemService;
 
@@ -63,7 +63,7 @@ public class AuctionItemController {
 
 	@GetMapping("/getbystatus/{status}")
 	public ResponseEntity<List<AuctionItemDTO>> getByStatus(@PathVariable(value = "status") Integer status) {
-		List<AuctionItem> contents = auctionItemService.setItemStatus().stream().filter(items -> items.getStatus() == status)
+		List<AuctionItem> contents = itemRepository.findAll().stream().filter(items -> items.getStatus() == status)
 				.collect(Collectors.toList());
 		List<AuctionItemDTO> auctionItemDTOs = new ArrayList<>();
 		contents.stream().forEach(item -> {
@@ -124,17 +124,6 @@ public class AuctionItemController {
 		return ResponseEntity.ok(auctionItemDTOs);
 	}
 
-	@PutMapping("/update/{id}")
-	public ResponseEntity<AuctionItemDTO> updatePrice(@PathVariable(value = "id") Integer itemId)
-			throws TredaraException {
-		AuctionItem item = itemRepository.findById(itemId)
-				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "Item not found on :: " + itemId));
-		item.setOriginalPrice(item.getOriginalPrice() + 5);
-		AuctionItemDTO itemDTO = AuctionItemDTO.buildResponse(item);
-		itemRepository.save(item);
-		return ResponseEntity.ok(itemDTO);
-	}
-
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteItem(@PathVariable(value = "id") Integer itemId)
 			throws TredaraException {
@@ -168,6 +157,17 @@ public class AuctionItemController {
 				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
 		items.setCreatedBy(user);
 		itemRepository.save(items);
+		return ResponseEntity.ok().body(itemRequest);
+	}
+
+	@PutMapping("/endbidding")
+	public ResponseEntity<AuctionItemDTO> endBidding(@RequestBody AuctionItemDTO itemRequest) throws TredaraException {
+		AuctionItem item = AuctionItemDTO.createAuctionItemModel(itemRequest);
+		User user = userRepository.findByEmail(itemRequest.getUserEmail()).orElseThrow(
+				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
+		item.setCreatedBy(user);
+		auctionItemService.updateAuction(item);
+		itemRequest.setStatus(EStatus.INACTIVE.getStatus());
 		return ResponseEntity.ok().body(itemRequest);
 	}
 

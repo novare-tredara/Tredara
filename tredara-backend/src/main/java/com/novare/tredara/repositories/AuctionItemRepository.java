@@ -1,5 +1,6 @@
 package com.novare.tredara.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,17 +20,18 @@ public interface AuctionItemRepository extends JpaRepository<AuctionItem, Intege
 	@Query("FROM AuctionItem WHERE category.category=:category and status=1")
 	List<AuctionItem> findActiveItemsByCategory(@Param("category") ECategory category);
 
-	@Query("FROM AuctionItem WHERE category.category=:category and status=0")
-	List<AuctionItem> findInActiveItemsByCategory(ECategory category);
+	@Query("FROM AuctionItem WHERE status=1")
+	List<AuctionItem> getAllActiveItems();
+
+	@Query("FROM AuctionItem WHERE status=1 AND (endDate BETWEEN :startDate AND :endDate)")
+	List<AuctionItem> getActiveItemsBetweenDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 	List<AuctionItem> findByTitleContainsAndStatus(String freeText, int status);
 
-	List<AuctionItem> findByDescriptionContainsAndStatus(String freeText, int status);
-	
 	@Query("FROM AuctionItem WHERE createdBy.email=:email")
-	List<AuctionItem> findByUser(@Param("email") String email) ;
-	
+	List<AuctionItem> findByUser(@Param("email") String email);
+
 	@Query("FROM BiddingHistory WHERE auctionItem.id=:auctionItem ORDER BY createdOn DESC")
-	List<BiddingHistory> findBiddingsByAuctionItem(@Param("auctionItem") Integer auctionItem) ;
+	List<BiddingHistory> findBiddingsByAuctionItem(@Param("auctionItem") Integer auctionItem);
 
 }

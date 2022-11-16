@@ -171,7 +171,7 @@ public class AuctionItemDTO implements Comparable<AuctionItemDTO> {
 		item.setOriginalPrice(builder.getOriginalPrice());
 		item.setSoldPrice(builder.getSoldPrice());
 		item.setStartDate(DateUtil.toDateYYMMDD(builder.getStartDate()));
-		item.setEndDate(DateUtil.toDateYYMMDD(builder.getEndDate()));
+ 		item.setEndDate(DateUtil.toDateYYMMDD(builder.getEndDate()));
 		item.setStatus(builder.getStatus());
 		item.setCategory(new Category(category.getValue(), category));
 		return item;

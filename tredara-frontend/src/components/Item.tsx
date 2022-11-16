@@ -1,9 +1,9 @@
 // Project files
 import iAuctionItem from "interfaces/iAuctionItem";
 import Placeholder from "assets/images/placeholders/card-basic.png";
-import { useState } from "react";
 import FormUpdate from "./FormUpdate";
 import FormDelete from "./FormDelete";
+import { Link } from "react-router-dom";
 import { useUser } from "state/UserContext";
 import eUserType from "interfaces/eUserType";
 
@@ -22,10 +22,12 @@ export default function Item({ item, actions }: iProps) {
     <>
       <article className="item-user">
         <span className="number">{id}</span>
-        <img
-          src={image}
-          onError={(event) => (event.currentTarget.src = Placeholder)}
-        />
+        <Link to={`/detail/${item.id}`} className="link">
+          <img
+            src={image}
+            onError={(event) => (event.currentTarget.src = Placeholder)}
+          />
+        </Link>
         <h3>{title}</h3>
         <div className="buttons">
           {/* Adding model form for Update */}

@@ -21,11 +21,14 @@ export default function UserItems() {
   const [status, setStatus] = useState(eStatus.LOADING);
   const [data, setData] = useState(new Array<iAuctionItem>());
 
+  const activeItems = data.filter((item) => item.status === 1);
+  const inActiveItems = data.filter((item) => item.status === 2);
+
   const code = user?.email;
   const isAdmin = user?.type === eUserType.ADMIN;
 
   const endPoint = isAdmin
-    ? "/auctionitems/getbystatus/1"
+    ? "/auctionitems"
     : "/auctionitems/getitemsbyuser/" + code;
   // Methods
   useEffect(() => {
@@ -49,7 +52,11 @@ export default function UserItems() {
   }
 
   // Components
-  const Items = data.map((item) => (
+  const ActiveItems = activeItems.map((item) => (
+    <Item key={item.id} item={item} actions={[onReload]} />
+  ));
+
+  const InActiveItems = inActiveItems.map((item) => (
     <Item key={item.id} item={item} actions={[onReload]} />
   ));
 
@@ -61,9 +68,13 @@ export default function UserItems() {
     <div id="user-items" className="user-list-page">
       {isAdmin ? <NavigationBarAdmin /> : <NavigationBar />}
       <header>
-        <h1>User Auction Items</h1>
+        <h1>Active Auction Items</h1>
       </header>
-      {data.length === 0 ? <StatusEmpty /> : Items}
+      {data.length === 0 ? <StatusEmpty /> : ActiveItems}
+      <header>
+        <h1>Inactive Auction Items</h1>
+      </header>
+      {data.length === 0 ? <StatusEmpty /> : InActiveItems}
     </div>
   );
 }

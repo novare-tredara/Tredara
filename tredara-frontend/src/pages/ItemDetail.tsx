@@ -9,6 +9,7 @@ import BiddingList from "components/BiddingList";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useUser } from "state/UserContext";
 import eUserType from "interfaces/eUserType";
+import moment from "moment";
 
 export default function ItemDetail() {
   const [status, setStatus] = useState(eStatus.LOADING);
@@ -18,6 +19,7 @@ export default function ItemDetail() {
 
   const isUserOwner = user?.email === data.user_email;
   const isAdmin = user?.type === eUserType.ADMIN;
+  const isActive = data.status === 1;
 
   useEffect(() => {
     fetch(`/auctionitems/details/${id}`)
@@ -36,6 +38,29 @@ export default function ItemDetail() {
     setStatus(eStatus.ERROR);
   }
 
+  const formatTime = (time: any) => {
+    return moment(time).format("YYYY-MM-DD HH:mm:ss");
+  };
+  function handleSubmit(event: any) {
+    let end_date = formatTime(Date.now());
+    data.end_date = end_date;
+
+    event.preventDefault();
+
+    fetch("/auctionitems/endbidding/", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+    })
+      .then(() => onSuccess(data))
+      .catch((error) => onFailure(error));
+  }
+
   // Safeguards
   if (status === eStatus.LOADING) return <StatusLoading />;
   if (status === eStatus.ERROR) return <StatusError />;
@@ -44,8 +69,11 @@ export default function ItemDetail() {
     <Container id="details" className="container-fluid detail">
       <Row>
         <Col>
-          <img className="img-fluid" src={data.image} 
-          onError={(event) => (event.currentTarget.src = Placeholder)} />
+          <img
+            className="img-fluid"
+            src={data.image}
+            onError={(event) => (event.currentTarget.src = Placeholder)}
+          />
           <div className="mt-3">
             <h4 className="text-dark">{data.title}</h4>
             <h6 className="text-secondary">{data.description}</h6>
@@ -73,7 +101,12 @@ export default function ItemDetail() {
           <BiddingList data={data} />
           <hr />
           <Form.Group className="d-flex flex-row-reverse">
-            <Button disabled={!(isUserOwner || isAdmin)}>End Bid</Button>
+            <Button
+              onClick={(event) => handleSubmit(event)}
+              disabled={!(isActive && (isAdmin || isUserOwner))}
+            >
+              End Bid
+            </Button>
           </Form.Group>
         </Col>
       </Row>

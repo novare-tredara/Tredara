@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bidding_history")
-public class BiddingHistory {
+public class BiddingHistory implements Comparable<BiddingHistory>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
@@ -75,5 +75,10 @@ public class BiddingHistory {
 
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
+	}
+
+	@Override
+	public int compareTo(BiddingHistory o) {
+		return o.getBiddingPrice().compareTo(getBiddingPrice());
 	}
 }

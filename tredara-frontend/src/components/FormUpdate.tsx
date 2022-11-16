@@ -6,10 +6,8 @@ import Fields from "data/fields-auction-items.json";
 import ListInput from "./ListInput";
 import { generateFields } from "scripts/formUtilities";
 import { PencilSquare } from "react-bootstrap-icons";
-import { userInfo } from "os";
 import { useUser } from "state/UserContext";
 import moment from "moment";
-import iAuctionItem from "interfaces/iAuctionItem";
 import eStatus from "interfaces/eStatus";
 
 interface iProps {
