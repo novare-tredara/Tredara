@@ -60,7 +60,7 @@ public class AuctionItem {
 	@JoinColumn(foreignKey = @ForeignKey(name = "ITEM_CATEGORY_ID"), name = "CATEGORY_ID", referencedColumnName = "ID")
 	private Category category;
 
-	@OneToMany(mappedBy = "auctionItem", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "auctionItem", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<BiddingHistory> histories;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)

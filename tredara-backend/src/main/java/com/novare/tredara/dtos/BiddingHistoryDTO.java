@@ -1,4 +1,4 @@
-package com.novare.tredara.payload;
+package com.novare.tredara.dtos;
 
 import java.text.ParseException;
 

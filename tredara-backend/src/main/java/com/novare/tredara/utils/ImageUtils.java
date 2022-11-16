@@ -55,7 +55,7 @@ public class ImageUtils {
 			}
 			String resourcePath = resource.getURI().getPath();
 			byte[] decodedBytes = Base64.getDecoder().decode(strings[1]);
-			String pathname = IMG_STORE + parentDir + File.separator + System.currentTimeMillis() + "." + extension;
+			String pathname = IMG_STORE + parentDir + "/" + System.currentTimeMillis() + "." + extension;
 			FileUtils.writeByteArrayToFile(new File(resourcePath + pathname), decodedBytes);
 			return pathname;
 		} catch (Exception e) {

@@ -25,6 +25,7 @@ export default function BiddingList({ data }: iProps) {
 
   const isUserOwner = user?.email === data.user_email;
   const isAdmin = user?.type === eUserType.ADMIN;
+  const isActive = data.status === 0;
 
   useEffect(() => {
     fetch(`/auctionitems/getbiddings/${data.id}`)
@@ -121,7 +122,7 @@ export default function BiddingList({ data }: iProps) {
             type="submit"
             variant="primary"
             id="button-addon2"
-            disabled={isUserOwner || isAdmin}
+            disabled={!isActive && (isUserOwner || isAdmin)}
           >
             <HandThumbsUpFill />
           </Button>
