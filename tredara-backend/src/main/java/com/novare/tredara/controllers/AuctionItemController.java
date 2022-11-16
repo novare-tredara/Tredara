@@ -166,6 +166,8 @@ public class AuctionItemController {
 		User user = userRepository.findByEmail(itemRequest.getUserEmail()).orElseThrow(
 				() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + itemRequest.getUser()));
 		item.setCreatedBy(user);
+		List<BiddingHistory> biddingHistories=itemRepository.findBiddingsByAuctionItem(item.getId());
+		item.setHistories(biddingHistories.stream().collect(Collectors.toSet()));
 		auctionItemService.updateAuction(item);
 		itemRequest.setStatus(EStatus.INACTIVE.getStatus());
 		return ResponseEntity.ok().body(itemRequest);

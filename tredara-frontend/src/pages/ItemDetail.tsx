@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import eStatus from "interfaces/eStatus";
 import iAuctionItem from "interfaces/iAuctionItem";
 import StatusError from "components/StatusError";
@@ -16,6 +16,7 @@ export default function ItemDetail() {
   const [data, setData] = useState({} as iAuctionItem);
   const { id }: any = useParams();
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const isUserOwner = user?.email === data.user_email;
   const isAdmin = user?.type === eUserType.ADMIN;
@@ -57,7 +58,7 @@ export default function ItemDetail() {
       credentials: "same-origin",
       body: JSON.stringify(data),
     })
-      .then(() => onSuccess(data))
+      .then(() => navigate("/"))
       .catch((error) => onFailure(error));
   }
 

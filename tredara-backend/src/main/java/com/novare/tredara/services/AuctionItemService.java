@@ -67,10 +67,10 @@ public class AuctionItemService {
 			List<BiddingHistory> biddingList = histories.stream().collect(Collectors.toList());
 			Collections.sort(biddingList);
 			BiddingHistory highestBidder = biddingList.get(0);
-			LOGGER.info("Winner of the Items {0}", highestBidder.getBidder().getFullName());
+			LOGGER.info("Winner of the Items {}", highestBidder.getBidder().getFullName());
 			item.setSoldPrice(highestBidder.getBiddingPrice());
 			sendEmailToBidder(highestBidder);
-			LOGGER.info("Email Notification sent @{0} ", highestBidder.getBidder().getEmail());
+			LOGGER.info("Email Notification sent @{} ", highestBidder.getBidder().getEmail());
 		}
 		item.setStatus(EStatus.INACTIVE.getStatus());
 		auctionItemRepository.save(item);
