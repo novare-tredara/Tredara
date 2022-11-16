@@ -7,6 +7,7 @@ services:
       MYSQL_USER: 'test'
       MYSQL_PASSWORD: 'root'
       MYSQL_ROOT_PASSWORD: 'root'
+      TZ: 'Europe/Stockholm'
     container_name: tredara-database-server
     ports:
       - '3306:3306'
@@ -21,6 +22,8 @@ services:
     image: tredara-backend-server:1.1
     container_name: tredara-backend-server
     restart: on-failure
+    environment:
+      TZ: 'Europe/Stockholm'
     ports:
       - "8080:8080"
     networks:
@@ -35,6 +38,8 @@ services:
     image: tredara-frontend-server:1.1
     container_name: frontend-server
     restart: on-failure
+    environment:
+      TZ: 'Europe/Stockholm'
     ports:
       - "3000:3000"
     networks:
