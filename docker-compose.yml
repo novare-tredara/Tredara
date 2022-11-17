@@ -21,7 +21,7 @@ services:
       - db
     image: tredara-backend-server:1.1
     container_name: tredara-backend-server
-    restart: on-failure
+    restart: always
     environment:
       TZ: 'Europe/Stockholm'
       SPRING_PROFILES_ACTIVE: 'prod'
@@ -38,7 +38,7 @@ services:
       - backend
     image: tredara-frontend-server:1.1
     container_name: frontend-server
-    restart: on-failure
+    restart: always
     environment:
       TZ: 'Europe/Stockholm'
     ports:
