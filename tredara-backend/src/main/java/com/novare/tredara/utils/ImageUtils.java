@@ -77,7 +77,6 @@ public class ImageUtils {
 				Files.createFile(path);
 			}
 			writeImage(strings, path.toFile());
-            System.out.println(" Path: "+path.toFile());
 			return IMG_STORE + dbImagePath;
 		} catch (Exception e) {
 			return "";
