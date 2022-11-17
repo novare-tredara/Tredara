@@ -83,7 +83,7 @@ export default function FormCreate(props: iProps) {
             <Button className="btn btn-danger" onClick={() => handleClose()}>
               Close
             </Button>
-            <Button className="btn btn-success" type="submit">
+            <Button className="btn btn-primary" type="submit">
               Save
             </Button>
           </Form.Group>

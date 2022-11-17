@@ -56,7 +56,7 @@ export default function Login() {
             <h1>Sign Up</h1>
             <form onSubmit={(event) => onSubmit(event)}>
               <ListInput fields={Fields} state={[form, setForm]} />
-              <button>Create Account</button>
+              <button className="btn btn-primary">Create Account</button>
             </form>
             <footer>
               <p>

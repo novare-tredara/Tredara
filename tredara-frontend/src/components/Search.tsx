@@ -17,9 +17,9 @@ export default function Search() {
   }
 
   return (
-    <div className="col-md-4">
+    <div className="col-md-2.5">
       <Form onSubmit={onSubmit}>
-        <InputGroup className="mr-sm-2">
+        <InputGroup className="mr-sm-1">
           <Form.Control
             onChange={(event) => setSearchWord(event.target.value)}
             placeholder="Search"

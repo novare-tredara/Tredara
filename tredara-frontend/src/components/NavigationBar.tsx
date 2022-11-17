@@ -10,7 +10,7 @@ import FormCreate from "./FormCreate";
 
 export default function NavigationBar() {
   // Global state
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -40,6 +40,7 @@ export default function NavigationBar() {
       <Link to={CustomerLinks[0].url}>
         <img src={Logo} alt="logo" />
       </Link>
+      <button>Welcome {user?.name}</button>
       <Search />
       <div className="justify-content-end">
         {Links}
