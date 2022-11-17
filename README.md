@@ -125,7 +125,7 @@ The class diagram allows to visualize the overall hierarchy of the project.
 ## Model Diagram
 
 The model diagram represents the abstract view of the system. ER diagram stands for Entity Relationship Diagram.
-![](design/ModellDiagram.png)
+![](design/ModelDiagram.png)
 
 ## Component Diagram
 
