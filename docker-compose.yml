@@ -24,6 +24,7 @@ services:
     restart: on-failure
     environment:
       TZ: 'Europe/Stockholm'
+      SPRING_PROFILES_ACTIVE: 'prod'
     ports:
       - "8080:8080"
     networks:
