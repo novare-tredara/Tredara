@@ -147,3 +147,14 @@ interface. A job can be a short or long-running process, and it will be automati
 so that the current web request is not blocked.
 
 ![](design/JobRunr.png)
+
+
+## Tool used for project management
+JIRA tool is used for this project, mainly for  maintaining the tredara application backlogs. In sort following activities are done
+- EPIC
+- User stories
+- Sprint handling
+- etc.
+
+### Link to JIRA Activities
+
