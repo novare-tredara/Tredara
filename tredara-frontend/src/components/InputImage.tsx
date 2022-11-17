@@ -55,6 +55,7 @@ export default function InputImage({ field, state }: iProps) {
       </Col>
       <img
         src={imageURL}
+        alt="img"
         style={{ height: "25rem", padding: "1rem 1rem 0rem 0.7rem" }}
         onError={(event) => (event.currentTarget.src = Placeholder)}
       />

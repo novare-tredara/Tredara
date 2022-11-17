@@ -25,6 +25,7 @@ export default function Item({ item, actions }: iProps) {
         <Link to={`/detail/${item.id}`} className="link">
           <img
             src={image}
+            alt="img"
             onError={(event) => (event.currentTarget.src = Placeholder)}
           />
         </Link>

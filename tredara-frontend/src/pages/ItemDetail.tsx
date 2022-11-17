@@ -73,6 +73,7 @@ export default function ItemDetail() {
           <img
             className="img-fluid"
             src={data.image}
+            alt="img"
             onError={(event) => (event.currentTarget.src = Placeholder)}
           />
           <div className="mt-3">

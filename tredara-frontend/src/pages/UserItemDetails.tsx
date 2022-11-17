@@ -1,6 +1,5 @@
 // Node modules
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 // Project files
 import NavigationBar from "components/NavigationBar";

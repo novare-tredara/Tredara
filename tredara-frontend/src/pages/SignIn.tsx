@@ -10,7 +10,7 @@ import { useUser } from "state/UserContext";
 
 export default function SignIn() {
   // Global state
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   // Local state

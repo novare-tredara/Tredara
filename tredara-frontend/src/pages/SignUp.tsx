@@ -12,7 +12,7 @@ import iUser from "interfaces/iUser";
 export default function Login() {
   // Global state
   const navigate = useNavigate();
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
 
   // Local state
   const [form, setForm] = useState({});
@@ -51,7 +51,7 @@ export default function Login() {
     <div id="sign-up" className="auth">
       <div className="container">
         <div className="row">
-          <img className="column" src={signup} />
+          <img className="column" src={signup} alt="signup" />
           <div className="column">
             <h1>Sign Up</h1>
             <form onSubmit={(event) => onSubmit(event)}>

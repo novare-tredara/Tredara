@@ -18,7 +18,6 @@ Check the following links for documentation and guides:
 [![](https://img.shields.io/badge/Postman-ff6c37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/downloads/)
 [![](https://img.shields.io/badge/typescript-235a97?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-
 #### Build and Generate the JAR file (compile the source code)
 
 ```
@@ -124,5 +123,28 @@ The class diagram allows to visualize the overall hierarchy of the project.
 ![](design/ClassDiagram.png.png)
 
 ## Model Diagram
+
 The model diagram represents the abstract view of the system. ER diagram stands for Entity Relationship Diagram.
 ![](design/ModellDiagram.png)
+
+## Component Diagram
+
+The component tree allows to visualize the overall hierarchy of the project.
+![](design/ComponentDiagram.png)
+
+## Swagger API
+
+Swagger is an open source set of rules, specifications and tools for developing and describing RESTful APIs. The Swagger
+framework allows developers to create interactive, machine and human-readable API documentation.
+
+![](design/swagger1.png)
+![](design/swagger2.png)
+
+## JobRunr
+
+JobRunr is a library that we can embed in our application and which allows us to schedule background jobs using a Java 8
+lambda. We can use any existing method of our Spring services to create a job without the need to implement an
+interface. A job can be a short or long-running process, and it will be automatically offloaded to a background thread
+so that the current web request is not blocked.
+
+![](design/JobRunr.png)
