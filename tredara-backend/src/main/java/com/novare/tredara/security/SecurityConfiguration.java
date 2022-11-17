@@ -78,8 +78,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/**")
-				.addResourceLocations("classpath:/templates/", "classpath:/static/**", "classpath:/static/images/**",
-						"classpath:/images/**", "classpath:/static/images/banners/**")
+				.addResourceLocations(
+						"classpath:/images/**")
 				.setCachePeriod(3600).resourceChain(true).addResolver(new PathResourceResolver());
 	}
 }
