@@ -1,59 +1,51 @@
 .auth {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    background-repeat: none;
-    background-size: cover;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-  }
-  .column {
-    float: left;
-    width: 50%;
-    padding: 5px;
-    white-space: nowrap;
-    
-    
-  }
-  
-  /* Clear floats after image containers */
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  .auth .container {
-   
-    padding: var(--page-space);
-    border-radius: var(--radius);
-    margin-left: auto;
-    margin-right: auto;  
-      
-  }
-  
-  .auth form {
-    margin-bottom: var(--space-small);
-    align-items: center;
-  }
-  
-  .auth .input {
-    margin-bottom: var(--space-small);
-  }
-  
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-repeat: none;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+  white-space: nowrap;
+}
 
-  
-  .auth footer {
-    color: var(--color-green);
-    margin-left: 160px;
-  }
-  .auth button{
-    background-color:var(--color-green);
-    color:white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    width: auto;
-    margin-left: 215px;
-  }
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.auth .container {
+  padding: var(--page-space);
+  border-radius: var(--radius);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.auth form {
+  margin-bottom: var(--space-small);
+  align-items: center;
+}
+
+.auth .input {
+  margin-bottom: var(--space-small);
+}
+
+.auth footer {
+  margin-left: 240px;
+}
+.auth button {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: auto;
+  margin-left: 285px;
+}

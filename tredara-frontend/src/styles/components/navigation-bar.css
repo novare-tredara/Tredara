@@ -2,7 +2,7 @@
   display: flex; /* for aligning items using modern CSS */
   position: fixed;
   left: 0;
-  background-color: rgb(233, 227, 227);
+  background-color: var(--color-gray-4);
   width: 100%;
   height: var(--navigation-bar);
   padding: 0 var(--page-space);

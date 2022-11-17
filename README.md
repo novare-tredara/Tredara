@@ -9,13 +9,15 @@ items through bidding so that the customer who bid more up to the end date will 
 
 Check the following links for documentation and guides:
 
-- [Maven](https://maven.apache.org/)
-- [Spring](https://spring.io/projects/spring-boot)
-- [Docker](https://www.docker.com/)
-- [NPM](https://docs.npmjs.com/about-npm)
-- [React](https://docs.retool.com/docs)
-- [Mysql](https://www.mysql.com/downloads/)
-- [Postman](https://www.postman.com/downloads/)
+[![](https://img.shields.io/badge/Maven-f1c40f?style=for-the-badge)](https://maven.apache.org/)
+[![](https://img.shields.io/badge/Spring-6db33f?style=for-the-badge&logo=Spring&logoColor=white)](https://spring.io/projects/spring-boot)
+[![](https://img.shields.io/badge/Docker-2496ed?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
+[![](https://img.shields.io/badge/NPM-000000?style=for-the-badge&logo=npm&logoColor=white)](https://docs.npmjs.com/about-npm)
+[![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![](https://img.shields.io/badge/Mysql-3E6E93?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/downloads/)
+[![](https://img.shields.io/badge/Postman-ff6c37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/downloads/)
+[![](https://img.shields.io/badge/typescript-235a97?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
 
 #### Build and Generate the JAR file (compile the source code)
 

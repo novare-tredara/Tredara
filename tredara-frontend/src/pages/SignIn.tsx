@@ -52,7 +52,7 @@ export default function SignIn() {
         <h1>Sign In</h1>
         <form onSubmit={(event) => onSubmit(event)}>
           <ListInput fields={Fields} state={[form, setForm]} />
-          <button className="button">Sign in</button>
+          <button className="btn btn-primary">Sign in</button>
         </form>
         <footer>
           <p>
