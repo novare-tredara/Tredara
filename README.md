@@ -137,8 +137,7 @@ The component tree allows to visualize the overall hierarchy of the project.
 Swagger is an open source set of rules, specifications and tools for developing and describing RESTful APIs. The Swagger
 framework allows developers to create interactive, machine and human-readable API documentation.
 
-![](design/swagger1.png)
-![](design/swagger2.png)
+![](design/APIDocs.png)
 
 ## JobRunr
 
