@@ -115,12 +115,12 @@ Architecture flow of Sprint boot application and React Web application.
 ## Usecase Diagram
 
 A low detail diagram to visualize how the application will work.
-![](design/Usecase.png.png)
+![](design/Usecasepng)
 
 ## Class Diagram
 
 The class diagram allows to visualize the overall hierarchy of the project.
-![](design/ClassDiagram.png.png)
+![](design/ClassDiagram.png)
 
 ## Model Diagram
 
