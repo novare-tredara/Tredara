@@ -21,7 +21,7 @@ Check the following links for documentation and guides:
 #### Build and Generate the JAR file (compile the source code)
 
 ```
-# Git clone (download the soruce code)
+# Git clone (download the source code)
 $ git clone https://github.com/novare-tredara/Tredara
 
 # Project structure
