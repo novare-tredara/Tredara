@@ -21,7 +21,7 @@ Check the following links for documentation and guides:
 #### Build and Generate the JAR file (compile the source code)
 
 ```
-# Git clone (download the soruce code)
+# Git clone (download the source code)
 $ git clone https://github.com/novare-tredara/Tredara
 
 # Project structure
@@ -106,44 +106,56 @@ In order to access the admin section here are credentials:
 
 ## Architectural Diagram
 
-Spring boot MVC shall be used in designing the Natflix application, see below:
-![Architectural Diagram](design/Architecture-flow-of-spring-boot-Applications.png)
+Spring boot MVC shall be used in designing the Natflix application, see below:<br>
+<img src="design/Architecture-flow-of-spring-boot-Applications.png" width="450" height="250">
 
-Architecture flow of Sprint boot application and React Web application.
-![](design/Architecture-flow-of-spring-boot-react.png)
+Architecture flow of Sprint boot application and React Web application.<br>
+<img src="design/Architecture-flow-of-spring-boot-react.png" width="450" height="250">
 
 ## Usecase Diagram
 
-A low detail diagram to visualize how the application will work.
-![](design/Usecase.png.png)
+A low detail diagram to visualize how the application will work.<br>
+<img src="design/Usecase.png" width="450" height="250">
+
 
 ## Class Diagram
 
-The class diagram allows to visualize the overall hierarchy of the project.
-![](design/ClassDiagram.png.png)
+The class diagram allows to visualize the overall hierarchy of the project.<br>
+<img src="design/ClassDiagram.png" width="450" height="250">
 
 ## Model Diagram
 
-The model diagram represents the abstract view of the system. ER diagram stands for Entity Relationship Diagram.
-![](design/ModellDiagram.png)
+The model diagram represents the abstract view of the system. ER diagram stands for Entity Relationship Diagram.<br>
+<img src="design/ModelDiagram.png" width="450" height="250">
 
 ## Component Diagram
 
-The component tree allows to visualize the overall hierarchy of the project.
-![](design/ComponentDiagram.png)
+The component tree allows to visualize the overall hierarchy of the project.<br>
+<img src="design/ComponentDiagram.png" width="450" height="250">
 
 ## Swagger API
 
 Swagger is an open source set of rules, specifications and tools for developing and describing RESTful APIs. The Swagger
-framework allows developers to create interactive, machine and human-readable API documentation.
+framework allows developers to create interactive, machine and human-readable API documentation.<br>
 
-![](design/APIDocs.png)
+<img src="design/APIDocs.png" width="450" height="250">
 
 ## JobRunr
 
 JobRunr is a library that we can embed in our application and which allows us to schedule background jobs using a Java 8
 lambda. We can use any existing method of our Spring services to create a job without the need to implement an
 interface. A job can be a short or long-running process, and it will be automatically offloaded to a background thread
-so that the current web request is not blocked.
+so that the current web request is not blocked.<br>
 
-![](design/JobRunr.png)
+<img src="design/JobRunr.png" width="450" height="250">
+
+
+## Tool used for project management
+JIRA tool is used for this project, mainly for  maintaining the tredara application backlogs. In sort following activities are done
+- EPIC
+- User stories
+- Sprint handling
+- etc.
+
+### Link to JIRA Activities
+
