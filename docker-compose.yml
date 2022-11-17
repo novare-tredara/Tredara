@@ -27,6 +27,7 @@ services:
       SPRING_PROFILES_ACTIVE: 'prod'
     ports:
       - "8080:8080"
+      - "8000:8000"
     networks:
       - tredara-nw
     build:
