@@ -115,12 +115,12 @@ Architecture flow of Sprint boot application and React Web application.
 ## Usecase Diagram
 
 A low detail diagram to visualize how the application will work.
-![](design/Usecase.png.png)
+![](design/Usecasepng)
 
 ## Class Diagram
 
 The class diagram allows to visualize the overall hierarchy of the project.
-![](design/ClassDiagram.png.png)
+![](design/ClassDiagram.png)
 
 ## Model Diagram
 
@@ -147,3 +147,14 @@ interface. A job can be a short or long-running process, and it will be automati
 so that the current web request is not blocked.
 
 ![](design/JobRunr.png)
+
+
+## Tool used for project management
+JIRA tool is used for this project, mainly for  maintaining the tredara application backlogs. In sort following activities are done
+- EPIC
+- User stories
+- Sprint handling
+- etc.
+
+### Link to JIRA Activities
+
