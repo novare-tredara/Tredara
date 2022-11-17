@@ -30,13 +30,7 @@
     "placeholder": "The item it belongs to",
     "required": true,
     "type": "select",
-    "options": [
-      "Mobile",
-      "Accessories",
-      "Cloths",
-      "Books",
-      "BeautyCare"
-    ]
+    "options": ["Mobile", "Accessories", "Cloths", "Books", "BeautyCare"]
   },
   {
     "key": "end_date",
@@ -53,17 +47,14 @@
     "placeholder": "1: Active, 2: InActive",
     "required": true,
     "type": "select",
-    "options": [
-      "Active",
-      "InActive"
-    ]
+    "options": ["Active", "InActive"]
   },
   {
     "key": "image",
     "autoFocus": false,
     "label": "Image",
     "placeholder": "https://www.google.com/phone.png",
-    "required": false,
+    "required": true,
     "type": "image",
     "imageWidth": 260
   }

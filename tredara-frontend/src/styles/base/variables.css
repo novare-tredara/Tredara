@@ -20,5 +20,5 @@
   --default-text-size: 16px; /* to sync the font size of the paragraph to other elements that uses the same size. */
   --page-space: 15px; /* padding used between the content and the page or modal */
   --navigation-bar: 80px; /* so we can position elements below the navbar */
-  --footer-bar: 50px; /* so we can position elements below the navbar */
+  --footer-bar: 60px; /* so we can position elements below the navbar */
 }

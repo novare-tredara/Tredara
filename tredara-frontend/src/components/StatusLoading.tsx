@@ -5,7 +5,7 @@ export default function StatusLoading() {
   return (
     <div className="status loading">
       <div className="content">
-        <img src={Icon} />
+        <img src={Icon} alt="icon" />
       </div>
     </div>
   );

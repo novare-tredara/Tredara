@@ -8,7 +8,7 @@ import Search from "./Search";
 
 export default function NavigationBarAdmin() {
   // Global state
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   function onSelect(id: number, endPoint: string) {

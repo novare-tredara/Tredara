@@ -11,7 +11,7 @@ import { useUser } from "state/UserContext";
 import moment from "moment";
 import StatusLoading from "./StatusLoading";
 import StatusError from "./StatusError";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import eUserType from "interfaces/eUserType";
 
 interface iProps {
@@ -32,7 +32,7 @@ export default function BiddingList({ data }: iProps) {
       .then((response) => response.json())
       .then((data) => onSuccess(data))
       .catch((error) => onFailure(error));
-  }, [status]);
+  }, [data.id, status]);
 
   const formatTime = (time: any) => {
     return moment(time).format("DD-MM-YYYY HH:mm:ss");
