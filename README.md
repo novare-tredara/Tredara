@@ -80,7 +80,7 @@ $ docker compose up --build --force-recreate (or) docker-compose up --build --fo
 ```
 ### Hosted in AWS
 
-http://13.53.43.172:3000
+ Link - http://13.53.43.172:3000
 
 #### How to Setup and Access the Database, Backend and Frontend application
 
