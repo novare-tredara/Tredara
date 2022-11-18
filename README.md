@@ -29,12 +29,11 @@ items through bidding so that the customer who bid more up to the end date will 
 1. Admin: The Admin have the option to view all the items of customers, delete any item and also end the bid in some circumstances. Note that he can't perfomr Create/Update/Bidding operations.
 
 2. Customer: The Customer have the following option:
-
-- Create: Create/Place new Autions item with mandatory information.
-- Update: Update the aution items , if there is any change and also he can re-open the Inaction auction items.
-- Delete: Delete the auction items
-- End Bid: Can end the bid in some circumstances.
-- AllItems: Listed all the items (including inactive) that are belongs to the logged user
+    - Create: Create/Place new Autions item with mandatory information.
+    - Update: Update the aution items , if there is any change and also he can re-open the Inaction auction items.
+    - Delete: Delete the auction items
+    - End Bid: Can end the bid in some circumstances.
+    - AllItems: Listed all the items (including inactive) that are belongs to the logged user
 
 Important: The Bid is ended automatically,when the time ends or the seller can end his bid before the time also.The Highest bidder will win the auction item and he gets notified by an email from Tredara.
 
