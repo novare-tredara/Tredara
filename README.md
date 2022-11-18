@@ -1,7 +1,24 @@
 # Tredara
 
+## About
 Tredara application wants to revolutionize the secondhand market by bringing it to the internet.It was designed to sell
-items through bidding so that the customer who bid more up to the end date will get the product.
+items through bidding so that the customer who bid more up to the end date will get the product.In this Project,we have two users.
+
+1.Admin
+
+The Admin have the option to view all the items of customers.he shall have the option to delete any item.He cant bid for any item.He shall end the bid only.
+
+2.Customer
+The Customer have the following option:
+
+1. Create an item
+
+2. Update an item
+
+3. Delete an item
+
+4. End Bid
+
 
 ## Setup
 
@@ -136,7 +153,10 @@ The component tree allows to visualize the overall hierarchy of the project.<br>
 ## Swagger API
 
 Swagger is an open source set of rules, specifications and tools for developing and describing RESTful APIs. The Swagger
-framework allows developers to create interactive, machine and human-readable API documentation.<br>
+framework allows developers to create interactive, machine and human-readable API documentation.
+
+Link to Swagger :http://localhost:8080/swagger-ui/index.html
+<br>
 
 <img src="design/APIDocs.png" width="450" height="250">
 
@@ -145,7 +165,10 @@ framework allows developers to create interactive, machine and human-readable AP
 JobRunr is a library that we can embed in our application and which allows us to schedule background jobs using a Java 8
 lambda. We can use any existing method of our Spring services to create a job without the need to implement an
 interface. A job can be a short or long-running process, and it will be automatically offloaded to a background thread
-so that the current web request is not blocked.<br>
+so that the current web request is not blocked.
+
+Link to JobRunr: http://localhost:8000/dashboard/overview
+<br>
 
 <img src="design/JobRunr.png" width="450" height="250">
 
