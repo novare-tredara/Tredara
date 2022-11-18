@@ -25,6 +25,7 @@ a:hover {
 .user-list-page {
   max-width: 960px;
   margin: auto;
+  margin-bottom: 120px;
 }
 
 .user-list-page header {
@@ -38,4 +39,3 @@ a:hover {
 .user-list-page .status {
   height: 50vh;
 }
-
