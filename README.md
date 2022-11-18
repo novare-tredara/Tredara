@@ -194,3 +194,4 @@ JIRA tool is used for this project, mainly for maintaining the tredara applicati
 - etc.
 
 ### Link to JIRA Activities
+https://github.com/novare-tredara/Tredara/blob/Mallika/design/jiradashboard-Activities.pdf
