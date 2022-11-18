@@ -1,26 +1,21 @@
 # Tredara
 
 ## About
+
 Tredara application wants to revolutionize the secondhand market by bringing it to the internet.It was designed to sell
 items through bidding so that the customer who bid more up to the end date will get the product.In this Project,we have two users.
 
-1. Admin
+1. Admin: The Admin have the option to view all the items of customers, delete any item and also end the bid in some circumstances. Note that he can't perfomr Create/Update/Bidding operations.
 
-The Admin have the option to view all the items of customers.He shall have the option to delete any item.He cant bid for any item.He shall end the bid only.
+2. Customer: The Customer have the following option:
 
-2. Customer
+- Create: Create/Place new Autions item with mandatory information.
+- Update: Update the aution items , if there is any change and also he can re-open the Inaction auction items.
+- Delete: Delete the auction items
+- End Bid: Can end the bid in some circumstances.
+- AllItems: Listed all the items (including inactive) that are belongs to the logged user
 
- The Customer have the following option:
-
-1. Create an item
-
-2. Update an item
-
-3. Delete an item
-
-4. End Bid
-
- The Bid is ended automatically,when the time ends or the seller can end his bid before the time also.The Highest bidder will win the auction item and he gets notified   by an email from Tredara.
+Important: The Bid is ended automatically,when the time ends or the seller can end his bid before the time also.The Highest bidder will win the auction item and he gets notified by an email from Tredara.
 
 ## Setup
 
@@ -69,7 +64,7 @@ $ cd tredara-backend
 $ mvn clean package -DskipTests=true
 $ java -jar "-Dspring.profiles.active=prod" target/tredara-backend-0.0.1.jar
 
-# Frontenf Application : Install and run 
+# Frontenf Application : Install and run
 $ cd tredara-frontend
 $ npm install
 $ npm run start
@@ -78,11 +73,11 @@ NOTE:
 Without Docker env: Change"proxy": "http://localhost:8080/api/" in package.json file
 ```
 
-#### How to run and build in Docker
+#### How to run and build in Docker (verified in 20.10.21)
 
 ```
 $ cd Tredara
-$ docker compose up --build --force-recreate (or) docker -compose up --build --force-recreate
+$ docker compose up --build --force-recreate (or) docker-compose up --build --force-recreate
 ```
 
 #### How to Setup and Access the Database, Backend and Frontend application
@@ -90,18 +85,18 @@ $ docker compose up --build --force-recreate (or) docker -compose up --build --f
 Note: Docker container setup the database enviroenment default data using sql/init.sql file.
 
 - Database:
-    - User     : root
-    - Password : root
-    - Database Schema: tredara
-    - Port : 3306
-    - Initial Database schema: sql/init.sql
+  - User : root
+  - Password : root
+  - Database Schema: tredara
+  - Port : 3306
+  - Initial Database schema: sql/init.sql
 - Backend:
-    - Profiles : prod (production environemnt) and dev (used during the development phase)
-    - Server Port: 8080
-    - Server Address : localhost
+  - Profiles : prod (production environemnt) and dev (used during the development phase)
+  - Server Port: 8080
+  - Server Address : localhost
 - Frontend:
-    - Port: 3000
-    - Address: localhost
+  - Port: 3000
+  - Address: localhost
 
 Tredara Web application URL: http://localhost:3000/<br>
 
@@ -115,11 +110,12 @@ In order to access the admin section here are credentials:
 1. TypeScript – Coding language for implementing the Frontend application.
 2. React -Framework for building the Graphical User Interface.
 3. Eclipse/Intellij Idea – IDE for developing backend development.
-4. Spring boot- Open Source Framework in Java.
+4. Spring boot- Open Source Framework in Java (Swagger, JobRunr, etc.).
 5. Visual Studio - IDE used for developing Frontend development.
 6. Postman- Postman is an API platform to design, build, test and iterate API’s.
 7. Figma - Design tool to design a website how the website looks.
 8. Microsoft word – Document preparation.
+9. Docker
 
 [Link for Design and documentation](https://docs.google.com/document/d/14i90zX6gmQh2WMupiTy1bymrvfY2LhsFNgJH3Z4uu6Y/edit#)
 
@@ -135,7 +131,6 @@ Architecture flow of Sprint boot application and React Web application.<br>
 
 A low detail diagram to visualize how the application will work.<br>
 <img src="design/Usecase.png" width="450" height="250">
-
 
 ## Class Diagram
 
@@ -162,6 +157,14 @@ Link to Swagger :http://localhost:8080/swagger-ui/index.html
 
 <img src="design/APIDocs.png" width="450" height="250">
 
+## Java Logging
+
+A Java logging framework is a computer data logging package for the Java platform. Logging refers to the recording of activity by an application and is a common issue for development teams. Logging frameworks ease and standardize the process of logging for the Java platform
+
+```
+<application>/log
+```
+
 ## JobRunr
 
 JobRunr is a library that we can embed in our application and which allows us to schedule background jobs using a Java 8
@@ -174,13 +177,13 @@ Link to JobRunr: http://localhost:8000/dashboard/overview
 
 <img src="design/JobRunr.png" width="450" height="250">
 
-
 ## Tool used for project management
-JIRA tool is used for this project, mainly for  maintaining the tredara application backlogs. In sort following activities are done
+
+JIRA tool is used for this project, mainly for maintaining the tredara application backlogs. In sort following activities are done
+
 - EPIC
 - User stories
 - Sprint handling
 - etc.
 
 ### Link to JIRA Activities
-
