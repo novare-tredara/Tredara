@@ -1,35 +1,56 @@
 .login {
   height: 100vh;
   background: url("../../assets/images/bag.png");
-  background-size: cover;
-}
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: repeat-x;
 
-.login .container {
-  place-items: center;
-  padding: 5px;
-  border-radius: var(--radius);
-  width: 480px;
-  padding-top: 225px;
-  justify-items: center;
 }
+.user_card {
+  height: 350px;
+  width: 500px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: rgb(251, 247, 247);
+  position: relative;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 
-.login form {
-  margin-bottom: var(--space-small);
 }
-
-.login .input {
-  margin-bottom: var(--space-small);
-}
-
-.login footer {
-  margin-left: 120px;
-}
-.login button {
-  color: white;
+.brand_logo_container {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  top: -45px;
+  border-radius: 50%;
+  background: white;
+  padding: 10px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  width: auto;
-  margin-left: 200px;
+}
+.brand_logo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.login_btn {
+  width: 50%;
+  color: white !important;
+}
+.svg {
+  background: #0d6efd !important;
+  color: white !important;
+  border: 0 !important;
+  border-radius: 0.25rem 0 0 0.25rem !important;
+  height: auto;
+  width: 15%;
+}
+.login-footer{
+  margin-top: 6%;
 }
