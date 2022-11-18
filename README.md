@@ -4,12 +4,13 @@
 Tredara application wants to revolutionize the secondhand market by bringing it to the internet.It was designed to sell
 items through bidding so that the customer who bid more up to the end date will get the product.In this Project,we have two users.
 
-1.Admin
+1. Admin
 
-The Admin have the option to view all the items of customers.he shall have the option to delete any item.He cant bid for any item.He shall end the bid only.
+The Admin have the option to view all the items of customers.He shall have the option to delete any item.He cant bid for any item.He shall end the bid only.
 
-2.Customer
-The Customer have the following option:
+2. Customer
+
+ The Customer have the following option:
 
 1. Create an item
 
@@ -19,6 +20,7 @@ The Customer have the following option:
 
 4. End Bid
 
+ The Bid is ended automatically,when the time ends or the seller can end his bid before the time also.The Highest bidder will win the auction item and he gets notified   by an email from Tredara.
 
 ## Setup
 
@@ -80,7 +82,7 @@ Without Docker env: Change"proxy": "http://localhost:8080/api/" in package.json 
 
 ```
 $ cd Tredara
-$ docker compose up --build --force-recreate
+$ docker compose up --build --force-recreate (or) docker -compose up --build --force-recreate
 ```
 
 #### How to Setup and Access the Database, Backend and Frontend application
