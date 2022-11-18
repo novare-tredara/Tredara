@@ -1,5 +1,26 @@
 # Tredara
 
+## Table of Contents
+
+<!--ts-->
+
+- [About](#about)
+- [Project SetUp](#project-setup)
+  - [Prerequisites](#prerequisites)
+  - [Build and Generate the JAR file](#build_and_generate_the_jar_file)
+  - [How to run and build in Docker](#how_to_run_and_build_in_Docker)
+- [Implementation And Design](#implementation-and-design)
+  - [Architectural Diagram](#architectural-diagram)
+  - [UseCase Diagram](#usecase-diagram)
+  - [Class Diagram](#class-diagram)
+  - [Model Diagram](#model-diagram)
+  - [Component Diagram](#Component_Diagram)
+- [Tool Used For Project Management](#tool-used-for-project-management)
+- [Collaboration](#collaboration)
+- [Future Enhancement](#future-enhancement)
+
+<!--te-->
+
 ## About
 
 Tredara application wants to revolutionize the secondhand market by bringing it to the internet.It was designed to sell
@@ -17,7 +38,7 @@ items through bidding so that the customer who bid more up to the end date will 
 
 Important: The Bid is ended automatically,when the time ends or the seller can end his bid before the time also.The Highest bidder will win the auction item and he gets notified by an email from Tredara.
 
-## Setup
+## Project Setup
 
 #### Prerequisites
 
@@ -78,9 +99,10 @@ Without Docker env: Change"proxy": "http://localhost:8080/api/" in package.json 
 $ cd Tredara
 $ docker compose up --build --force-recreate (or) docker-compose up --build --force-recreate
 ```
-### Hosted in AWS
 
- Link - http://13.53.43.172:3000
+#### Hosted in AWS
+
+Link - http://13.53.43.172:3000
 
 #### How to Setup and Access the Database, Backend and Frontend application
 
@@ -121,7 +143,7 @@ In order to access the admin section here are credentials:
 
 [Link for Design and documentation](https://docs.google.com/document/d/14i90zX6gmQh2WMupiTy1bymrvfY2LhsFNgJH3Z4uu6Y/edit#)
 
-## Architectural Diagram
+### Architectural Diagram
 
 Spring boot MVC shall be used in designing the Natflix application, see below:<br>
 <img src="design/Architecture-flow-of-spring-boot-Applications.png" width="450" height="250">
@@ -129,27 +151,27 @@ Spring boot MVC shall be used in designing the Natflix application, see below:<b
 Architecture flow of Sprint boot application and React Web application.<br>
 <img src="design/Architecture-flow-of-spring-boot-react.png" width="450" height="250">
 
-## Usecase Diagram
+### Usecase Diagram
 
 A low detail diagram to visualize how the application will work.<br>
 <img src="design/Usecase.png" width="450" height="250">
 
-## Class Diagram
+### Class Diagram
 
 The class diagram allows to visualize the overall hierarchy of the project.<br>
 <img src="design/ClassDiagram.png" width="450" height="250">
 
-## Model Diagram
+### Model Diagram
 
 The model diagram represents the abstract view of the system. ER diagram stands for Entity Relationship Diagram.<br>
 <img src="design/ModelDiagram.png" width="450" height="250">
 
-## Component Diagram
+### Component Diagram
 
 The component tree allows to visualize the overall hierarchy of the project.<br>
 <img src="design/ComponentDiagram.png" width="450" height="250">
 
-## Swagger API
+### Swagger API
 
 Swagger is an open source set of rules, specifications and tools for developing and describing RESTful APIs. The Swagger
 framework allows developers to create interactive, machine and human-readable API documentation.
@@ -159,7 +181,7 @@ Link to Swagger :http://localhost:8080/swagger-ui/index.html
 
 <img src="design/APIDocs.png" width="450" height="250">
 
-## Java Logging
+### Java Logging
 
 A Java logging framework is a computer data logging package for the Java platform. Logging refers to the recording of activity by an application and is a common issue for development teams. Logging frameworks ease and standardize the process of logging for the Java platform
 
@@ -175,7 +197,7 @@ $ docker container exec  8948c4010ab6 sh -c "ls -ltr /application/logs"
 -rw-r--r--    1 root     root        125026 Nov 18 11:02 application.json
 ```
 
-## JobRunr
+### JobRunr
 
 JobRunr is a library that we can embed in our application and which allows us to schedule background jobs using a Java 8
 lambda. We can use any existing method of our Spring services to create a job without the need to implement an
@@ -196,13 +218,26 @@ JIRA tool is used for this project, mainly for maintaining the tredara applicati
 - Sprint handling
 - etc.
 
-## Link to JIRA Activities
+### Link to JIRA Activities
+
 https://github.com/novare-tredara/Tredara/blob/Mallika/design/jiradashboard-Activities.pdf
 
 ## Collaboration
+
 This is a team project, all Project management, Frontend and backend are developed in collaboration.
 
 ### Team Members -
+
 1. Naga Malleswari
 2. Radha
 3. SaiLatha Tammana
+
+## Future Enhancement
+
+1. Web hosting with Domain
+2. User management
+   - Password change
+   - Forgot password
+   - Email verification
+3. Add Favourite auction items
+4. Payment service

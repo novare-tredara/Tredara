@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -45,6 +47,9 @@ import com.novare.tredara.services.IUserService;
 @Validated
 public class UserController {
 	@Autowired
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
+	@Autowired
 	private IUserService userService;
 
 	@Autowired
@@ -61,7 +66,7 @@ public class UserController {
 
 	@PostMapping("/login")
 	public ResponseEntity<UserDTO> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+		LOGGER.info("Start: Authenticating the User, [api/login] User:{}", loginRequest.getEmail());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
@@ -78,43 +83,52 @@ public class UserController {
 				.orElseThrow(() -> new TredaraException(HttpStatus.BAD_REQUEST, "Role Not Found " + roleName));
 
 		User user = new User(userDetails.getId(), userDetails.getFullName(), userDetails.getUsername(), role);
-
+		LOGGER.info("End: Found the User, [api/login] User:{}", user.getFullName());
 		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString()).body(UserDTO.build(user));
 	}
 
 	@PostMapping("/logout")
 	public ResponseEntity<?> logoutUser() {
 		ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+		LOGGER.info("End: Successfully logged out User, [api/logout]");
 		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body("You've been logged out!");
 	}
 
 	@PostMapping("/signup")
 	public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO signUpRequest) throws TredaraException {
+		LOGGER.info("Start: Create the User, [api/signup] User:{}", signUpRequest.getEmail());
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			throw new TredaraException(HttpStatus.BAD_REQUEST, "User Already Exist " + signUpRequest.getEmail());
 		}
 		User toUser = UserDTO.buildModel(signUpRequest);
 		final User createUser = userService.createUser(toUser);
+		LOGGER.info("End: Successfully Created the User, [api/signup] User:{}", createUser.getFullName());
 		return ResponseEntity.ok(UserDTO.build(createUser));
 	}
 
 	@GetMapping("/user")
 	public List<User> findAll() throws TredaraException {
+		LOGGER.info("End: Get all the users, [api/user] ");
 		return userRepository.findAll();
 	}
 
 	@GetMapping("/user/{id}")
 	public ResponseEntity<User> getUsersById(@PathVariable(value = "id") Long userId) throws TredaraException {
+		LOGGER.info("Start: Get the User by ID, [api/user/{}]", userId);
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new TredaraException(HttpStatus.NOT_FOUND, "User not found on :: " + userId));
+		LOGGER.info("End: Found the User by ID, [api/user/{}] User:{}", userId, user.getFullName());
 		return ResponseEntity.ok().body(user);
 	}
 
 	@PutMapping("/user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody User updateRequest)
 			throws TredaraException {
+		LOGGER.info("Start: Updating the User by ID, [api/user/{}]", userId);
 		updateRequest.setId(userId);
 		final User updatedUser = userService.updateUser(updateRequest);
+		LOGGER.info("End: Successfully Updated the User by ID, [api/user/{}] User:{}", userId,
+				updatedUser.getFullName());
 		return ResponseEntity.ok(updatedUser);
 	}
 
@@ -126,6 +140,7 @@ public class UserController {
 		userRepository.delete(user);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
+		LOGGER.info("End: Successfully deleted the User by ID, [api/user/{}] Deleted:{}", userId, response.toString());
 		return response;
 	}
 }

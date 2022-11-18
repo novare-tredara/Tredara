@@ -9,6 +9,8 @@ import java.util.Base64;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ImageUtils {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ImageUtils.class);
 
 	public static String IMG_STORE = "/images/";
 	private static ResourceLoader resourceLoader;
@@ -43,6 +47,7 @@ public class ImageUtils {
 			Resource resource = resourceLoader.getResource("classpath:" + imagePath);
 			return readImage(base64extension, resource.getFile());
 		} catch (Exception e) {
+			LOGGER.error("Failed to read the image from {}, Error: {}", imagePath, e.getMessage());
 			return imagePath;
 		}
 	}
@@ -51,6 +56,7 @@ public class ImageUtils {
 		String encodedString;
 		byte[] fileContent = FileUtils.readFileToByteArray(readFrom);
 		encodedString = Base64.getEncoder().encodeToString(fileContent);
+		LOGGER.info("Successfully encoded the image to base64 {}", readFrom);
 		return base64extension + encodedString;
 	}
 
@@ -79,6 +85,7 @@ public class ImageUtils {
 			writeImage(strings, path.toFile());
 			return IMG_STORE + dbImagePath;
 		} catch (Exception e) {
+			LOGGER.error("Failed to Write the image into {}, Error: {}", parentDir, e.getMessage());
 			return "";
 		}
 	}
@@ -86,5 +93,6 @@ public class ImageUtils {
 	private static void writeImage(String[] strings, File writeInto) throws IOException {
 		byte[] decodedBytes = Base64.getDecoder().decode(strings[1]);
 		FileUtils.writeByteArrayToFile(writeInto, decodedBytes);
+		LOGGER.info("Successfully stored the image into {}", writeInto);
 	}
 }

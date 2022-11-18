@@ -39,12 +39,14 @@ public class AuctionItemService {
 
 	@PostConstruct
 	private void startJobBackground() {
+		LOGGER.info("Scheduled the startJobBackground");
 		jobScheduler.enqueue(() -> endBidding());
 	}
 
 	@Recurring(id="endbidding-recurring-job", cron = "*/1 * * * *")
 	@Job(name = "End bid and update the acution item status")
 	public void endBidding() {
+		LOGGER.info("Cron job is checking for the qualified auction item to close.");
 		Date startDate = DateUtil.toDate(LocalDateTime.now().minusMinutes(10));
 		Date endDate = DateUtil.toDate(LocalDateTime.now().plusMinutes(10));
 		List<AuctionItem> auctionItems = auctionItemRepository.getActiveItemsBetweenDate(startDate, endDate);
