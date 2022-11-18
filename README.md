@@ -200,6 +200,6 @@ https://github.com/novare-tredara/Tredara/blob/Mallika/design/jiradashboard-Acti
 This is a team project, all Project management, Frontend and backend are developed in collaboration.
 
 ### Team Members -
-Naga Malleswari
-Radha
-SaiLatha Tammana
+1. Naga Malleswari
+2. Radha
+3. SaiLatha Tammana
