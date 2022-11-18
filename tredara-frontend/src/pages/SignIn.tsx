@@ -58,7 +58,7 @@ export default function SignIn() {
           </Container>
           <Container>
             <Form onSubmit={(event) => onSubmit(event)}>
-              <h2 style={{ textAlign: "center" }}>Welcome to Tredara</h2>
+              <h3 className="auth-form-title">Welcome to Tredara</h3>
               <ListInput fields={Fields} state={[form, setForm]} />
               <Form.Group as={Row} className="mb-3 d-flex login-footer">
                 <Form.Label column sm={8}>
