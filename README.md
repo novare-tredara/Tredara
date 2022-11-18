@@ -78,6 +78,9 @@ Without Docker env: Change"proxy": "http://localhost:8080/api/" in package.json 
 $ cd Tredara
 $ docker compose up --build --force-recreate (or) docker-compose up --build --force-recreate
 ```
+### Hosted in AWS
+
+http://13.53.43.172:3000
 
 #### How to Setup and Access the Database, Backend and Frontend application
 
