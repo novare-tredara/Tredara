@@ -1,0 +1,17 @@
+services:
+  frontend:
+    image: tredara-frontend-server:1.1
+    container_name: frontend-server
+    restart: always
+    environment:
+      TZ: 'Europe/Stockholm'
+    ports:
+      - "80:8080"
+    networks:
+      - tredara-nw
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+networks:
+    tredara-nw:
+       driver: bridge

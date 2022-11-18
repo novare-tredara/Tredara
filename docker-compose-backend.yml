@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'tredara'
+      MYSQL_USER: 'test'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
+      TZ: 'Europe/Stockholm'
+    container_name: tredara-database-server
+    ports:
+      - '3306:3306'
+    networks:
+      - tredara-nw
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    depends_on:
+      - db
+    image: tredara-backend-server:1.1
+    container_name: tredara-backend-server
+    restart: always
+    environment:
+      TZ: 'Europe/Stockholm'
+      SPRING_PROFILES_ACTIVE: 'prod'
+    ports:
+      - "88:8080"
+      - "80:8000"
+    networks:
+      - tredara-nw
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+
+networks:
+    tredara-nw:
+       driver: bridge
