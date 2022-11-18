@@ -13,14 +13,9 @@
   width: 50%;
   padding: 5px;
   white-space: nowrap;
+  height: 70%;
 }
 
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
 .auth .container {
   padding: var(--page-space);
   border-radius: var(--radius);
@@ -28,24 +23,26 @@
   margin-right: auto;
 }
 
-.auth form {
-  margin-bottom: var(--space-small);
-  align-items: center;
+.auth-form {
+  min-width: 120%;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
 }
 
-.auth .input {
-  margin-bottom: var(--space-small);
-}
-
-.auth footer {
-  margin-left: 240px;
-}
-.auth button {
-  color: white;
+.auth-form-title {
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  width: auto;
-  margin-left: 285px;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+  align-content: flex-start;
 }

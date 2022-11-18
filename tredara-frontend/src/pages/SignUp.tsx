@@ -2,6 +2,8 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signup from "../assets/images/signup.png";
+import Form from "react-bootstrap/Form";
+import { Button, Col, Container, InputGroup, Row } from "react-bootstrap";
 
 // Project files
 import ListInput from "components/ListInput";
@@ -48,24 +50,40 @@ export default function Login() {
   }
 
   return (
-    <div id="sign-up" className="auth">
-      <div className="container">
-        <div className="row">
-          <img className="column" src={signup} alt="signup" />
-          <div className="column">
-            <h1>Sign Up</h1>
-            <form onSubmit={(event) => onSubmit(event)}>
-              <ListInput fields={Fields} state={[form, setForm]} />
-              <button className="btn btn-primary">Create Account</button>
-            </form>
-            <footer>
-              <p>
-                Already have an account? <Link to="/login">Sign In</Link>.
-              </p>
-            </footer>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container id="sign-up" className="auth">
+      <Form.Group as={Row} className="mb-3 d-flex login-footer">
+        <img className="column" src={signup} />
+        <Col sm={6} className="d-flex justify-content-center">
+          <Container>
+            <Form className="auth-form" onSubmit={(event) => onSubmit(event)}>
+              <Container>
+                <h3 className="auth-form-title">Registration</h3>
+                <Container className="text-center">
+                  <ListInput fields={Fields} state={[form, setForm]} />
+                  <Container className="d-flex flex-row-reverse">
+                    <Button
+                      type="submit"
+                      className="btn btn-primary d-flex flex-row-reverse"
+                    >
+                      Create Account
+                    </Button>
+                    <Form.Label column sm={8}>
+                      Already have an account?
+                      <Link
+                        to="/login"
+                        style={{ marginLeft: "0.5rem", color: "#0d6efd" }}
+                        className="ml-2 "
+                      >
+                        Sign In
+                      </Link>
+                    </Form.Label>
+                  </Container>
+                </Container>
+              </Container>
+            </Form>
+          </Container>
+        </Col>
+      </Form.Group>
+    </Container>
   );
 }
