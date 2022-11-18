@@ -48,7 +48,6 @@ $ git clone https://github.com/novare-tredara/Tredara
          ├──src
          ├──package.json
     ├──sql
-    ├──logs
     ├──design/
     ├──docker-compose.yml
     ├──Dockerfile.backend
@@ -163,6 +162,14 @@ A Java logging framework is a computer data logging package for the Java platfor
 
 ```
 <application>/log
+|- org
+|- META-INF
+|- BOOT-INF
+|- logs
+    |- application.json
+    |- application.gz
+$ docker container exec  8948c4010ab6 sh -c "ls -ltr /application/logs"
+-rw-r--r--    1 root     root        125026 Nov 18 11:02 application.json
 ```
 
 ## JobRunr
