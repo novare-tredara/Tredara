@@ -193,5 +193,13 @@ JIRA tool is used for this project, mainly for maintaining the tredara applicati
 - Sprint handling
 - etc.
 
-### Link to JIRA Activities
+## Link to JIRA Activities
 https://github.com/novare-tredara/Tredara/blob/Mallika/design/jiradashboard-Activities.pdf
+
+## Collaboration
+This is a team project, all Project management, Frontend and backend are developed in collaboration.
+
+### Team Members -
+Naga Malleswari
+Radha
+SaiLatha Tammana
