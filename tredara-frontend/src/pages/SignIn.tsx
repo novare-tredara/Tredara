@@ -2,11 +2,7 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-
 import Logo from "assets/images/logo-icon.png";
-import { Key, Person } from "react-bootstrap-icons";
-
-// Project files
 import ListInput from "components/ListInput";
 import Fields from "data/fields-sign-in.json";
 import iUser from "interfaces/iUser";
