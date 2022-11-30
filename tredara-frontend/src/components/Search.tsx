@@ -17,7 +17,7 @@ export default function Search() {
   }
 
   return (
-    <div className="col-md-2.5">
+    <div className="col-md-4">
       <Form onSubmit={onSubmit}>
         <InputGroup className="mr-sm-1">
           <Form.Control
