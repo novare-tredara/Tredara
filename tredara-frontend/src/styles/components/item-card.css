@@ -5,7 +5,7 @@
   padding: var(--space-medium);
   gap: var(--space-medium);
   position: relative;
-  width: 224px;
+  width: 298px;
   height: auto;
   background: rgb(243, 236, 236);
   border-radius: var(--space-small);
@@ -13,8 +13,8 @@
 }
 
 .item-card img {
-  width: 192px;
-  height: 192px;
+  width: 258px;
+  height: 258px;
   flex: none;
   order: 0;
   align-self: stretch;
